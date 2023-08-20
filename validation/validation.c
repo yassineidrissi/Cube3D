@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 12:32:06 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:48:36 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,24 @@ int check_parameters(char *av)
 	return (1);
 }
 
+int fill_type(char *line)
+{
+	int i;
 
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	
+	if ( line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+		fill_texture(line);
+	else if (line[i] == 'F' || line[i] =='C')
+		fill_color(line);
+	else if (line[i] == '1')
+		fill_map(line);
+	else
+		handl_errors(10)
+	return (0);
+}
 
 void init_cube3d(t_cube3d *cb)
 {
