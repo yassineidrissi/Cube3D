@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:08 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 10:45:56 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:34:51 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	handl_errors(int i)
 {
 	ft_printf("\033[1;31m");
-	ft_printf("Error\n");
+	ft_printf("Error!\n");
 	if (i == 1)
 		ft_printf("Failed >> map unvalied \n");
 	else if (i == 3)

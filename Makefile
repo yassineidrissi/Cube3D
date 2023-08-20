@@ -1,6 +1,6 @@
-SRCS = main_mlx_test.c ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
+SRCS = ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
 	./srcs/get_next_line.c ./srcs/get_next_line_utils.c ./validation/validation.c ./validation/validation2.c \
-	./validation/validation3.c \
+	./validation/validation3.c main.c\
 
 SRCS_TEST = main_mlx_test.c #//! if you want to test mlx library
 
@@ -11,7 +11,7 @@ CC				= cc
 RM				= rm -f
 GLFW = $(shell brew --prefix glfw)
 MLX_FLAG = ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-LIBS            = -Wall -Wextra -Werror -fsanitize=address -g
+LIBS            = -Wall -Wextra -Werror -fsanitize=address 
 NAME			= cube3D
 
 

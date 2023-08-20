@@ -6,12 +6,46 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:57:02 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:32:06 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "validation.h"
 
+int check_parameters(char *av)
+{
+	int i;
+	int j;
+	char *ext;
+
+	i = 0;
+	j = 0;
+	ext = ".cub";
+	while (av[i])
+		i++;
+	while (ext[j])
+		j++;
+	if (i < j)
+		return (0);
+	while (j >= 0)
+	{
+		if (av[i] != ext[j])
+			return (0);
+		i--;
+		j--;
+	}
+	return (1);
+}
+
+
+
+void init_cube3d(t_cube3d *cb)
+{
+	
+	return;
+	// cb.map = init_map(fd);
+	
+}
 // void	fill_map(t_map *map)
 // {
 // 	char	*buffer;

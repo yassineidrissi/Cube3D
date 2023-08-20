@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 11:14:24 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:01:46 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,14 @@ typedef struct s_cube3d
     t_player player;
     t_texture text[4];
     t_colore floor;
+    int fd;
+    int fdr;
     
+}       t_cube3d;
     // void	*img;
     // char	*addr;
     // int		bits_per_pixel;
     // int		line_length;
     // int		endian;
-}				t_cube3d;
 
 #endif
