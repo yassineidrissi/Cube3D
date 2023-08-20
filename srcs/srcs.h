@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   srcs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:44:50 by yaidriss         ###   ########.fr       */
+/*   Created: 2023/08/20 08:34:13 by yaidriss          #+#    #+#             */
+/*   Updated: 2023/08/20 08:51:32 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#ifndef SRCS_H
+# define SRCS_H
+# include <stdarg.h>
+# include "../cube3d.h"
 
-int main(int ac, char **av)
-{
-    ft_printf("Hello World!\n");
-    return 0;
-}
+void        ft_handl_error(int i);
+char        *ft_itoa(int n);
+int        ft_printf(const char *format, ...);
+char       **ft_split(const char *s, char c);
+char       *ft_strdup(const char *s1);
+int        ft_cmp(const char *s1, const char *s2);
+void       ft_free_double(char **p);
+int        ft_strlen(char *s);
+
+#endif

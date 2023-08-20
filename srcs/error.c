@@ -6,11 +6,11 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 18:59:46 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 07:44:44 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 08:40:54 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "srcs.h"
 
 void	handl_errors(int i)
 {
@@ -35,5 +35,5 @@ void	handl_errors(int i)
 	else if (i == 10)
 		ft_printf("Failed >> No Valid Arguements! \n");
 	ft_printf("\033[0m");
-	exit(0);
+	exit(0);//! need to check if exit is alloweded
 }

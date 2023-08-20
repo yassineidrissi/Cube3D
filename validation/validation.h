@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:44:50 by yaidriss         ###   ########.fr       */
+/*   Created: 2023/08/20 08:32:20 by yaidriss          #+#    #+#             */
+/*   Updated: 2023/08/20 08:32:48 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#ifndef VALIDATION_H
+# define VALIDATION_H
 
-int main(int ac, char **av)
-{
-    ft_printf("Hello World!\n");
-    return 0;
-}
+# include "../cube3d.h"
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 07:43:52 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 08:44:01 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <fcntl.h>
 # include <math.h>
 # include "./MLX42/include/MLX42/MLX42.h"
+# include "./validation/validation.h"
 # include "./srcs/get_next_line.h"
+# include "./srcs/srcs.h"
 
 # define BUFFER_SIZE 1000
 # define TILE_SIZE 64

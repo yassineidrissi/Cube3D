@@ -1,8 +1,12 @@
-SRCS = main_mlx_test.c
+SRCS = main.c ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
+	./srcs/get_next_line.c ./srcs/get_next_line_utils.c ./validation/validation.c ./validation/validation2.c \
+	./validation/validation3.c \
+
+SRCS_TEST = main_mlx_test.c #//! if you want to test mlx library
 
 
 
-OBJS			= $(SRCS:.c=.o)
+OBJS			= $(SRCS:.c=.o)#//! CHANGE SRCS TO SRCS_TEST IF YOU WANT TO SEE SIMPLE EXAMPLE OF MLX LIBRARY
 CC				= cc
 RM				= rm -f
 GLFW = $(shell brew --prefix glfw)
@@ -38,7 +42,7 @@ cube_3d_logo:
 	@echo "\033[92m██║     ██║   ██║██╔══██╗██╔══╝  \033[0m ╚═══██╗██║  ██║"
 	@echo "\033[92m╚██████╗╚██████╔╝██████╔╝███████ \033[0m██████╔╝██████╔╝"
 	@echo "\033[92m ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝\033[0m╚═════╝ ╚═════╝"
-	@echo "\033[92mCREATING .O FILES AND SO_LONG⌛\033[0m"
+	@echo "\033[92m⌛CREATING .O FILES AND SO_LONG⌛\033[0m"
 
 
 .PHONY: all fclean clean re cube_3d_logo

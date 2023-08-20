@@ -6,11 +6,11 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:01:25 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 07:44:44 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 08:39:16 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "srcs.h"
 
 static int	ft_nbrlen(int nbr)
 {
