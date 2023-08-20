@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:46:22 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 07:48:22 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:09:22 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 // #include <MLX42/MLX42.h>
 #include "cube3d.h"
 
-#define WIDTH 512
-#define HEIGHT 512
+#define WIDTH 2800
+#define HEIGHT 1000
 
 static mlx_image_t* image;
 

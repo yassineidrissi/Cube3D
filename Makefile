@@ -1,4 +1,4 @@
-SRCS = main.c ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
+SRCS = main_mlx_test.c ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
 	./srcs/get_next_line.c ./srcs/get_next_line_utils.c ./validation/validation.c ./validation/validation2.c \
 	./validation/validation3.c \
 
@@ -10,13 +10,13 @@ OBJS			= $(SRCS:.c=.o)#//! CHANGE SRCS TO SRCS_TEST IF YOU WANT TO SEE SIMPLE EX
 CC				= cc
 RM				= rm -f
 GLFW = $(shell brew --prefix glfw)
-MLX_FLAG = ./MLX42/build/libmlx42.a -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+MLX_FLAG = ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 LIBS            = -Wall -Wextra -Werror -fsanitize=address -g
 NAME			= cube3D
 
 
 %.o : %.c
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(CFLAGS) -I ~/MLX42/include -c $< -o $@
 
 all:		cube_3d_logo	$(NAME) 
 

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:44:50 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:02:03 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int main(int ac, char **av)
 {
-    ft_printf("Hello World!\n");
+    t_cube3d cb;
+    
+    cb.map.map[20][20] = 48;
+    ft_printf("Hello World! %c\n", cb.map.map[20][20]);
     return 0;
 }

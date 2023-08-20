@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 18:59:46 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:40:54 by yaidriss         ###   ########.fr       */
+/*   Created: 2023/08/20 08:57:08 by yaidriss          #+#    #+#             */
+/*   Updated: 2023/08/20 10:45:56 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	handl_errors(int i)
 	else if (i == 10)
 		ft_printf("Failed >> No Valid Arguements! \n");
 	ft_printf("\033[0m");
-	exit(0);//! need to check if exit is alloweded
+	exit(i);//! need to check if exit is alloweded
 }
