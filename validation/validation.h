@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:32:20 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 12:33:58 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:54:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 // void init_cube3d(t_cube3d *cb);
 // int check_pameters
 int check_parameters(char *av);
+// int	fill_type(t_cube3d *cb);
 
 #endif

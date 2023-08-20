@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 12:01:46 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:16:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,55 +65,59 @@
 # define NUM_MAPS 3
 typedef struct s_map
 {
-    char	**map_tmp;
-    char	map[2800][2900];//[MAP_MAX_ROWS][MAP_MAX_COLS];
-    int		map_width;
-    int		map_height;
+	char	**map_tmp;
+	char	map[2800][2900];//[MAP_MAX_ROWS][MAP_MAX_COLS];
+	int		map_width;
+	int		map_height;
 }				t_map;
 typedef struct s_texture
 {
-    void	*img;
-    char	*addr;
-    int		bits_per_pixel;
-    int		line_length;
-    int		endian;
-    int		width;
-    int		height;
+	char	**cnt;
+	char	*path;
+	int		bol;
+
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
 }				t_texture;
 typedef struct s_player
 {
-    double	x;
-    double	y;
-    double	width;
-    double	height;
-    int		turn_direction;
-    int		walk_direction;
-    double	rotation_angle;
-    double	walk_speed;
-    double	turn_speed;
+	double	x;
+	double	y;
+	double	width;
+	double	height;
+	int		turn_direction;
+	int		walk_direction;
+	double	rotation_angle;
+	double	walk_speed;
+	double	turn_speed;
 }				t_player;   
 typedef struct s_colore
 {
-    int		r;
-    int		g;
-    int		b;
+	int		r;
+	int		g;
+	int		b;
 }				t_colore;
 
 typedef struct s_cube3d
 {
-    void	*mlx;
-    t_map  map;
-    t_player player;
-    t_texture text[4];
-    t_colore floor;
-    int fd;
-    int fdr;
-    
+	void		*mlx;
+	t_map  		map;
+	t_player 	player;
+	t_texture   text[4];
+	t_colore	floor;
+	int   	 	fd;
+	int  	  	fdr;
+	char 	   *line;
 }       t_cube3d;
-    // void	*img;
-    // char	*addr;
-    // int		bits_per_pixel;
-    // int		line_length;
-    // int		endian;
+	// void	*img;
+	// char	*addr;
+	// int		bits_per_pixel;
+	// int		line_length;
+	// int		endian;
 
 #endif

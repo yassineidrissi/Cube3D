@@ -5,17 +5,17 @@ SRCS = ./srcs/error.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./sr
 SRCS_TEST = main_mlx_test.c #//! if you want to test mlx library
 
 
-
+# OBJS			= $(SRCS_TEST:.c=.o)
 OBJS			= $(SRCS:.c=.o)#//! CHANGE SRCS TO SRCS_TEST IF YOU WANT TO SEE SIMPLE EXAMPLE OF MLX LIBRARY
 CC				= cc
 RM				= rm -f
-GLFW = $(shell brew --prefix glfw)
-MLX_FLAG = ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
+GLFW			= $(shell brew --prefix glfw)
+MLX_FLAG		= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 LIBS            = -Wall -Wextra -Werror -fsanitize=address 
 NAME			= cube3D
 
 
-%.o : %.c
+%.o : %.c 
 		@$(CC) $(CFLAGS) -I ~/MLX42/include -c $< -o $@
 
 all:		cube_3d_logo	$(NAME) 
