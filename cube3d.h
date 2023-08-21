@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 17:16:52 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 08:03:13 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <MLX42/MLX42.h>
-# include "./validation/validation.h"
+// # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
 
@@ -27,6 +27,8 @@
 # define MAP_MAX_COLS 5120
 # define BUFFER_SIZE 1000
 # define TILE_SIZE 64
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
 # define ROT_SPEED 0.1
@@ -35,8 +37,8 @@
 # define SO 1
 # define WE 2
 # define EA 3
-# define W 119
-# define W 119
+# define F 0
+# define C 1
 # define W 119
 # define S 115
 # define A 97
@@ -101,7 +103,8 @@ typedef struct s_colore
 	int		r;
 	int		g;
 	int		b;
-}				t_colore;
+	int 	bol;
+}				 t_colore;
 
 typedef struct s_cube3d
 {
@@ -109,7 +112,7 @@ typedef struct s_cube3d
 	t_map  		map;
 	t_player 	player;
 	t_texture   text[4];
-	t_colore	floor;
+	t_colore	colors[2];
 	int   	 	fd;
 	int  	  	fdr;
 	char 	   *line;

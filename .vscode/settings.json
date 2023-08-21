@@ -4,6 +4,8 @@
         "stdio.h": "c",
         "mlx42.h": "c",
         "cube3d.h": "c",
-        "validation.h": "c"
+        "validation.h": "c",
+        "algorithm": "c",
+        "stdlib.h": "c"
     }
 }
