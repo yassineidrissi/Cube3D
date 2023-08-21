@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/21 12:37:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:23:41 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,21 @@ void	fill_texture(t_cube3d *cb)
 
 	i = 0;
 	ft_to_space(cb->line);
-	cb->text->cnt = ft_split(cb->line, ' ');
-	if (!cb->text->cnt)
+	cb->cnt = ft_split(cb->line, ' ');
+
+	if (!cb->cnt)
 		handl_errors(6);
-	while (cb->text->cnt[i])
+	while (cb->cnt[i])
 		i++;
 	if (i != 2 || compare(cb))
 	{
-		ft_free_double(cb->text->cnt);
+		ft_free_double(cb->cnt);
 		handl_errors(10);
 	}
+	/*it says leaks cb->cnt but we neet to work with */
+	//ft_free_double(cb->cnt);
+	//free it to test leeks in other places
+	
 	//########## load png in another fun 
 	// mlx_texture_t* texture = mlx_load_png(cb->text->cnt[1]);
 	// if (!texture)

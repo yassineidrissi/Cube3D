@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 12:15:04 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:20:53 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_map
 }				t_map;
 typedef struct s_texture
 {
-	char	**cnt;
 	char	*path;
 	int		bol;
 
@@ -115,6 +114,7 @@ typedef struct s_cube3d
 	t_colore	colors[2];
 	int   	 	fd;
 	int			fdr;
+	char		**cnt;
 	char		*line;
 	char		*s2[4];
 	int			map_bol;

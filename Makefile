@@ -11,8 +11,8 @@ CC				= cc
 RM				= rm -f
 GLFW			= $(shell brew --prefix glfw)
 MLX_FLAG		= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-LIBS            = -Wall -Wextra -Werror -fsanitize=address 
-NAME			= cube3D
+LIBS            = -Wall -Wextra -Werror #-fsanitize=address 
+NAME			= cub3D
 
 
 %.o : %.c 

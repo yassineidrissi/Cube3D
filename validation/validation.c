@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 12:39:47 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:21:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ int	compare(t_cube3d *cb)
 	{
 		j = 0;
 		k = 0;
-		while (cb->text->cnt[0][j] && cb->text->cnt[0][j] == cb->s2[i][k])
+		while (cb->cnt[0][j] && cb->cnt[0][j] == cb->s2[i][k])
 		{
 			j++;
 			k++;
 		}
-		if (!cb->text->cnt[0][j] && !cb->s2[i][k])
+		if (!cb->cnt[0][j] && !cb->s2[i][k])
 		{
 			cb->text[i].bol++;
 			cb->map_bol++;
 			if (cb->text[i].bol != 1)
 				return (1);
 			else
-				cb->text[i].path = ft_strdup(cb->text->cnt[1]);
+				cb->text[i].path = ft_strdup(cb->cnt[1]);
 			return (0);
 		}
 	}
@@ -93,6 +93,20 @@ int check_parameters(char *av)
 	return (1);
 }
 
+void	check_bol(t_cube3d *cb)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+		if (cb->text[i].bol != 1)
+			handl_errors(10);
+	i = -1;
+	while (++i < 2)
+		if (cb->colors[i].bol != 1)
+			handl_errors(10);
+}
+
 int	check_content(t_cube3d *cb)
 {
 	cb->line = get_next_line(cb->fd);
@@ -109,12 +123,7 @@ int	check_content(t_cube3d *cb)
 	}
 	// close(cb->fd);
 	free(cb->line);
-	//create a while to test errors ##########
-	if (cb->text[0].bol != 1 || cb->text[1].bol != 1 || cb->text[2].bol != 1 ||cb->text[3].bol != 1 || cb->colors[F].bol != 1 || cb->colors[C].bol != 1)
-	{
-		printf("bol F = %d, bol C = %d\n", cb->colors[F].bol, cb->colors[C].bol);
-		handl_errors(10);
-	}
+	check_bol(cb);
 	// printf("im finaly here\n");
 	return (0);
 }
