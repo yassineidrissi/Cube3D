@@ -6,11 +6,24 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 17:47:49 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:05:57 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	to_space(t_cube3d *cb)
+{
+	int	i;
+
+	i = 0;
+	while (cb->line && cb->line[i])
+	{
+		if (cb->line[i] == ',' || cb->line[i] == '\t' || cb->line[i] == '\n')
+			cb->line[i] = ' ';
+		i++;
+	}
+}
 
 int check_parameters(char *av)
 {
@@ -75,9 +88,16 @@ int	compare(t_cube3d *cb)
 
 void	fill_texture(t_cube3d *cb)
 {
+	int	i;
+
+	i = 0;
+	to_space(cb);
 	cb->text->cnt = ft_split(cb->line, ' ');//  or split tab too
-	cb->text->cnt[1][ft_strlen(cb->text->cnt[1]) - 1] = '\0';
-	if (compare(cb))
+	if (!cb->text->cnt)
+		handl_errors(6);
+	while (cb->text->cnt && cb->text->cnt[i])
+		i++;
+	if (i != 2 || compare(cb))
 	{
 		ft_free_double(cb->text->cnt);
 		handl_errors(6);
