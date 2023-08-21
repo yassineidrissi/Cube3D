@@ -3,15 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   validation2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:56:53 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:05:20 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
+void	remove_nl(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\n')
+			str[i] = '\0';
+}
+
+void	print(char *str, int x)
+{
+	if (str)
+		printf("[%s]\n", str);
+	if (x)
+		printf("[%d]\n", x);
+}
 // void	validation(t_map	*map)
 // {
 // 	test_rectangular(map);

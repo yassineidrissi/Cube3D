@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 13:21:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:08:27 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_cube3d(t_cube3d *cb)
 {
+	cb->all_map = NULL;
 	cb->line = NULL;
 	cb->map_bol = 0;
 	cb->text[NO].bol = 0;
@@ -26,11 +27,12 @@ void	init_cube3d(t_cube3d *cb)
 	cb->s2[1] = "SO";
 	cb->s2[2] = "WE";
 	cb->s2[3] = "EA";
+	cb->p = 0;
 }
 
-void ft_to_space(char *str)
+void	ft_to_space(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
@@ -92,7 +94,7 @@ int check_parameters(char *av)
 	}
 	return (1);
 }
-
+/* chek bol to see if there is something other than NO SO WE EA F C before arriving to the map*/
 void	check_bol(t_cube3d *cb)
 {
 	int	i;
@@ -105,6 +107,32 @@ void	check_bol(t_cube3d *cb)
 	while (++i < 2)
 		if (cb->colors[i].bol != 1)
 			handl_errors(10);
+}
+
+/*check player if its repeated or it doesnt exist*/
+void	check_repeat(t_cube3d *cb)
+{
+	int	i;
+
+	i = -1;
+	while (cb->all_map[++i])
+	{
+		if (cb->all_map[i] == 'N' || cb->all_map[i] == 'S'
+			|| cb->all_map[i] == 'W' || cb->all_map[i] == 'E')
+			cb->p++;
+		else if (cb->all_map[i] != '1' && cb->all_map[i] != '0'
+				&& cb->all_map[i] != ' ' && cb->all_map[i] != '\t'
+				&& cb->all_map[i] != '\n')
+		{
+			free(cb->all_map);
+			handl_errors(10);
+		}
+	}
+	if (cb->p != 1)
+	{
+			free(cb->all_map);
+			handl_errors(4);
+	}
 }
 
 int	check_content(t_cube3d *cb)
@@ -124,6 +152,7 @@ int	check_content(t_cube3d *cb)
 	// close(cb->fd);
 	free(cb->line);
 	check_bol(cb);
+	check_repeat(cb);
 	// printf("im finaly here\n");
 	return (0);
 }

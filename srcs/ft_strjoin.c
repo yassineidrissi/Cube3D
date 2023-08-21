@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 17:06:38 by zouaraqa         ###   ########.fr       */
+/*   Created: 2023/08/21 16:31:10 by zouaraqa          #+#    #+#             */
+/*   Updated: 2023/08/21 16:35:48 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "srcs.h"
 
-/*####  function are in validation dir  #####*/
-int main(int ac, char **av)
+char	*ft_strjoin(char *s1, char *s2)
 {
-    t_cube3d cb;
+	char	*str;
+	int		i;
+	int		j;
 
-    if (ac != 2)
-        handl_errors(10);
-    init_cube3d(&cb);
-    cb.fd = open(av[1], O_RDONLY);
-    if (cb.fd == -1 || check_parameters(av[1]) == 0 || check_content(&cb))
-        handl_errors(6);
-    
-    print(cb.all_map, 0);
-	// system("leaks cub3D");
-    return 0;
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (0);
+	while (s1 && s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2 && s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	if (s1)
+		free(s1);
+	return (str);
 }

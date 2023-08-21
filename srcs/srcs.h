@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   srcs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:34:13 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 06:46:12 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:32:18 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void       ft_free_double(char **p);
 int        ft_strlen(char *s);
 char		*ft_strcpy(char *dst, char *src);
 int         ft_atoi(const char *str);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif

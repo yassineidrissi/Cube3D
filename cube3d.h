@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 13:20:53 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:55:43 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define SPRITE_HEIGHT 64
 # define NUM_TEXTURES 5
 # define NUM_MAPS 3
+
 typedef struct s_map
 {
 	char	**map_tmp;
@@ -112,10 +113,12 @@ typedef struct s_cube3d
 	t_player 	player;
 	t_texture   text[4];
 	t_colore	colors[2];
+	int			p;
 	int   	 	fd;
 	int			fdr;
 	char		**cnt;
 	char		*line;
+	char		*all_map;
 	char		*s2[4];
 	int			map_bol;
 }       t_cube3d;
@@ -130,6 +133,12 @@ int		compare(t_cube3d *cb);
 int		check_parameters(char *av);
 int		check_content(t_cube3d *cb);
 int		fill_type(t_cube3d *cb);
+void	remove_nl(char *str);
+
+
+
+//remove print after
+void	print(char *str, int x);
 
 	// void	*img;
 	// char	*addr;

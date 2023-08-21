@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/21 13:23:41 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:05:59 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,27 @@ void	fill_colors(t_cube3d *cb)
 	}
 	ft_free_double(RGB);
 }
+
 void	fill_map(t_cube3d *cb)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (cb->map_bol != 6)
 		handl_errors(5);
-	// while (cb->line[i])
-		
+	cb->all_map = ft_strjoin(cb->all_map, cb->line);
+	/*strjoin all the map*/
+	/* and split it with '\n' after to tcheck valid map*/
+
+	
+
+	
+	// remove_nl(cb->line);
+	// i = 0;
+	// while (cb->map.map_tmp[i])
+	// 	i++;
+	// cb->map.map_tmp[i] = ft_strdup(cb->line);
+	// print(cb->map.map[i], 0);
 	// return ;
 	// printf("map %s\n", cb->line);
 }
