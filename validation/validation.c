@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 17:08:27 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:51:40 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,41 @@ void	check_repeat(t_cube3d *cb)
 	}
 }
 
+void	check_all_sides(char **str, int x, int y)
+{
+	if (str[y][x] != '1' && str[y][x] != '0'
+		&& str[y][x] != 'N' && str[y][x] != 'S'
+		&& str[y][x] != 'W' && str[y][x] != 'E')
+	{
+		ft_free_double(str);
+		handl_errors(10);
+	}
+}
+
+void	check_valid_map(t_cube3d *cb)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (cb->map.map_tmp[++y])
+	{
+		x = 0;
+		while (cb->map.map_tmp[y][x])
+		{
+			if (cb->map.map_tmp[y][x] == '0')
+				check_all_sides(cb->map.map_tmp, x - 1, y);
+			if (cb->map.map_tmp[y][x] == '0')
+				check_all_sides(cb->map.map_tmp, x + 1, y);
+			if (cb->map.map_tmp[y][x] == '0')
+				check_all_sides(cb->map.map_tmp, x, y - 1);
+			if (cb->map.map_tmp[y][x] == '0')
+				check_all_sides(cb->map.map_tmp, x, y + 1);
+			x++;
+		}
+	}
+}
+
 int	check_content(t_cube3d *cb)
 {
 	cb->line = get_next_line(cb->fd);
@@ -153,7 +188,14 @@ int	check_content(t_cube3d *cb)
 	free(cb->line);
 	check_bol(cb);
 	check_repeat(cb);
-	// printf("im finaly here\n");
+	cb->map.map_tmp = ft_split(cb->all_map, '\n');
+	free(cb->all_map);
+
+	// for (int i = 0; cb->map.map_tmp[i] ;i++ )
+	// 	print(cb->map.map_tmp[i], 0);
+
+	/* my time has come check the valid map if its working */
+	check_valid_map(cb);
 	return (0);
 }
 
