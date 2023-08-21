@@ -6,45 +6,73 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 15:54:53 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:39:47 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
-/*
-int	compare(char *s1)
-{
-	char	*s2[4];
-	size_t	i;
-	size_t	j;
-	size_t	k;
+#include "../cube3d.h"
 
-	i = 0;
-	s2[0] = "NO";
-	s2[1] = "SO";
-	s2[2] = "WE";
-	s2[3] = "EA";
-	while (s2[i])
+void	init_cube3d(t_cube3d *cb)
+{
+	cb->line = NULL;
+	cb->map_bol = 0;
+	cb->text[NO].bol = 0;
+	cb->text[SO].bol = 0;
+	cb->text[WE].bol = 0;
+	cb->text[EA].bol = 0;
+	cb->colors[F].bol = 0;
+	cb->colors[C].bol = 0;
+	cb->s2[0] = "NO";
+	cb->s2[1] = "SO";
+	cb->s2[2] = "WE";
+	cb->s2[3] = "EA";
+}
+
+void ft_to_space(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == ',' || str[i] == '\t' || str[i] == '\n')
+			str[i] = ' ';
+}
+
+int	compare(t_cube3d *cb)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	while (++i < 4)
 	{
 		j = 0;
 		k = 0;
-		while (s1[j] && s1[j] == s2[i][k] && i < 2)
+		while (cb->text->cnt[0][j] && cb->text->cnt[0][j] == cb->s2[i][k])
 		{
 			j++;
 			k++;
 		}
-		if (!s1[j] && !s2[i][k])
+		if (!cb->text->cnt[0][j] && !cb->s2[i][k])
+		{
+			cb->text[i].bol++;
+			cb->map_bol++;
+			if (cb->text[i].bol != 1)
+				return (1);
+			else
+				cb->text[i].path = ft_strdup(cb->text->cnt[1]);
 			return (0);
-		i++;
+		}
 	}
 	return (1);
 }
 
 int check_parameters(char *av)
 {
-	int i;
-	int j;
-	char *ext;
+	char 	*ext;
+	int 	i;
+	int 	j;
 
 	i = 0;
 	j = 0;
@@ -65,45 +93,32 @@ int check_parameters(char *av)
 	return (1);
 }
 
-void	fill_texture(t_cube3d *cb)
+int	check_content(t_cube3d *cb)
 {
-	cb->map.map_tmp = ft_split(cb->line, ' ');
-	if (compare(cb->map.map_tmp[0]))
-		handl_errors(6);
-	pause();
-	mlx_texture_t* texture = mlx_load_png(cb->map.map_tmp[1]);
-	if (!texture)
-        handl_errors(6);
-	printf("text %s\n", cb->line);
-}
-void	fill_color(t_cube3d *cb)
-{
-	printf("color %s\n", cb->line);
-}
-void	fill_map(t_cube3d *cb)
-{
-	// return ;
-	printf("map %s\n", cb->line);
-}
-
-int fill_type(t_cube3d *cb)
-{
-	int i;
-
-	i = 0;
-	while (cb->line[i] == ' ' || cb->line[i] == '\t')
-		i++;
-	if (cb->line[i] == 'N' || cb->line[i] == 'S' || cb->line[i] == 'W' || cb->line[i] == 'E')
-		fill_texture(cb);
-	else if (cb->line[i] == 'F' || cb->line[i] =='C')
-		fill_color(cb);
-	else if (cb->line[i] == '1')
-		fill_map(cb);
-	else if (cb->line[i] != '\n')
+	cb->line = get_next_line(cb->fd);
+	while (cb->line)
+	{
+		if (fill_type(cb))
+		{
+			printf("im here check inside if fill_type\n");
+			free(cb->line);
+			handl_errors(6);
+		}
+		free(cb->line);
+		cb->line = get_next_line(cb->fd);
+	}
+	// close(cb->fd);
+	free(cb->line);
+	//create a while to test errors ##########
+	if (cb->text[0].bol != 1 || cb->text[1].bol != 1 || cb->text[2].bol != 1 ||cb->text[3].bol != 1 || cb->colors[F].bol != 1 || cb->colors[C].bol != 1)
+	{
+		printf("bol F = %d, bol C = %d\n", cb->colors[F].bol, cb->colors[C].bol);
 		handl_errors(10);
+	}
+	// printf("im finaly here\n");
 	return (0);
 }
-*/
+
 // void init_cube3d(t_cube3d *cb)
 // {
 // 	return;

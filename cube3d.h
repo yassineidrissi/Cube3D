@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 08:03:13 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:15:04 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,23 @@ typedef struct s_cube3d
 	t_texture   text[4];
 	t_colore	colors[2];
 	int   	 	fd;
-	int  	  	fdr;
-	char 	   *line;
+	int			fdr;
+	char		*line;
+	char		*s2[4];
+	int			map_bol;
 }       t_cube3d;
+
+/*################################################################*/
+/*                       validation functions         			  */
+/*################################################################*/
+
+void	init_cube3d(t_cube3d *cb);
+void	ft_to_space(char *str);
+int		compare(t_cube3d *cb);
+int		check_parameters(char *av);
+int		check_content(t_cube3d *cb);
+int		fill_type(t_cube3d *cb);
+
 	// void	*img;
 	// char	*addr;
 	// int		bits_per_pixel;
