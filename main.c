@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/22 18:08:28 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:15:36 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void    testing(t_cube3d *cb)
 	int				i;
 	int				j;
 
+	printf("height = %d\n", cb->map.height);
+	printf("width = %d\n", cb->map.width);
 	uint32_t color = ft_pixel(0xFF, 0xFF, 0xFF, 0xFF);
 	uint32_t p_color = ft_pixel(0x00, 0xFF, 0x00, 0xFF);
-	mlx = mlx_init(2000, 1000, "cub3D", false);
-	img = mlx_new_image(mlx, 2000, 1000);
+	mlx = mlx_init(cb->map.height * COF_PIXEL, cb->map.width * COF_PIXEL , "cub3D", false); 
+	img = mlx_new_image(mlx, cb->map.height * COF_PIXEL, cb->map.width * COF_PIXEL);
+
 	y = -1;
 	while (cb->map.map_tmp[++y])
 	{
@@ -46,12 +49,12 @@ void    testing(t_cube3d *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < 50)
+			while (++j < COF_PIXEL)
 			{
 				i = -1;
-				while (++i < 50)
+				while (++i < COF_PIXEL)
 				{
-					if (cb->map.map_tmp[y][x] == '1')
+					if (cb->map.map_tmp[y][x] == '1') 
 						mlx_put_pixel(img, x * 50 + i, y * 50 + j, color);
 					else if (cb->map.map_tmp[y][x] == 'N')
 						mlx_put_pixel(img, x * 50 + 25, y * 50 + 25, p_color);

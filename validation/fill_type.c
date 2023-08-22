@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/22 17:05:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:30:50 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void	fill_map(t_cube3d *cb)
 {
 	int	i;
 
-	i = -1;
+	i = -1;	
+
 	if (cb->map_bol != 6)//map_bol need to be 6 to ensure that the 6 previous line are valid befor jumping to store map
 		handl_errors(5);
 	cb->all_map = ft_strjoin(cb->all_map, cb->line);

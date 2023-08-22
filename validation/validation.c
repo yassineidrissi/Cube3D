@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/22 18:15:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:32:46 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,20 @@ int	p_or_z(t_cube3d *cb, char c, int x, int y)
 	return (0);
 }
 
+int ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
 void	check_valid_map(t_cube3d *cb)
 {
 	int	x;
 	int	y;
 
+	cb->map.height = 0;
+	cb->map.width = 0;
 	y = -1;
 	while (cb->map.map_tmp[++y])
 	{
@@ -99,11 +108,15 @@ void	check_valid_map(t_cube3d *cb)
 				check_all_sides(cb->map.map_tmp, x, y + 1);
 			x++;
 		}
+		cb->map.width = ft_max(cb->map.width, x);
+		cb->map.height++;
 	}
 }
 
+
 int	check_content(t_cube3d *cb)
 {
+
 	cb->line = get_next_line(cb->fd);
 	while (cb->line)
 	{

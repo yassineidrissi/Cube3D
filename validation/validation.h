@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:32:20 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 11:54:00 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:31:50 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@
 // int check_pameters
 // int check_parameters(char *av);
 // int	fill_type(t_cube3d *cb);
-
+int ft_max(int a, int b);
 #endif

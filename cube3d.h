@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/22 15:18:27 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 00:07:38 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include "./MLX42/include/MLX42/MLX42.h"
+# include <MLX42/MLX42.h>
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
@@ -31,6 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
+# define COF_PIXEL 16
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
@@ -70,8 +71,8 @@ typedef struct s_map
 {
 	char	**map_tmp;
 	char	map[2800][2900];//[MAP_MAX_ROWS][MAP_MAX_COLS];
-	int		map_width;
-	int		map_height;
+	int		width;
+	int		height;
 }				t_map;
 typedef struct s_texture
 {
