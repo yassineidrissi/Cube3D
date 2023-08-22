@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/22 18:22:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:18:27 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include <MLX42/MLX42.h>//"./MLX42/include/MLX42/MLX42.h" copy MLX42 in the dir so mlx function can be autocomlete by vs
+# include "./MLX42/include/MLX42/MLX42.h"
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
