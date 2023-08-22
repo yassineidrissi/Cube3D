@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/21 17:36:56 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:05:06 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void ft_fill_color(t_cube3d *cb, char **RGB, int i)
 	cb->colors[i].b = ft_atoi(RGB[3]);
 	cb->colors[i].bol++;
 	cb->map_bol++;
-	if (cb->colors[i].r < 0 || cb->colors[i].g < 0
-		|| cb->colors[i].b < 0 || cb->colors[i].r > 255
-		|| cb->colors[i].g > 255 || cb->colors[i].b > 255)
+	if (cb->colors[i].r < 0 || cb->colors[i].r > 255
+		|| cb->colors[i].b < 0 || cb->colors[i].b > 255
+		|| cb->colors[i].g < 0 || cb->colors[i].g > 255)
 	{
 		ft_free_double(RGB);
 		handl_errors(10);
