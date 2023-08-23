@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 00:32:46 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:44:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ void	check_repeat(t_cube3d *cb)
 	int	i;
 
 	i = -1;
-	while (cb->all_map[++i])
+	while (cb->joined_map[++i])
 	{
-		if (cb->all_map[i] == 'N' || cb->all_map[i] == 'S'
-			|| cb->all_map[i] == 'W' || cb->all_map[i] == 'E')
+		if (cb->joined_map[i] == 'N' || cb->joined_map[i] == 'S'
+			|| cb->joined_map[i] == 'W' || cb->joined_map[i] == 'E')
 			cb->p++;
-		else if (cb->all_map[i] != '1' && cb->all_map[i] != '0'
-				&& cb->all_map[i] != ' ' && cb->all_map[i] != '\t'
-				&& cb->all_map[i] != '\n')
+		else if (cb->joined_map[i] != '1' && cb->joined_map[i] != '0'
+				&& cb->joined_map[i] != ' ' && cb->joined_map[i] != '\t'
+				&& cb->joined_map[i] != '\n')
 		{
-			free(cb->all_map);
+			free(cb->joined_map);
 			handl_errors(10);
 		}
 	}
 	if (cb->p != 1)
 	{
-			free(cb->all_map);
-			handl_errors(4);
+			free(cb->joined_map);
+			handl_errors(10);
 	}
 }
 
@@ -133,8 +133,8 @@ int	check_content(t_cube3d *cb)
 	free(cb->line);
 	check_bol(cb);
 	check_repeat(cb);
-	cb->map.map_tmp = ft_split(cb->all_map, '\n');
-	free(cb->all_map);
+	cb->map.map_tmp = ft_split(cb->joined_map, '\n');
+	free(cb->joined_map);
 
 	// for (int i = 0; cb->map.map_tmp[i] ;i++ )
 	// 	print(cb->map.map_tmp[i], 0);

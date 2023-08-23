@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 00:15:36 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:17:01 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void    testing(t_cube3d *cb)
 	printf("width = %d\n", cb->map.width);
 	uint32_t color = ft_pixel(0xFF, 0xFF, 0xFF, 0xFF);
 	uint32_t p_color = ft_pixel(0x00, 0xFF, 0x00, 0xFF);
-	mlx = mlx_init(cb->map.height * COF_PIXEL, cb->map.width * COF_PIXEL , "cub3D", false); 
-	img = mlx_new_image(mlx, cb->map.height * COF_PIXEL, cb->map.width * COF_PIXEL);
+	uint32_t z_color = ft_pixel(0x00, 0xFF, 0xFF, 0xFF);
+	mlx = mlx_init(2000, 1000 , "cub3D", false);
+	img = mlx_new_image(mlx, 2000, 1000);
 
 	y = -1;
 	while (cb->map.map_tmp[++y])
@@ -49,15 +50,17 @@ void    testing(t_cube3d *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < COF_PIXEL)
+			while (++j < COF_PIXEL - 1)
 			{
 				i = -1;
-				while (++i < COF_PIXEL)
+				while (++i < COF_PIXEL - 1)
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
-						mlx_put_pixel(img, x * 50 + i, y * 50 + j, color);
+						mlx_put_pixel(img, x * COF_PIXEL + i, y * COF_PIXEL + j, color);
 					else if (cb->map.map_tmp[y][x] == 'N')
-						mlx_put_pixel(img, x * 50 + 25, y * 50 + 25, p_color);
+						mlx_put_pixel(img, x * COF_PIXEL + (COF_PIXEL / 2), y * COF_PIXEL + (COF_PIXEL / 2), p_color);
+					else if (cb->map.map_tmp[y][x] == '0') 
+						mlx_put_pixel(img, x * COF_PIXEL + i, y * COF_PIXEL + j, z_color);
 				}
 			}
 		}
