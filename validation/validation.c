@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 10:44:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:23:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	check_valid_map(t_cube3d *cb)
 
 int	check_content(t_cube3d *cb)
 {
-
 	cb->line = get_next_line(cb->fd);
 	while (cb->line)
 	{
@@ -135,11 +134,6 @@ int	check_content(t_cube3d *cb)
 	check_repeat(cb);
 	cb->map.map_tmp = ft_split(cb->joined_map, '\n');
 	free(cb->joined_map);
-
-	// for (int i = 0; cb->map.map_tmp[i] ;i++ )
-	// 	print(cb->map.map_tmp[i], 0);
-
-	/* my time has come check the valid map if its working */
 	check_valid_map(cb);
 	return (0);
 }

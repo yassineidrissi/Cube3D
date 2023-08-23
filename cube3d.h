@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 10:44:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:37:32 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
-# define COF_PIXEL 16
+# define COF_PIXEL 64//After validation 2D map , we need to change it to 1
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0

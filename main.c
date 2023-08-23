@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 10:17:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:45:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
-
 
 void ft_hook(void* param)
 {
@@ -38,10 +37,10 @@ void    testing(t_cube3d *cb)
 	printf("height = %d\n", cb->map.height);
 	printf("width = %d\n", cb->map.width);
 	uint32_t color = ft_pixel(0xFF, 0xFF, 0xFF, 0xFF);
-	uint32_t p_color = ft_pixel(0x00, 0xFF, 0x00, 0xFF);
+	uint32_t p_color = ft_pixel(0xFF, 0x00, 0x00, 0xFF);
 	uint32_t z_color = ft_pixel(0x00, 0xFF, 0xFF, 0xFF);
-	mlx = mlx_init(2000, 1000 , "cub3D", false);
-	img = mlx_new_image(mlx, 2000, 1000);
+	mlx = mlx_init(2500, 1300 , "cub3D", false);
+	img = mlx_new_image(mlx, 2500, 1300);
 
 	y = -1;
 	while (cb->map.map_tmp[++y])
@@ -58,7 +57,10 @@ void    testing(t_cube3d *cb)
 					if (cb->map.map_tmp[y][x] == '1') 
 						mlx_put_pixel(img, x * COF_PIXEL + i, y * COF_PIXEL + j, color);
 					else if (cb->map.map_tmp[y][x] == 'N')
+					{
+						// mlx_put_pixel(img, x * COF_PIXEL + i, y * COF_PIXEL + j, z_color);
 						mlx_put_pixel(img, x * COF_PIXEL + (COF_PIXEL / 2), y * COF_PIXEL + (COF_PIXEL / 2), p_color);
+					}
 					else if (cb->map.map_tmp[y][x] == '0') 
 						mlx_put_pixel(img, x * COF_PIXEL + i, y * COF_PIXEL + j, z_color);
 				}
@@ -82,11 +84,16 @@ int main(int ac, char **av)
 	if (cb.fd == -1 || check_parameters(av[1]) == 0 || check_content(&cb))
 		handl_errors(6);
 
-	for (int g = 0; cb.map.map_tmp[g]; g++)
-		print(cb.map.map_tmp[g], 0);
 
 	testing(&cb);
-	
+	// int y;
+	// for (y = 0; cb.map.map_tmp[y]; y++)
+	// 	for (int x = 0; cb.map.map_tmp[y][x]; x++)
+	// 		cb.map.map[y][x] = cb.map.map_tmp[y][x];
+	// 	*cb.map.map[y] = '\0';
+	// ft_free_double(cb.map.map_tmp);
+	// for (int g = 0; *cb.map.map[g]; g++)
+	// 	print(cb.map.map[g], 0);
 	// system("leaks cub3D");
 	return 0;
 }
