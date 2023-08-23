@@ -107,9 +107,11 @@ typedef struct s_colore
 	int 	bol;
 }				 t_colore;
 
+//!add img and mlx variables in t_cube3d struct
 typedef struct s_cube3d
 {
-	void		*mlx;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_map  		map;
 	t_player 	player;
 	t_texture   text[4];
