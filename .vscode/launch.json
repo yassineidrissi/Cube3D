@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/yassine/1337/Cube3D",
+      "program": "/Users/yassine/1337/Cube3D/build/Debug/outDebug"
+    }
+  ]
+}

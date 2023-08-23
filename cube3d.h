@@ -31,7 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
-# define COF_PIXEL 64//After validation 2D map , we need to change it to 1
+# define COF_PIXEL 16//After validation 2D map , we need to change it to 1
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
@@ -117,6 +117,10 @@ typedef struct s_cube3d
 	t_texture   text[4];
 	t_colore	colors[2];
 	int			p;
+	int			angle;
+	uint32_t 	color;
+	uint32_t	p_color;
+	uint32_t    z_color;
 	int   	 	fd;
 	int			fdr;
 	char		**cnt;

@@ -71,8 +71,8 @@ int	p_or_z(t_cube3d *cb, char c, int x, int y)
 		return (1);
 	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		cb->player.x = x;
-		cb->player.y = y;
+		cb->player.x = x*COF_PIXEL;
+		cb->player.y = y*COF_PIXEL;
 		return (1);
 	}
 	return (0);
