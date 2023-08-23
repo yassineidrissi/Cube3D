@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/23 00:30:50 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:46:15 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ void	fill_map(t_cube3d *cb)
 	int	i;
 
 	i = -1;	
-
+	cb->nl = 1;//check for nl after map
 	if (cb->map_bol != 6)//map_bol need to be 6 to ensure that the 6 previous line are valid befor jumping to store map
 		handl_errors(5);
-	cb->all_map = ft_strjoin(cb->all_map, cb->line);
+	cb->joined_map = ft_strjoin(cb->joined_map, cb->line);
 	/*strjoin all the map*/
 }
 
@@ -134,7 +134,7 @@ int fill_type(t_cube3d *cb)
 		fill_colors(cb);
 	else if (cb->line[i] != '\n')
 		fill_map(cb);
-	// else if (cb->line[i] != '\n')
-		// handl_errors(10);
+	else if (cb->line[i] == '\n' && cb->nl)
+		handl_errors(10);
 	return (0);
 }

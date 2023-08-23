@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/22 17:44:23 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:44:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_cube3d(t_cube3d *cb)
 {
-	cb->all_map = NULL;
+	cb->joined_map = NULL;
 	cb->line = NULL;
 	cb->map_bol = 0;
 	cb->text[NO].bol = 0;
@@ -23,11 +23,12 @@ void	init_cube3d(t_cube3d *cb)
 	cb->text[EA].bol = 0;
 	cb->colors[F].bol = 0;
 	cb->colors[C].bol = 0;
+	cb->p = 0;
+	cb->nl = 0;
 	cb->s2[0] = "NO";
 	cb->s2[1] = "SO";
 	cb->s2[2] = "WE";
 	cb->s2[3] = "EA";
-	cb->p = 0;
 }
 
 void	ft_to_space(char *str)

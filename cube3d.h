@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 00:07:38 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:44:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,10 @@ typedef struct s_cube3d
 	int			fdr;
 	char		**cnt;
 	char		*line;
-	char		*all_map;
+	char		*joined_map;
 	char		*s2[4];
 	int			map_bol;
+	int			nl;
 }       t_cube3d;
 
 /*################################################################*/
