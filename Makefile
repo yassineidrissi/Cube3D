@@ -12,7 +12,7 @@ RM				= rm -f
 GLFW			= $(shell brew --prefix glfw)
 MLX_FLAG		= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
 LIBS            = -Wall -Wextra -Werror #-fsanitize=address  -g
-NAME			= cub3D
+NAME			= cube3D
 
 
 %.o : %.c 
@@ -33,6 +33,14 @@ fclean:			clean
 				@echo "\033[92m\033[31m Delete exucted file🗑\033[31m"
 
 re:				fclean $(NAME)
+
+test: re
+				@echo "\033[92m\033[31m TEST\033[31m"
+				./cube3D ./maps/map1.cub
+test2: 
+				@echo "\033[92m\033[31m TEST\033[31m"
+				./cube3D ./maps/map1.cub
+
 
 cube_3d_logo:
 
