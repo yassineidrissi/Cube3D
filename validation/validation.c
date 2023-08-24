@@ -73,6 +73,15 @@ int	p_or_z(t_cube3d *cb, char c, int x, int y)
 	{
 		cb->player.x = x*COF_PIXEL;
 		cb->player.y = y*COF_PIXEL;
+		if (c == 'N')
+			cb->angle = 0;
+		else if(c == 'S')
+			cb->angle = 180;
+		else if(c == 'E')
+			cb->angle = 270;
+		else if (c == 'W')
+			cb->angle = 90;
+		
 		return (1);
 	}
 	return (0);

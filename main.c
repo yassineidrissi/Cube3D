@@ -72,17 +72,20 @@ void draw_player(t_cube3d *cb, int angle, int playerSize)
 {
     int i;
     int j;
-    int centerX = cb->player.x;
+	int x;
+	int y;
+    int centerX = cb->player.x - COF_PIXEL/2;
     int centerY = cb->player.y;
 
+	angle += 90; //for ajustement
     i = -playerSize;
     while (++i <= playerSize)
     {
         j = -playerSize;
         while (++j <= playerSize)
         {
-            int x = centerX + i;
-            int y = centerY + j;
+            x = centerX + i;
+            y = centerY + j;
 
             // Calculate distance from center of the player symbol
             int distance = sqrt(i * i + j * j);
