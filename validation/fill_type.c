@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/23 10:46:15 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3D.h"
 
-// void fill_texture_img(t_cube3d *cb)
+// void fill_texture_img(t_cub3D *cb)
 // {
 // 	int i;
 
@@ -26,7 +26,7 @@
 // 	}
 // }
 
-void	fill_texture(t_cube3d *cb)
+void	fill_texture(t_cub3D *cb)
 {
 	int	i;
 
@@ -53,7 +53,7 @@ void	fill_texture(t_cube3d *cb)
     //     handl_errors(6);
 }
 
-void ft_fill_color(t_cube3d *cb, char **RGB, int i)
+void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 {
 	int j;
 
@@ -84,7 +84,7 @@ void ft_fill_color(t_cube3d *cb, char **RGB, int i)
 	// printf("r = %d, g = %d, b = %d\n",cb->colors[i].r, cb->colors[i].g, cb->colors[i].b);
 }
 
-void	fill_colors(t_cube3d *cb)
+void	fill_colors(t_cub3D *cb)
 {
 	char **RGB;
 	int i;
@@ -108,7 +108,7 @@ void	fill_colors(t_cube3d *cb)
 	ft_free_double(RGB);
 }
 
-void	fill_map(t_cube3d *cb)
+void	fill_map(t_cub3D *cb)
 {
 	int	i;
 
@@ -120,7 +120,7 @@ void	fill_map(t_cube3d *cb)
 	/*strjoin all the map*/
 }
 
-int fill_type(t_cube3d *cb)
+int fill_type(t_cub3D *cb)
 {
 	int i;
 

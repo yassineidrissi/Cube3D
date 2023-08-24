@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:46:22 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 12:51:40 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "cube3d.h"
+#include "cub3D.h"
 
 #define WIDTH 2800
 #define HEIGHT 1000

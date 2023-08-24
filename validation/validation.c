@@ -6,14 +6,14 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 11:23:31 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube3d.h"
+#include "../cub3D.h"
 
 /* chek bol to see if there is something other than NO SO WE EA F C before arriving to the map*/
-void	check_bol(t_cube3d *cb)
+void	check_bol(t_cub3D *cb)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	check_bol(t_cube3d *cb)
 }
 
 /*check player if its repeated or it doesnt exist*/
-void	check_repeat(t_cube3d *cb)
+void	check_repeat(t_cub3D *cb)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ void	check_all_sides(char **str, int x, int y)
 }
 
 /* store player position and check if 0 or player are surrounded by other than 1 and 0  */
-int	p_or_z(t_cube3d *cb, char c, int x, int y)
+int	p_or_z(t_cub3D *cb, char c, int x, int y)
 {
 	if (c == '0')
 		return (1);
@@ -94,7 +94,7 @@ int ft_max(int a, int b)
 	return (b);
 }
 
-void	check_valid_map(t_cube3d *cb)
+void	check_valid_map(t_cub3D *cb)
 {
 	int	x;
 	int	y;
@@ -123,7 +123,7 @@ void	check_valid_map(t_cube3d *cb)
 }
 
 
-int	check_content(t_cube3d *cb)
+int	check_content(t_cub3D *cb)
 {
 	cb->line = get_next_line(cb->fd);
 	while (cb->line)
@@ -147,7 +147,7 @@ int	check_content(t_cube3d *cb)
 	return (0);
 }
 
-// void init_cube3d(t_cube3d *cb)
+// void init_cub3D(t_cub3D *cb)
 // {
 // 	return;
 // 	// cb.map = init_map(fd);

@@ -6,14 +6,14 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:34:13 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/21 16:32:18 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:23:59 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SRCS_H
 # define SRCS_H
 # include <stdarg.h>
-# include "../cube3d.h"
+# include "../cub3D.h"
 
 void        handl_errors(int i);
 char        *ft_itoa(int n);

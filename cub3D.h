@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/23 14:37:32 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:13:47 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include <MLX42/MLX42.h>
+# include "MLX42/include/MLX42/MLX42.h"
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
@@ -31,7 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
-# define COF_PIXEL 64//After validation 2D map , we need to change it to 1
+# define COF_PIXEL 35//After validation 2D map , we need to change it to 1
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
@@ -107,8 +107,8 @@ typedef struct s_colore
 	int 	bol;
 }				 t_colore;
 
-//!add img and mlx variables in t_cube3d struct
-typedef struct s_cube3d
+//!add img and mlx variables in t_cub3D struct
+typedef struct s_cub3D
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -117,10 +117,7 @@ typedef struct s_cube3d
 	t_texture   text[4];
 	t_colore	colors[2];
 	int			p;
-	int			angle;
-	uint32_t 	color;
-	uint32_t	p_color;
-	uint32_t    z_color;
+	double		angle;
 	int   	 	fd;
 	int			fdr;
 	char		**cnt;
@@ -129,18 +126,18 @@ typedef struct s_cube3d
 	char		*s2[4];
 	int			map_bol;
 	int			nl;
-}       t_cube3d;
+}       t_cub3D;
 
 /*################################################################*/
 /*                       validation functions         			  */
 /*################################################################*/
 
-void	init_cube3d(t_cube3d *cb);
+void	init_cub3D(t_cub3D *cb);
 void	ft_to_space(char *str);
-int		compare(t_cube3d *cb);
+int		compare(t_cub3D *cb);
 int		check_parameters(char *av);
-int		check_content(t_cube3d *cb);
-int		fill_type(t_cube3d *cb);
+int		check_content(t_cub3D *cb);
+int		fill_type(t_cub3D *cb);
 void	remove_nl(char *str);
 
 
