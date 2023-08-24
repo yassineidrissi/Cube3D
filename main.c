@@ -20,7 +20,9 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 void change_angle(t_cube3d *cb, int KEY)
 {
 	if (KEY == MLX_KEY_LEFT)
+	{
 		cb->angle -= 10;
+	}
 	else if (KEY == MLX_KEY_RIGHT)
 		cb->angle += 10;
 }
@@ -28,11 +30,17 @@ void change_angle(t_cube3d *cb, int KEY)
 void change_player(t_cube3d *cb, int KEY)
 {
 	if (KEY == MLX_KEY_A)
-		cb->player.x -= 8;
+		{
+			cb->player.x -= 8;
+
+		}
 	else if (KEY == MLX_KEY_D)
 		cb->player.x += 8;
 	else if (KEY == MLX_KEY_W)
-		cb->player.y -= 8;
+        {
+			cb->player.x -= cos(cb->angle) * 8;
+			cb->player.y -= sin(cb->angle) * 8;
+		}
 	else if (KEY == MLX_KEY_S)
 		cb->player.y += 8;
 }
