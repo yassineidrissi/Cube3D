@@ -32,6 +32,7 @@
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
 # define COF_PIXEL 35//After validation 2D map , we need to change it to 1
+# define AGNGLE_VUE 45
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
@@ -117,7 +118,7 @@ typedef struct s_cub3D
 	t_texture   text[4];
 	t_colore	colors[2];
 	int			p;
-	double		angle;
+	int		angle;
 	int   	 	fd;
 	int			fdr;
 	char		**cnt;
