@@ -42,6 +42,9 @@
 
 int check_wall(t_cub3D *cb)
 {
+	// printf("map is %c",p->map.map_tmp[cb->player.x/COF_PIXEL][p->map.map_tmp[cb->player.y/COF_PIXEL]);
+	// if( != '1')
+	// 	return (1);
 	return (1);
 }
 
