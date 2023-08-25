@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/26 00:26:10 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	check_all_sides(char **str, int x, int y)
 }
 
 /* store player position and check if 0 or player are surrounded by other than 1 and 0  */
+//! when i put the player  to W character the forme of the player is changed we need to check this errurs
+
 int	p_or_z(t_cub3D *cb, char c, int x, int y)
 {
 	if (c == '0')
@@ -74,13 +76,13 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		cb->player.x = x*COF_PIXEL;
 		cb->player.y = y*COF_PIXEL;
 		if (c == 'N')
-			cb->angle = 0;
-		else if(c == 'S')
-			cb->angle = 180;
-		else if(c == 'E')
-			cb->angle = 270;
-		else if (c == 'W')
 			cb->angle = 90;
+		else if(c == 'S')
+			cb->angle = 0;
+		else if(c == 'E')
+			cb->angle = 180;
+		else if (c == 'W')
+			cb->angle = -90;
 		
 		return (1);
 	}

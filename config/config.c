@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 00:00:21 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/26 00:25:51 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void draw_map(t_cub3D *cb)
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
 {
-	if (KEY == MLX_KEY_RIGHT && cb->angle <= 170)
+	if (KEY == MLX_KEY_RIGHT && (cb->angle)%360 <= 170)
 		cb->angle = (cb->angle + 10)%350;
 	else if (KEY ==  MLX_KEY_LEFT && cb->angle >= -170)
 		cb->angle = (cb->angle - 10)%350;
