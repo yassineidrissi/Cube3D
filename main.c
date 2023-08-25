@@ -136,33 +136,31 @@ void change_angle(t_cub3D *cb, int KEY)
 //! this function to change player position
 void change_player(t_cub3D *cb, int KEY)
 {
-	// cb->player.x += cos(cb->angle - 
 	if (KEY == MLX_KEY_W)
 	{
 		cb->player.x += cos(cb->angle * M_PI / 180) * 4;
 		cb->player.y += sin(cb->angle * M_PI / 180) * 4;
 		// printf("the angle is %d in w and cos %f\n", cb->angle,cos(cb->angle * M_PI / 180));
 	}
-	else if (KEY == MLX_KEY_D)
-	{
-		cb->player.x -= cos(cb->angle - M_PI / 2.0) * 4;
-		cb->player.y -= sin(cb->angle - M_PI / 2.0) * 4;
-		printf("the angle is %d in d\n", cb->angle);
-
-	}
 	else if (KEY == MLX_KEY_A)
 	{
-		cb->player.x += cos(cb->angle) * 4;
-		cb->player.y += sin(cb->angle) * 4;
-		printf("the angle is %d in a\n", cb->angle);
+		cb->player.x += cos((90 - cb->angle) * M_PI / 180) * 4;
+		cb->player.y += sin((90 - cb->angle) * M_PI / 180) * 4;
+		// printf("the angle is %d in d\n", cb->angle);
+
+	}
+	else if (KEY == MLX_KEY_D)
+	{
+		cb->player.x -= cos((90 - cb->angle) * M_PI / 180) * 4;
+		cb->player.y -= sin((90 - cb->angle) * M_PI / 180) * 4;
+		// printf("the angle is %d in a\n", cb->angle);
 
 	}
 	else if (KEY == MLX_KEY_S)
 	{
-		cb->player.x -= cos(cb->angle) * 4;
-		cb->player.y -= sin(cb->angle) * 4;
-		printf("the angle is %d in s\n", cb->angle);
-
+		cb->player.x -= cos(cb->angle * M_PI / 180) * 4;
+		cb->player.y -= sin(cb->angle * M_PI / 180) * 4;
+		// printf("the angle is %d in s\n", cb->angle);
 	}
 }
 
