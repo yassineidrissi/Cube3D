@@ -35,11 +35,11 @@ fclean:			clean
 re:				fclean $(NAME)
 
 test: re
-				@echo "\033[92m\033[31m TEST\033[31m"
-				./cube3D ./maps/map1.cub
+				@echo "\033[92m\033[31m 🪄TESTING MAP1🪄\033[31m"
+				@./cube3D ./maps/map1.cub
 test2: 
-				@echo "\033[92m\033[31m TEST\033[31m"
-				./cube3D ./maps/map1.cub
+				@echo "\033[92m\033[31m🪄 TESTING MAP2🪄\033[31m"
+				@./cube3D ./maps/map1.cub
 
 
 cube_3d_logo:

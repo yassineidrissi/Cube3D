@@ -40,6 +40,11 @@
 // 	}
 // }
 
+int check_wall(t_cub3D *cb)
+{
+	return (1);
+}
+
 void draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue)
 {
     int i;
@@ -68,7 +73,7 @@ void draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue)
             angleDifference = fmin(angleDifference, 360 - angleDifference) ;
 
             // Check if the point is within the desired shape
-            if (distance <= playerSize && angleDifference <= angle_vue)
+            if (distance <= playerSize && angleDifference <= angle_vue && check_wall(cb))
             {
                 mlx_put_pixel(cb->img, x, y + COF_PIXEL/2, 0xFF0000FF);
             }
@@ -117,11 +122,11 @@ void draw_map(t_cub3D *cb)
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
 {
-	if (KEY == MLX_KEY_LEFT && cb->angle <= 170)
+	if (KEY == MLX_KEY_RIGHT && cb->angle <= 170)
 		cb->angle = (cb->angle + 10)%350;
-	else if (KEY == MLX_KEY_RIGHT && cb->angle >= -170)
+	else if (KEY ==  MLX_KEY_LEFT && cb->angle >= -170)
 		cb->angle = (cb->angle - 10)%350;
-	else if (cb->angle == 180 && KEY == MLX_KEY_LEFT)
+	else if (cb->angle == 180 && KEY == MLX_KEY_RIGHT)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
@@ -132,25 +137,32 @@ void change_angle(t_cub3D *cb, int KEY)
 void change_player(t_cub3D *cb, int KEY)
 {
 	// cb->player.x += cos(cb->angle - 
-	if (KEY == MLX_KEY_A)
+	if (KEY == MLX_KEY_W)
 	{
-		cb->player.x += cos(cb->angle - M_PI / 2.0) * 4;
-		cb->player.y += sin(cb->angle - M_PI / 2.0) * 4;
+		cb->player.x += cos(cb->angle * M_PI / 180) * 4;
+		cb->player.y += sin(cb->angle * M_PI / 180) * 4;
+		// printf("the angle is %d in w and cos %f\n", cb->angle,cos(cb->angle * M_PI / 180));
 	}
 	else if (KEY == MLX_KEY_D)
 	{
 		cb->player.x -= cos(cb->angle - M_PI / 2.0) * 4;
 		cb->player.y -= sin(cb->angle - M_PI / 2.0) * 4;
+		printf("the angle is %d in d\n", cb->angle);
+
 	}
-	else if (KEY == MLX_KEY_W)
+	else if (KEY == MLX_KEY_A)
 	{
 		cb->player.x += cos(cb->angle) * 4;
 		cb->player.y += sin(cb->angle) * 4;
+		printf("the angle is %d in a\n", cb->angle);
+
 	}
 	else if (KEY == MLX_KEY_S)
 	{
 		cb->player.x -= cos(cb->angle) * 4;
 		cb->player.y -= sin(cb->angle) * 4;
+		printf("the angle is %d in s\n", cb->angle);
+
 	}
 }
 
