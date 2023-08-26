@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 11:45:13 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/26 11:51:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the angle is %d in d\n", cb->angle);
 		printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 		// printf("map x is %d, and y is %d\n",(cb->player.x/COF_PIXEL),(cb->player.y/COF_PIXEL));
-
 	}
 	else if (KEY == MLX_KEY_D)
 	{
@@ -125,7 +124,6 @@ void change_player(t_cub3D *cb, int KEY)
 		}
 		// printf("the angle is %d in a\n", cb->angle);
 		printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
-
 	}
 }
 
@@ -136,45 +134,25 @@ void ft_hook(void* param)
 
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cb->mlx);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_LEFT))
+		change_angle(cb, MLX_KEY_LEFT);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
+		change_angle(cb, MLX_KEY_RIGHT);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_W))
+		change_player(cb, MLX_KEY_W);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_S))
+		change_player(cb, MLX_KEY_S);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_A))
+		change_player(cb, MLX_KEY_A);
+	else if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
+		change_player(cb, MLX_KEY_D);
 	// else if(mlx_is_key_down(cb->mlx, MLX_KEY_UP))
 	// 	{
 
-	// 		// mlx_draw_line(cb, 0, 0, 100, 100, 0x00FF00FF);			
+	// 		mlx_draw_line(cb, 0, 0, 100, 100, 0xFF0000FF);			
 	// 		// printf("up\n");
 	// 	}
-	// else if(mlx_is_key_down(cb->mlx, MLX_KEY_DOWN))
-	// 	// printf("down\n");
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_LEFT))
-	{
-		// printf("left\n");
-		change_angle(cb, MLX_KEY_LEFT);
-	}
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
-	{
-		// printf("right\n");
-		change_angle(cb, MLX_KEY_RIGHT);
-	}
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_W))
-	{
-		change_player(cb, MLX_KEY_W);
-		// printf("w\n");
-	}
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_S))
-	{
-		change_player(cb, MLX_KEY_S);
-		// printf("s\n");
-	}
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_A))
-	{
-		change_player(cb, MLX_KEY_A);
-		// printf("a\n");
-	}
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
-	{
-		change_player(cb, MLX_KEY_D);
-		// printf("d\n");
-	}	
-		// mlx_close_window(mlx);
+	// mlx_close_window(mlx);
 	draw_C_F(cb);
 	draw_map(cb);
 	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
