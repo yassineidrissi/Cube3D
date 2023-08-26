@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/26 11:41:37 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,6 @@ int	compare(t_cub3D *cb)
 		}
 	}
 	return (1);
-}
-
-void	print(char *str, int x)
-{
-	if (str)
-		printf("[%s]\n", str);
-	if (x)
-		printf("[%d]\n", x);
 }
 // void	validation(t_map	*map)
 // {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 00:51:23 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/26 11:41:16 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include <MLX42/MLX42.h>
+# include  "MLX42/include/MLX42/MLX42.h"
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
@@ -141,15 +141,14 @@ int		check_content(t_cub3D *cb);
 int		fill_type(t_cub3D *cb);
 void	remove_nl(char *str);
 
+/*################################################################*/
+/*                       config functions         			  */
+/*################################################################*/
 
-
-//remove print after
-void	print(char *str, int x);
-
-	// void	*img;
-	// char	*addr;
-	// int		bits_per_pixel;
-	// int		line_length;
-	// int		endian;
+void	ft_hook(void* param);
+void	draw_C_F(t_cub3D *cb);
+void	draw_map(t_cub3D *cb);
+void	draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue);
+int		is_wall_pixel(t_cub3D *cb, float x, float y);
 
 #endif
