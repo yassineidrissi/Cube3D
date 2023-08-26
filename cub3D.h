@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 00:11:00 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/26 00:51:23 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ typedef struct s_texture
 }				t_texture;
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 	double	width;
 	double	height;
 	int		turn_direction;
