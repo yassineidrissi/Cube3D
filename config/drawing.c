@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/26 11:41:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/26 16:43:43 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ void draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue)
     int j;
 	int x;
 	int y;
-    int centerX = cb->player.x + COF_PIXEL / 2;
+    int centerX = cb->player.x;
     int centerY = cb->player.y;
-
 	// angle += 90; //for ajustement
     i = -playerSize;
     while (++i <= playerSize)
@@ -96,10 +95,9 @@ void draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue)
             angleDifference = fmin(angleDifference, 360 - angleDifference) ;
 
             // Check if the point is within the desired shape
-            if (distance <= playerSize && angleDifference <= angle_vue && is_wall_pixel(cb, (float)x,(float)(y + COF_PIXEL/2)))
+            if (distance <= playerSize && angleDifference <= angle_vue && is_wall_pixel(cb, (float)x,(float)(y)))
             {
-                // mlx_put_pixel(cb->img, x, y + COF_PIXEL/2, 0xFF0000FF);
-				mlx_put_pixel(cb->img, x, y + COF_PIXEL/2, 0xFF000000);
+				mlx_put_pixel(cb->img, x, y, 0xFF0000FF);
             }
         }
     }
