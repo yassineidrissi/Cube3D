@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/27 11:34:11 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:18:23 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,30 @@
 
 int is_wall_pixel(t_cub3D *cb, float x, float y)
 {
-	// printf("%d %d\n",x, y);// it segfault when it goes down
+	// printf("%f %f\n",x, y);// it segfault when it goes down
 	if (cb->map.map_tmp[(int)y / COF_PIXEL][(int)x / COF_PIXEL] == '1')
 		return (0);
 	return (1);
 }
+
+/* appreciate the effor */
+// void	draw_ray(t_cub3D *cb)
+// {
+// 	float x_ray = cb->player.x;
+// 	float y_ray = cb->player.y;
+// 	float next_x = cb->player.x;
+// 	float next_y = cb->player.y;
+// 	while (is_wall_pixel(cb, next_x, y_ray) && is_wall_pixel(cb, x_ray, next_y))
+// 	{
+// 		next_x = x_ray + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+// 		next_y = y_ray + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+// 		x_ray = next_x;
+// 		y_ray = next_y;
+// 	}
+// 	cb->ray_dis = sqrt((cb->player.x - x_ray) * (cb->player.x - x_ray)
+// 		+ (cb->player.y - y_ray) * (cb->player.y - y_ray));
+// 	// printf ("[%f]\n", ray_dis);
+// }
 
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
@@ -124,22 +143,6 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 }
 
-// void	draw_ray(t_cub3D *cb)
-// {
-// 	float ray_dis = 0;;
-// 	float x_ray = cb->player.x;
-// 	float y_ray = cb->player.y;
-// 	float next_x;
-// 	float next_y;
-// 	next_x = cos(cb->angle * M_PI / 180) * 4;
-// 	next_y = sin(cb->angle * M_PI / 180) * 4;
-// 	if(is_wall_pixel(cb, next_x, y_ray) && is_wall_pixel(cb, x_ray, next_y))
-// 	{
-// 		ray_dis += 
-// 	} //######### check the walls like amine said
-	
-// }
-
 //! this function for key hook so every key do action functionality
 void ft_hook(void* param)
 {
@@ -166,8 +169,9 @@ void ft_hook(void* param)
 	// 		// printf("up\n");
 	// 	}
 	// mlx_close_window(mlx);
-	// draw_ray(cb);
+	// draw_ray(cb);//appreciate the effort
 	draw_C_F(cb);
 	draw_map(cb);
+	// draw_player(cb, cb->angle, cb->ray_dis, 1);//appreciate the effort
 	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
 }
