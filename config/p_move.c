@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 17:53:47 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:02:19 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@
 int is_wall_pixel(t_cub3D *cb, float x, float y)
 {
 	// printf("%d %d\n",x, y);// it segfault when it goes down
-	// if (x < 0 || y < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
-	// 	return (0);
 	if (cb->map.map_tmp[(int)y / COF_PIXEL][(int)x / COF_PIXEL] == '1')
 		return (0);
 	return (1);
@@ -154,5 +152,5 @@ void ft_hook(void* param)
 	// mlx_close_window(mlx);
 	draw_C_F(cb);
 	draw_map(cb);
-	draw_player(cb, cb->angle, 100, AGNGLE_VUE);
+	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
 }
