@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:46:22 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:09:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void ft_randomize(void* param)
 		for (int32_t y = 0; y < image->height; ++y)
 		{
 			uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
+				 255, // R
+				 0, // G
+				 255, // B
+				 0xFF  // A
 			);
 			mlx_put_pixel(image, i, y, color);
 		}

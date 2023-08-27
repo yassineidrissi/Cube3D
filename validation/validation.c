@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 16:25:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:37:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		cb->player.x = x * COF_PIXEL + (COF_PIXEL / 2);
 		cb->player.y = y * COF_PIXEL + (COF_PIXEL / 2);
 		if (c == 'N')
-			cb->angle = 90;
-		else if(c == 'S')
-			cb->angle = 0;
-		else if(c == 'E')
-			cb->angle = 180;
-		else if (c == 'W')
 			cb->angle = -90;
+		else if(c == 'S')
+			cb->angle = 90;
+		else if(c == 'E')
+			cb->angle = 0;
+		else if (c == 'W')
+			cb->angle = 180;
 		
 		return (1);
 	}
@@ -101,9 +101,9 @@ void	check_valid_map(t_cub3D *cb)
 	int	x;
 	int	y;
 
+	y = -1;
 	cb->map.height = 0;
 	cb->map.width = 0;
-	y = -1;
 	while (cb->map.map_tmp[++y])
 	{
 		x = 0;

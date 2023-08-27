@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/24 11:25:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:11:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void	fill_colors(t_cub3D *cb)
 	j = 0;
 	ft_to_space(cb->line);
 	RGB = ft_split(cb->line, ' ');
-	// printf("color %s\n", cb->line);
-	// printf("LRGB[%d] = %s\n", i, RGB[i]);
 	if (RGB[0][0] == 'F' && !RGB[0][1] && i < 4)
 		ft_fill_color(cb, RGB, F);
 	else if (RGB[0][0] == 'C' && !RGB[0][1] && i < 4)

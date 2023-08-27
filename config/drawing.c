@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/26 16:43:43 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:27:51 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,31 @@ int	if_player(char c)
 	return (0);
 }
 
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
 //draw ceiling and floor
 void	draw_C_F(t_cub3D *cb)
 {
-	int	x;
-	int	y;
+	uint32_t	color_C;
+	uint32_t	color_F;
+	int			x;
+	int			y;
 
 	y = -1;
+	color_C = ft_pixel(cb->colors[C].r, cb->colors[C].g, cb->colors[C].b, 255);
+	color_F = ft_pixel(cb->colors[F].r, cb->colors[F].g, cb->colors[F].b, 255);
 	while (++y < 1300)
 	{
-	x = -1;
+		x = -1;
 		while (++x < 2500)
 		{
 			if (y < 1300 / 2)
-				mlx_put_pixel(cb->img, x, y, 0xF005FFF);
+				mlx_put_pixel(cb->img, x, y, color_C);
 			else if (y >= 1300 / 2)
-				mlx_put_pixel(cb->img, x, y, 0x0047F0FF);
+				mlx_put_pixel(cb->img, x, y, color_F);
 		}
 	}
 }

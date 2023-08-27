@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/27 10:02:19 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/27 11:34:11 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,22 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 }
 
+// void	draw_ray(t_cub3D *cb)
+// {
+// 	float ray_dis = 0;;
+// 	float x_ray = cb->player.x;
+// 	float y_ray = cb->player.y;
+// 	float next_x;
+// 	float next_y;
+// 	next_x = cos(cb->angle * M_PI / 180) * 4;
+// 	next_y = sin(cb->angle * M_PI / 180) * 4;
+// 	if(is_wall_pixel(cb, next_x, y_ray) && is_wall_pixel(cb, x_ray, next_y))
+// 	{
+// 		ray_dis += 
+// 	} //######### check the walls like amine said
+	
+// }
+
 //! this function for key hook so every key do action functionality
 void ft_hook(void* param)
 {
@@ -150,6 +166,7 @@ void ft_hook(void* param)
 	// 		// printf("up\n");
 	// 	}
 	// mlx_close_window(mlx);
+	// draw_ray(cb);
 	draw_C_F(cb);
 	draw_map(cb);
 	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
