@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/28 12:20:57 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:04:45 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,15 @@
 
 int is_wall_pixel(t_cub3D *cb, float x, float y)
 {
-	// printf("%f %f\n",x, y);// it segfault when it goes down
-	// if ( y > cb->map.height)
-	// {
-	// 	printf("we out of maps\n");
-	// 	return (0);
-	// }
-	// }
 	int pos_y;
 	int pos_x;
 
+	if (y / COF_PIXEL  < 0 || x / COF_PIXEL < 0
+		|| y / COF_PIXEL > cb->map.height || x / COF_PIXEL  > cb->map.width)
+		return (0);
 	pos_y = (int)y / COF_PIXEL;
 	pos_x = (int)x / COF_PIXEL;
+	printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
 	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
 	{
 		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
@@ -116,14 +113,14 @@ void ft_calculate_distance_h(t_cub3D *cb)
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
 {
-	if (KEY == MLX_KEY_RIGHT && (cb->angle)%360 <= 170)
-		cb->angle = (cb->angle + 10) % 350;
-	else if (KEY ==  MLX_KEY_LEFT && cb->angle >= -170)
+	if (KEY == MLX_KEY_RIGHT && (cb->angle) > 0)
 		cb->angle = (cb->angle - 10) % 350;
-	else if (cb->angle == 180 && KEY == MLX_KEY_RIGHT)
-		cb->angle = -170;
+	else if (KEY ==  MLX_KEY_LEFT && cb->angle < 350)
+		cb->angle = (cb->angle + 10) % 350;
+	else if (cb->angle == 0 && KEY == MLX_KEY_RIGHT)
+		cb->angle = 350;
 	else
-		cb->angle = 170;
+		cb->angle = 0;
 	ft_calculate_distance_h(cb);
 }
 

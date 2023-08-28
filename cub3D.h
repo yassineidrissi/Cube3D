@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/27 12:05:39 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:13:06 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 # define MAP_NUM_ROWS 13
 # define MAP_NUM_COLS 20
 # define MINIMAP_SCALE_FACTOR 0.3
-# define WINDOW_WIDTH (MAP_NUM_COLS * TILE_SIZE)
-# define WINDOW_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 # define NUM_TEXTURES 5

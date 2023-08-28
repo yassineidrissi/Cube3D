@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/26 11:41:54 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:12:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void    testing(t_cub3D *cb)
 {
 	// printf("height = %d\n", cb->map.height);
 	// printf("width = %d\n", cb->map.width);
-	cb->mlx = mlx_init(2500, 1300 , "cub3D", false);
-	cb->img = mlx_new_image(cb->mlx, 2500, 1300);
+	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT , "cub3D", false);
+	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop(cb->mlx);

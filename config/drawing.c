@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/08/27 17:24:40 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:14:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	draw_C_F(t_cub3D *cb)
 	y = -1;
 	color_C = ft_pixel(cb->colors[C].r, cb->colors[C].g, cb->colors[C].b, 255);
 	color_F = ft_pixel(cb->colors[F].r, cb->colors[F].g, cb->colors[F].b, 255);
-	while (++y < 1300)
+	while (++y < WINDOW_HEIGHT)
 	{
 		x = -1;
-		while (++x < 2500)
+		while (++x < WINDOW_WIDTH)
 		{
-			if (y < 1300 / 2)
+			if (y < WINDOW_HEIGHT / 2)
 				mlx_put_pixel(cb->img, x, y, color_C);
-			else if (y >= 1300 / 2)
+			else if (y >= WINDOW_HEIGHT / 2)
 				mlx_put_pixel(cb->img, x, y, color_F);
 		}
 	}

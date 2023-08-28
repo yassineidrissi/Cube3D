@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/27 10:37:33 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:19:12 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		cb->player.x = x * COF_PIXEL + (COF_PIXEL / 2);
 		cb->player.y = y * COF_PIXEL + (COF_PIXEL / 2);
 		if (c == 'N')
-			cb->angle = -90;
+			cb->angle = 270;
 		else if(c == 'S')
 			cb->angle = 90;
 		else if(c == 'E')
