@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/27 16:56:34 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:20:57 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ void ft_calculate_distance_h(t_cub3D *cb)
 	float next_y;
 
 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(i++);
-	next_y = cb->player.y - next_x * tan(cb->angle * M_PI / 180);
+	next_y = cb->player.y + (cb->player.x - next_x)* tan(-cb->angle * M_PI / 180);
 	while (is_wall_pixel(cb, next_x, next_y))
 	{
 		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(i++);
-		next_y = cb->player.y - next_x * tan(cb->angle * M_PI / 180);
+		next_y = cb->player.y + (cb->player.x - next_x)* tan(-cb->angle * M_PI / 180);
 	}
 	printf("the position of the wall is %d %d angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
 }
@@ -116,14 +116,14 @@ void ft_calculate_distance_h(t_cub3D *cb)
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
 {
-	if (KEY == MLX_KEY_RIGHT && (cb->angle) > 0)
-		cb->angle = (cb->angle - 10) % 350;
-	else if (KEY ==  MLX_KEY_LEFT && cb->angle < 350)
+	if (KEY == MLX_KEY_RIGHT && (cb->angle)%360 <= 170)
 		cb->angle = (cb->angle + 10) % 350;
-	else if (cb->angle == 0 && KEY == MLX_KEY_RIGHT)
-		cb->angle = 350;
+	else if (KEY ==  MLX_KEY_LEFT && cb->angle >= -170)
+		cb->angle = (cb->angle - 10) % 350;
+	else if (cb->angle == 180 && KEY == MLX_KEY_RIGHT)
+		cb->angle = -170;
 	else
-		cb->angle = 0;
+		cb->angle = 170;
 	ft_calculate_distance_h(cb);
 }
 
