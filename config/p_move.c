@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/29 20:26:33 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:34:51 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,14 @@ void ft_calculate_distance_h(t_cub3D *cb)
 //! this function is used to change player angle
 void change_angle(t_cub3D *cb, int KEY)
 {
-	if (KEY == MLX_KEY_RIGHT && (cb->angle) > 0)
-		cb->angle = (cb->angle - 10) % 350;
-	else if (KEY ==  MLX_KEY_LEFT && cb->angle < 350)
+	if (KEY == MLX_KEY_RIGHT && (cb->angle) <= 170)
 		cb->angle = (cb->angle + 10) % 350;
-	else if (cb->angle == 0 && KEY == MLX_KEY_RIGHT)
-		cb->angle = 350;
+	else if (KEY ==  MLX_KEY_LEFT && cb->angle >= -170)
+		cb->angle = (cb->angle - 10) % 350;
+	else if (cb->angle == 180 && KEY == MLX_KEY_RIGHT)
+		cb->angle = -170;
 	else
-		cb->angle = 0;
+		cb->angle = 170;
 	ft_calculate_distance_h(cb);
 }
 
