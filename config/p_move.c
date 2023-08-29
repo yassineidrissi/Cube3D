@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/28 16:04:45 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:26:33 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 		return (0);
 	pos_y = (int)y / COF_PIXEL;
 	pos_x = (int)x / COF_PIXEL;
-	printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
+	// printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
 	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
 	{
 		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
@@ -66,7 +66,7 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 	}
 	if (cb->map.map_tmp[pos_y][pos_x] == '1')
 	{
-		printf("the height is %d and the wiedth is %d and x is %d and y is %d\n", cb->map.height,cb->map.width,pos_x,pos_y);	
+		// printf("the height is %d and the wiedth is %d and x is %d and y is %d\n", cb->map.height,cb->map.width,pos_x,pos_y);	
 		return (0);
 	}
 	return (1);
@@ -91,22 +91,37 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	// printf ("[%f]\n", ray_dis);
 // }
 
+t_pos ft_calcultae_next_wall_h(t_cub3D *cb)
+{
+	t_pos next_wall;
+
+    next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+    next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+    return (next_wall);
+}
 
 void ft_calculate_distance_h(t_cub3D *cb)
 {
 	float x_ray;
 	float y_ray;
 	float next_x;
-	int i = 1;
+	int i = 0;
 	float next_y;
 
-	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(i++);
-	next_y = cb->player.y + (cb->player.x - next_x)* tan(-cb->angle * M_PI / 180);
+	// next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
+	// next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
+
+	next_x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+    next_y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
 	while (is_wall_pixel(cb, next_x, next_y))
 	{
-		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(i++);
-		next_y = cb->player.y + (cb->player.x - next_x)* tan(-cb->angle * M_PI / 180);
+		next_x = next_x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+        next_y = next_y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
 	}
+	// {
+	// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
+	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
+	// }
 	printf("the position of the wall is %d %d angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/28 13:13:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:21:12 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 # define MAP_NUM_ROWS 13
 # define MAP_NUM_COLS 20
 # define MINIMAP_SCALE_FACTOR 0.3
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 2500
+# define WINDOW_HEIGHT 1300
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 # define NUM_TEXTURES 5
@@ -130,6 +130,13 @@ typedef struct s_cub3D
 	float	ray_dis;
 }       t_cub3D;
 
+
+typedef struct s_pos
+{
+    int        x;
+    int        y;
+}                t_pos;
+
 /*################################################################*/
 /*                       validation functions         			  */
 /*################################################################*/
@@ -151,5 +158,7 @@ void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
 void	draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue);
 int		is_wall_pixel(t_cub3D *cb, float x, float y);
+
+
 
 #endif

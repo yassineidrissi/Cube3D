@@ -39,7 +39,7 @@ test: re
 				@./cub3D ./maps/map1.cub
 test2: 
 				@echo "\033[92m\033[31m🪄 TESTING MAP2🪄\033[31m"
-				@./cub3D ./maps/map1.cub
+				@./cub3D ./maps/map3.cub
 
 
 cube_3d_logo:
