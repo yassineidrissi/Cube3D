@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include  "MLX42/include/MLX42/MLX42.h"
+# include  <MLX42/MLX42.h>
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
@@ -53,8 +53,8 @@
 # define MAP_NUM_ROWS 13
 # define MAP_NUM_COLS 20
 # define MINIMAP_SCALE_FACTOR 0.3
-# define WINDOW_WIDTH 2500
-# define WINDOW_HEIGHT 1300
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 600
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 # define NUM_TEXTURES 5
@@ -133,8 +133,8 @@ typedef struct s_cub3D
 
 typedef struct s_pos
 {
-    int        x;
-    int        y;
+    float      x;
+    float      y;
 }                t_pos;
 
 /*################################################################*/

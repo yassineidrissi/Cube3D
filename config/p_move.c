@@ -102,8 +102,7 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 
 t_pos ft_calculate_next_wall_h(t_cub3D *cb)
 {
-	float x_ray;
-	float y_ray;
+	t_pos wall;
 	float next_x;
 	float next_y;
 	int i;
@@ -116,10 +115,14 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb)
 		next_y = cb->player.y - cb->player.x * tan((cb->angle)* M_PI / 180);
 	}
 	printf("the position of the h wall is x[%d] and y[%d]and angle %d", (int)next_x, (int)next_y,cb->angle);
+	wall.x = next_x;//need to be optimited change next_x by wall.x
+	wall.y = next_y;
+	return (wall);
 }
 
 t_pos ft_calculate_next_wall_v(t_cub3D *cb)
 {
+	t_pos wall;
 	float x_ray;
 	float y_ray;
 	float next_x;
@@ -140,7 +143,26 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb)
 	// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
 	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 	// }
+	wall.x = next_x;
+	wall.y = next_y;
 	printf("the position of the V wall is x[%d] y[%d] angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
+	return(wall);
+}
+
+float dis(t_cub3D *cb,t_pos a)
+{
+	t_pos c;
+	float d;
+
+	c.x = cb->player.x;
+	c.y = cb->player.y;
+	d = sqrt((c.x - a.x)^2 + (c.y - a.y)^2);
+	return(d);
+}
+
+t_pos ft_calculate_next_wall(t_cub3D *cb)
+{
+	return(ft_min(dis(ft_calculate_next_wall_h(cb)),dis(ft_calculate_next_wall_v(cb))));
 }
 
 //! this function is used to change player angle
