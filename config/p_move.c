@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/29 20:34:51 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/29 21:55:28 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,34 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	// printf ("[%f]\n", ray_dis);
 // }
 
-t_pos ft_calcultae_next_wall_h(t_cub3D *cb)
-{
-	t_pos next_wall;
+// t_pos ft_calcultae_next_wall_h(t_cub3D *cb)
+// {
+// 	t_pos next_wall;
 
-    next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-    next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-    return (next_wall);
+//     next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+//     next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+//     return (next_wall);
+// }
+
+t_pos ft_calculate_next_wall_h(t_cub3D *cb)
+{
+	float x_ray;
+	float y_ray;
+	float next_x;
+	float next_y;
+	int i;
+
+	next_x = cb->player.x + cb->player.y * tan((cb->angle)* M_PI / 180);
+	next_y = cb->player.y - cb->player.x * tan((cb->angle)* M_PI / 180);
+	while(is_wall_pixel(cb, next_x, next_y))
+	{
+		next_x = cb->player.x + cb->player.y * tan((cb->angle)* M_PI / 180);
+		next_y = cb->player.y - cb->player.x * tan((cb->angle)* M_PI / 180);
+	}
+	printf("the position of the h wall is x[%d] and y[%d]and angle %d", (int)next_x, (int)next_y,cb->angle);
 }
 
-void ft_calculate_distance_h(t_cub3D *cb)
+t_pos ft_calculate_next_wall_v(t_cub3D *cb)
 {
 	float x_ray;
 	float y_ray;
@@ -122,7 +140,7 @@ void ft_calculate_distance_h(t_cub3D *cb)
 	// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
 	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 	// }
-	printf("the position of the wall is %d %d angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
+	printf("the position of the V wall is x[%d] y[%d] angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
 }
 
 //! this function is used to change player angle
@@ -136,7 +154,7 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
-	ft_calculate_distance_h(cb);
+	ft_calculate_next_wall_h(cb);
 }
 
 //! this function to change player position
@@ -192,7 +210,7 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the angle is %d in a\n", cb->angle);
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
-	ft_calculate_distance_h(cb);
+	ft_calculate_next_wall_h(cb);
 }
 
 //! this function for key hook so every key do action functionality
