@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 15:58:52 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:09:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,10 +272,10 @@ void ft_hook(void* param)
 	// 		mlx_draw_line(cb, 0, 0, 100, 100, 0xFF0000FF);			
 	// 		// printf("up\n");
 	// 	}
+	draw_C_F(cb);
 	// mlx_close_window(mlx);
 	// draw_ray(cb);//appreciate the effort
-	draw_C_F(cb);
-	draw_map(cb);
+	// draw_map(cb);
 	// draw_player(cb, cb->angle, cb->ray_dis, 1);//appreciate the effort
-	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
+	// draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
 }
