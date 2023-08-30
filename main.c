@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 16:15:56 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:59:51 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int main(int ac, char **av)
 	if (cb.fd == -1 || check_parameters(av[1]) == 0 || check_content(&cb))
 		handl_errors(6);
 	testing(&cb);
-
 //copy maptmp to stack map but its not good 
 	// int a;
 	// int b;

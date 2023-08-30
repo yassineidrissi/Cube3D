@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/28 13:19:12 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:58:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 			cb->angle = 0;
 		else if (c == 'W')
 			cb->angle = 180;
-		
 		return (1);
 	}
 	return (0);
@@ -94,6 +93,14 @@ int ft_max(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+int	ft_limit(int x, int y)
+{
+	// printf("%d %d\n",x, y);
+	if (y < 0 || x < 0)
+		return (handl_errors(1), 0);
+	return (1);
 }
 
 void	check_valid_map(t_cub3D *cb)
@@ -109,13 +116,13 @@ void	check_valid_map(t_cub3D *cb)
 		x = 0;
 		while (cb->map.map_tmp[y][x])
 		{
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(x - 1, y))
 				check_all_sides(cb->map.map_tmp, x - 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(x + 1, y))
 				check_all_sides(cb->map.map_tmp, x + 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(x, y - 1))
 				check_all_sides(cb->map.map_tmp, x, y - 1);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(x, y + 1))
 				check_all_sides(cb->map.map_tmp, x, y + 1);
 			x++;
 		}
