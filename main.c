@@ -6,12 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/28 13:12:54 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:15:56 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 // void draw_player(t_cub3D *cb)
 // {
@@ -31,7 +30,49 @@
 // 	}
 // 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 // }
-
+void	walls(void *v)
+{
+	t_cub3D	*cb;
+	
+	cb = v;
+	float	next_x;
+	float	next_y;
+	float	mini_angl;
+	float 	dis_x;
+	float 	dis_y;
+	float 	start = cb->angle - (FOV / 2.0);
+	float	ang_rays = FOV / WINDOW_WIDTH;
+	float	ray_dis;
+	float	cast_hight;
+	float	decalage;
+	float	y_start_drawing;
+	int i = -1;
+	while (++i < WINDOW_WIDTH)
+	{
+		mini_angl = start + (ang_rays * i);
+		dis_x = cos(mini_angl);
+		dis_y = sin(mini_angl);
+		next_x = cb->player.x;
+		next_y = cb->player.y;
+		while (cb->map.map_tmp[(int)next_y / COF_PIXEL][(int)next_x / COF_PIXEL] != '1')
+		{
+			next_x += dis_x;
+			next_y += dis_y;
+		}
+		ray_dis = sqrt((next_x - cb->player.x) * (next_x - cb->player.x)
+			+ (next_y - cb->player.y) * (next_y - cb->player.y));
+		ray_dis = ray_dis * cos(mini_angl - cb->angle);
+		cast_hight = (((COF_PIXEL / 2.0) * WINDOW_HEIGHT) / ray_dis) / 2.0;// testing /2 in cof and 2.0 in all 
+		y_start_drawing = WINDOW_HEIGHT / 2 - (cast_hight / 2);
+		decalage = cast_hight + (WINDOW_HEIGHT / 2 - (cast_hight / 2));
+		printf("nx=[%f] ny=[%f] ray_dis[%f] decalage[%f] ystart[%f] casthi[%f]\n",next_x, next_y,ray_dis,decalage,y_start_drawing,cast_hight);
+		while (++y_start_drawing < decalage)
+		{
+			if (y_start_drawing < WINDOW_HEIGHT)
+				mlx_put_pixel(cb->img, i, y_start_drawing, 0x0000FFFF);
+		}
+	}
+}
 void    testing(t_cub3D *cb)
 {
 	// printf("height = %d\n", cb->map.height);
@@ -40,6 +81,7 @@ void    testing(t_cub3D *cb)
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
+	mlx_loop_hook(cb->mlx, walls, cb);
 	mlx_loop(cb->mlx);
 }
 

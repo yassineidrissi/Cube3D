@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 09:08:01 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:58:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
 //! i didn't uset because it print ligne but i can't move it around 
 // void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 // {
@@ -187,7 +188,7 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
-	ft_calculate_next_wall_h(cb);
+	// ft_calculate_next_wall_v(cb);
 }
 
 //! this function to change player position
@@ -197,8 +198,8 @@ void change_player(t_cub3D *cb, int KEY)
 	float next_y;
 	if (KEY == MLX_KEY_W)
 	{
-		next_x = cb->player.x + cos(cb->angle * M_PI / 180) * 4;
-		next_y = cb->player.y + sin(cb->angle * M_PI / 180) * 4;
+		next_x = cb->player.x + cos(cb->angle * M_PI / 180) * 1;
+		next_y = cb->player.y + sin(cb->angle * M_PI / 180) * 1;
 		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y)) //######### check the walls like amine said
 		{
 			cb->player.x = next_x;
@@ -209,8 +210,8 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 	else if (KEY == MLX_KEY_S)
 	{
-		next_x = cb->player.x - (cos(cb->angle * M_PI / 180) * 4);
-		next_y = cb->player.y - (sin(cb->angle * M_PI / 180) * 4);
+		next_x = cb->player.x - (cos(cb->angle * M_PI / 180) * 1);
+		next_y = cb->player.y - (sin(cb->angle * M_PI / 180) * 1);
 		if (is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
 		{
 			cb->player.x = next_x;
@@ -221,8 +222,8 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 	else if (KEY == MLX_KEY_A)
 	{
-		next_x = cb->player.x + cos((90 - cb->angle) * M_PI / 180) * 4;
-		next_y = cb->player.y + sin((-90 - cb->angle) * M_PI / 180) * 4;
+		next_x = cb->player.x + cos((90 - cb->angle) * M_PI / 180) * 1;
+		next_y = cb->player.y + sin((-90 - cb->angle) * M_PI / 180) * 1;
 		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
 		{
 			cb->player.x = next_x;
@@ -233,8 +234,8 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 	else if (KEY == MLX_KEY_D)
 	{
-		next_x = cb->player.x - cos((90 - cb->angle) * M_PI / 180) * 4;
-		next_y = cb->player.y - sin((-90 - cb->angle) * M_PI / 180) * 4;
+		next_x = cb->player.x - cos((90 - cb->angle) * M_PI / 180) * 1;
+		next_y = cb->player.y - sin((-90 - cb->angle) * M_PI / 180) * 1;
 		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
 		{
 			cb->player.x = next_x;
@@ -243,7 +244,7 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the angle is %d in a\n", cb->angle);
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
-	ft_calculate_next_wall_h(cb);
+	// ft_calculate_next_wall_v(cb);
 }
 
 //! this function for key hook so every key do action functionality
