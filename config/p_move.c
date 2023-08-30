@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/29 21:55:28 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:08:01 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,13 +156,24 @@ float dis(t_cub3D *cb,t_pos a)
 
 	c.x = cb->player.x;
 	c.y = cb->player.y;
-	d = sqrt((c.x - a.x)^2 + (c.y - a.y)^2);
+	d = sqrt((c.x - a.x)*(c.x - a.x) + (c.y - a.y)*(c.y - a.y));
 	return(d);
+}
+
+t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
+{
+	t_pos c;
+	c.x = cb->player.x;
+	c.y = cb->player.y;
+	if (dis(cb, a) < dis(cb, b))
+		return(a);
+	else
+		return(b);
 }
 
 t_pos ft_calculate_next_wall(t_cub3D *cb)
 {
-	return(ft_min(dis(ft_calculate_next_wall_h(cb)),dis(ft_calculate_next_wall_v(cb))));
+	return(ft_min(cb ,ft_calculate_next_wall_h(cb),ft_calculate_next_wall_v(cb)));
 }
 
 //! this function is used to change player angle
