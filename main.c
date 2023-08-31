@@ -91,8 +91,8 @@ void    testing(t_cub3D *cb)
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
-	mlx_loop_hook(cb->mlx, walls, cb);
-	mlx_loop_hook(cb->mlx, map, cb);
+	// mlx_loop_hook(cb->mlx, walls, cb);
+	// mlx_loop_hook(cb->mlx, map, cb);
 	mlx_loop(cb->mlx);
 }
 

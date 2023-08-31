@@ -108,14 +108,14 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb)
 	float next_y;
 	int i;
 
-	next_x = cb->player.x + cb->player.y * tan((cb->angle)* M_PI / 180);
-	next_y = cb->player.y - cb->player.x * tan((cb->angle)* M_PI / 180);
-	while(is_wall_pixel(cb, next_x, next_y))
+	next_x = cb->player.x + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+    next_y = cb->player.y + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL* cb->map.width && next_y < COF_PIXEL* cb->map.height)
 	{
-		next_x = cb->player.x + cb->player.y * tan((cb->angle)* M_PI / 180);
-		next_y = cb->player.y - cb->player.x * tan((cb->angle)* M_PI / 180);
+		next_x = next_x + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+        next_y = next_y + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
 	}
-	printf("the position of the h wall is x[%d] and y[%d]and angle %d", (int)next_x, (int)next_y,cb->angle);
+	printf("the position of the h wall is x[%d] and y[%d]and angle %d\n", (int)next_x, (int)next_y,cb->angle);
 	wall.x = next_x;//need to be optimited change next_x by wall.x
 	wall.y = next_y;
 	return (wall);
@@ -135,7 +135,7 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb)
 
 	next_x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
     next_y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-	while (is_wall_pixel(cb, next_x, next_y))
+	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_x = next_x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
         next_y = next_y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
@@ -188,6 +188,10 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
+	draw_C_F(cb);
+	// walls(cb);
+	map(cb);
+	ft_calculate_next_wall(cb);
 	// ft_calculate_next_wall_v(cb);
 }
 
@@ -244,7 +248,10 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the angle is %d in a\n", cb->angle);
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
-	// ft_calculate_next_wall_v(cb);
+	draw_C_F(cb);
+	// walls(cb);
+	map(cb);
+	ft_calculate_next_wall(cb);
 }
 
 //! this function for key hook so every key do action functionality
@@ -272,7 +279,7 @@ void ft_hook(void* param)
 	// 		mlx_draw_line(cb, 0, 0, 100, 100, 0xFF0000FF);			
 	// 		// printf("up\n");
 	// 	}
-	draw_C_F(cb);
+	// draw_C_F(cb);
 	// mlx_close_window(mlx);
 	// draw_ray(cb);//appreciate the effort
 	// draw_map(cb);

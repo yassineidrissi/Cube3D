@@ -11,7 +11,7 @@ CC				= cc
 RM				= rm -f
 GLFW			= $(shell brew --prefix glfw)
 MLX_FLAG		= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-LIBS            = -Wall -Wextra -Werror -fsanitize=address  -g
+LIBS            = -Wall -Wextra -Werror #-fsanitize=address  -g
 NAME			= cub3D
 
 
@@ -37,7 +37,7 @@ re:				fclean $(NAME)
 test: re
 				@echo "\033[92m\033[31m 🪄TESTING MAP1🪄\033[31m"
 				@./cub3D ./maps/map1.cub
-test2: 
+test2: re
 				@echo "\033[92m\033[31m🪄 TESTING MAP2🪄\033[31m"
 				@./cub3D ./maps/map3.cub
 
