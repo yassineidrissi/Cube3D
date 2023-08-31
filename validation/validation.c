@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 16:58:35 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:34:15 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_repeat(t_cub3D *cb)
 	int	i;
 
 	i = -1;
-	while (cb->joined_map[++i])
+	while (cb->joined_map && cb->joined_map[++i])
 	{
 		if (cb->joined_map[i] == 'N' || cb->joined_map[i] == 'S'
 			|| cb->joined_map[i] == 'W' || cb->joined_map[i] == 'E')
