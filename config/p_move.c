@@ -6,39 +6,39 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 17:09:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:10:45 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
 //! i didn't uset because it print ligne but i can't move it around 
-// void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
-// {
-// 	int dx = abs(x2 - x1);
-// 	int sx = x1 < x2 ? 1 : -1;
-// 	int dy = abs(y2 - y1);
-// 	int sy = y1 < y2 ? 1 : -1;
-// 	int err = (dx > dy ? dx : -dy) / 2;
-// 	int e2;
+void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
+{
+	int dx = abs(x2 - x1);
+	int sx = x1 < x2 ? 1 : -1;
+	int dy = abs(y2 - y1);
+	int sy = y1 < y2 ? 1 : -1;
+	int err = (dx > dy ? dx : -dy) / 2;
+	int e2;
 
-// 	mlx_put_pixel(cb->img, x1, y1, color);
-// 	while (x1 != x2 && y1 != y2)
-// 	{
-// 		mlx_put_pixel(cb->img, x1, y1, color);
-// 		e2 = err;
-// 		if (e2 > -dx)
-// 		{
-// 			err -= dy;
-// 			x1 += sx;
-// 		}
-// 		if (e2 < dy)
-// 		{
-// 			err += dx;
-// 			y1 += sy;
-// 		}
-// 	}
-// }
+	mlx_put_pixel(cb->img, x1, y1, color);
+	while (x1 != x2 && y1 != y2)
+	{
+		mlx_put_pixel(cb->img, x1, y1, color);
+		e2 = err;
+		if (e2 > -dx)
+		{
+			err -= dy;
+			x1 += sx;
+		}
+		if (e2 < dy)
+		{
+			err += dx;
+			y1 += sy;
+		}
+	}
+}
 
 
 // int check_wall(t_cub3D *cb)
@@ -174,7 +174,8 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 
 t_pos ft_calculate_next_wall(t_cub3D *cb)
 {
-	return(ft_min(cb ,ft_calculate_next_wall_h(cb),ft_calculate_next_wall_v(cb)));
+	// return(ft_min(cb ,ft_calculate_next_wall_h(cb),ft_calculate_next_wall_v(cb)));
+	return(ft_calculate_next_wall_v(cb));
 }
 
 //! this function is used to change player angle
@@ -188,10 +189,10 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
-	draw_C_F(cb);
+	// draw_C_F(cb);
+	// map(cb);
 	// walls(cb);
-	map(cb);
-	ft_calculate_next_wall(cb);
+	// ft_calculate_next_wall(cb);
 	// ft_calculate_next_wall_v(cb);
 }
 
@@ -248,9 +249,9 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the angle is %d in a\n", cb->angle);
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
-	draw_C_F(cb);
 	// walls(cb);
-	map(cb);
+	// draw_C_F(cb);
+	// map(cb);
 	ft_calculate_next_wall(cb);
 }
 
@@ -273,6 +274,11 @@ void ft_hook(void* param)
 		change_player(cb, MLX_KEY_A);
 	else if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
 		change_player(cb, MLX_KEY_D);
+	draw_C_F(cb);
+	map(cb);
+	t_pos wall = ft_calculate_next_wall(cb);
+	mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+	
 	// else if(mlx_is_key_down(cb->mlx, MLX_KEY_UP))
 	// 	{
 
