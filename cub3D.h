@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/02 10:20:46 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:17:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define SPEED 10
 # define COF_PIXEL 50//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 45
+# define ANGLE_MOV 5
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
