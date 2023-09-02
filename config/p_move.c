@@ -21,7 +21,7 @@ void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 	int sy = y1 < y2 ? 1 : -1;
 	int err = (dx > dy ? dx : -dy) / 2;
 	int e2;
-
+	printf("the player[%d][%d] and wall[%d][%d]\n", x1, y1, x2, y2);
 	mlx_put_pixel(cb->img, x1, y1, color);
 	while (x1 != x2 && y1 != y2)
 	{
@@ -121,7 +121,7 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb)
 	return (wall);
 }
 
-t_pos ft_calculate_next_wall_v(t_cub3D *cb)
+t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 {
 	t_pos wall;
 	float x_ray;
@@ -133,20 +133,20 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb)
 	// next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
 	// next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 
-	next_x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-    next_y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+	next_x = cb->player.x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
+    next_y = cb->player.y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
-		next_x = next_x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-        next_y = next_y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+		next_x = next_x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
+        next_y = next_y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
 	}
 	// {
 	// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
 	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 	// }
-	wall.x = next_x;
+	wall.x = (int)(next_x/COF_PIXEL)*COF_PIXEL;//convert 
 	wall.y = next_y;
-	printf("the position of the V wall is x[%d] y[%d] angle %d\n", (int)(next_x/COF_PIXEL), (int)next_y/COF_PIXEL,cb->angle);
+	printf("the position of the V wall is x[%d = %f] y[%d = %f] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL,cb->angle, wall.y);
 	return(wall);
 }
 
@@ -172,10 +172,10 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 		return(b);
 }
 
-t_pos ft_calculate_next_wall(t_cub3D *cb)
+t_pos ft_calculate_next_wall(t_cub3D *cb,int angle)
 {
-	// return(ft_min(cb ,ft_calculate_next_wall_h(cb),ft_calculate_next_wall_v(cb)));
-	return(ft_calculate_next_wall_v(cb));
+	// return(ft_min(cb ,ft_ calculate_next_wall_h(cb),ft_calculate_next_wall_v(cb)));
+	return(ft_calculate_next_wall_v(cb, angle));
 }
 
 //! this function is used to change player angle
@@ -189,8 +189,8 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = -170;
 	else
 		cb->angle = 170;
-	// draw_C_F(cb);
-	// map(cb);
+	draw_C_F(cb);
+	map(cb);
 	// walls(cb);
 	// ft_calculate_next_wall(cb);
 	// ft_calculate_next_wall_v(cb);
@@ -250,9 +250,15 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
 	// walls(cb);
-	// draw_C_F(cb);
-	// map(cb);
-	ft_calculate_next_wall(cb);
+	draw_C_F(cb);
+	map(cb);
+	int i = -AGNGLE_VUE/2;
+	while(i < AGNGLE_VUE/2)
+	{
+		t_pos wall = ft_calculate_next_wall(cb, cb->angle + i++);
+		mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+	}
+	// ft_calculate_next_wall(cb);
 }
 
 //! this function for key hook so every key do action functionality
@@ -274,10 +280,8 @@ void ft_hook(void* param)
 		change_player(cb, MLX_KEY_A);
 	else if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
 		change_player(cb, MLX_KEY_D);
-	draw_C_F(cb);
-	map(cb);
-	t_pos wall = ft_calculate_next_wall(cb);
-	mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+	// draw_C_F(cb);
+	// map(cb);
 	
 	// else if(mlx_is_key_down(cb->mlx, MLX_KEY_UP))
 	// 	{
