@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/30 15:02:05 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/02 10:20:46 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 # define MAP_NUM_ROWS 13
 # define MAP_NUM_COLS 20
 # define MINIMAP_SCALE_FACTOR 0.3
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 2000
+# define WINDOW_HEIGHT 1000
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 # define NUM_TEXTURES 5
@@ -133,8 +133,8 @@ typedef struct s_cub3D
 
 typedef struct s_pos
 {
-    float      x;
-    float      y;
+    int      x;
+    int      y;
 }                t_pos;
 
 /*################################################################*/
