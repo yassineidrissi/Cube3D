@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/02 17:13:33 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:23:01 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,44 +56,45 @@ int is_wall_pixel(t_cub3D *cb, float x, float y, int angle)
 	int pos_y;
 	int pos_x;
 
-	if (y / COF_PIXEL  < 0 || x / COF_PIXEL < 0
-		|| y / COF_PIXEL > cb->map.height || x / COF_PIXEL  > cb->map.width)
+	if (y / COF_PIXEL  < 1 || x / COF_PIXEL < 1
+		|| y / COF_PIXEL > cb->map.height - 1 || x / COF_PIXEL  > cb->map.width - 1)
 		return (0);
-	pos_y = y / COF_PIXEL;
-	pos_x = x / COF_PIXEL;
-	// printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
-	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
-	{
-		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
-		return (0);
-	}
+	
+	// pos_y = y / COF_PIXEL;
+	// pos_x = x / COF_PIXEL;
+	// // printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
+	// if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
+	// {
+	// 	printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
+	// 	return (0);
+	// }
 	printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
 	if (angle >= 0 && angle <= 90)
 	{
-		if (cb->map.map_tmp[pos_y][pos_x] == '1')
-			return (0);
-		return (1);
+		pos_y = (y + 1)/ COF_PIXEL;
+		pos_x = (x + 1) / COF_PIXEL;
 	}
 	else if (angle > 90 && angle <= 180)
 	{
-		if (cb->map.map_tmp[pos_y][pos_x] == '1')
-			return (0);
-		return (1);
+		pos_y = (y + 1) / COF_PIXEL;
+		pos_x = (x - 1) / COF_PIXEL;
+
 	}
 	else if (angle > 180 && angle <= 270)
 	{
-		if (cb->map.map_tmp[pos_y][pos_x] == '1')
-			return (0);
-		return (1);
+		pos_y = (y - 1) / COF_PIXEL;
+		pos_x = (x - 1) / COF_PIXEL;
 	}
 	else if (angle > 270 && angle < 360)
 	{
-		if (cb->map.map_tmp[pos_y][pos_x - 1] == '1')
-			return (0);
-		return (1);
+		pos_y = (y - 1) / COF_PIXEL;
+		pos_x = (x + 1) / COF_PIXEL;
+		
 	}
-	else
+	if (cb->map.map_tmp[pos_y][pos_x] == '1')
 		return (0);
+	return (1);
+
 }
 
 /* appreciate the effor */
