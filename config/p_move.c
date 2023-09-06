@@ -161,7 +161,7 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 	}
     wall.x = next_x;
     wall.y = next_y;
-	printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
+	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
 	return (wall);
 }
 // t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
@@ -220,17 +220,32 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 // 	return(wall);
 // }
 
-int indice_h(int *i, int angle)
+int indice_h(int *i,int *check, int angle,int option)
 {
-	if (angle <= 180)
+	if (!option)
 	{
-		*i += 1;
-		return(*i);
-	}	
+		if (angle <= 180)
+		{
+			*i += 1;
+			return(*i);
+		}	
+		else
+		{
+			if (!(*check))
+			{
+				*check += 1;
+				return(0);
+			}
+			*i -= 1;
+			return(*i);
+		}
+	}
 	else
 	{
-		*i -= 1;
-		return(*i);
+		if (angle > 90 || angle < 270)
+			return (1);
+		else
+			return (-1);
 	}
 }
 
@@ -240,15 +255,16 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
 	float x_ray;
 	float y_ray;
 	float next_x;
+	int check = 0;
 	int i = 0;
 	float next_y;
 
-	next_y = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, angle));
-	next_x = cb->player.x - (next_y - cb->player.y)* tan(angle * M_PI / 180);
+	next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
+	next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180*(indice_h(&i, &check, angle, 1)));
 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
-		next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, angle));
-		next_x = cb->player.x - (next_y - cb->player.y)* tan(angle * M_PI / 180);
+		next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
+		next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180)*(indice_h(&i, &check, angle, 1));
 	}
     wall.x = next_x;
     wall.y = next_y; 
@@ -280,8 +296,8 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 
 t_pos ft_calculate_next_wall(t_cub3D *cb,int angle)
 {
-	// return(ft_min(cb ,ft_calculate_next_wall_h(cb, angle),ft_calculate_next_wall_v(cb, angle)));
-	return(ft_calculate_next_wall_v(cb, angle));
+	return(ft_min(cb ,ft_calculate_next_wall_h(cb, angle),ft_calculate_next_wall_v(cb, angle)));
+	// return(ft_calculate_next_wall_v(cb, angle));
 }
 
 //! this function is used to change player angle
