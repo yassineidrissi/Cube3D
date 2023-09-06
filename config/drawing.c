@@ -104,7 +104,7 @@ void draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue)
             angleDifference = fmin(angleDifference, 360 - angleDifference) ;
 
             // Check if the point is within the desired shape
-            if (distance <= playerSize && angleDifference <= angle_vue && is_wall_pixel(cb, (float)x,(float)(y)))
+            if (distance <= playerSize && angleDifference <= angle_vue && is_wall_pixel(cb, (float)x,(float)(y),cb->angle))
             {
 				mlx_put_pixel(cb->img, x, y, 0xFF0000FF);
             }

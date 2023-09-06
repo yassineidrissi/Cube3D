@@ -158,7 +158,7 @@ void	ft_hook(void* param);
 void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
 void	draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue);
-int		is_wall_pixel(t_cub3D *cb, float x, float y);
+int		is_wall_pixel(t_cub3D *cb, float x, float y, int angle);
 void	walls(void *v);
 void	map(void *v);	
 

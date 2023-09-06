@@ -51,7 +51,7 @@ void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 // 	return (1);
 // }
 
-int is_wall_pixel(t_cub3D *cb, float x, float y)
+int is_wall_pixel(t_cub3D *cb, float x, float y, int angle)
 {
 	int pos_y;
 	int pos_x;
@@ -59,20 +59,41 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 	if (y / COF_PIXEL  < 0 || x / COF_PIXEL < 0
 		|| y / COF_PIXEL > cb->map.height || x / COF_PIXEL  > cb->map.width)
 		return (0);
-	pos_y = (int)y / COF_PIXEL;
-	pos_x = (int)x / COF_PIXEL;
+	pos_y = y / COF_PIXEL;
+	pos_x = x / COF_PIXEL;
 	// printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
 	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
 	{
 		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
 		return (0);
 	}
-	if (cb->map.map_tmp[pos_y][pos_x] == '1')
+	printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
+	if (angle >= 0 && angle <= 90)
 	{
-		// printf("the height is %d and the wiedth is %d and x is %d and y is %d\n", cb->map.height,cb->map.width,pos_x,pos_y);	
-		return (0);
+		if (cb->map.map_tmp[pos_y][pos_x] == '1')
+			return (0);
+		return (1);
 	}
-	return (1);
+	else if (angle > 90 && angle <= 180)
+	{
+		if (cb->map.map_tmp[pos_y][pos_x] == '1')
+			return (0);
+		return (1);
+	}
+	else if (angle > 180 && angle <= 270)
+	{
+		if (cb->map.map_tmp[pos_y][pos_x] == '1')
+			return (0);
+		return (1);
+	}
+	else if (angle > 270 && angle < 360)
+	{
+		if (cb->map.map_tmp[pos_y][pos_x - 1] == '1')
+			return (0);
+		return (1);
+	}
+	else
+		return (0);
 }
 
 /* appreciate the effor */
@@ -154,14 +175,14 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 
 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
 	next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180);
-	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
+	while (is_wall_pixel(cb, next_x, next_y, angle)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
 		next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180);
 	}
     wall.x = next_x;
     wall.y = next_y;
-	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
+	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
 	return (wall);
 }
 // t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
@@ -261,14 +282,14 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
 
 	next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
 	next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180*(indice_h(&i, &check, angle, 1)));
-	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
+	while (is_wall_pixel(cb, next_x, next_y, angle)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
 		next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180)*(indice_h(&i, &check, angle, 1));
 	}
     wall.x = next_x;
     wall.y = next_y; 
-	printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
+	printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
 	return (wall);
 }
 
@@ -327,7 +348,7 @@ void change_player(t_cub3D *cb, int KEY)
 	{
 		next_x = cb->player.x + cos(cb->angle * M_PI / 180) * 1;
 		next_y = cb->player.y + sin(cb->angle * M_PI / 180) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y)) //######### check the walls like amine said
+		if(is_wall_pixel(cb, next_x, cb->player.y, cb->angle) && is_wall_pixel(cb, cb->player.x, next_y, cb->angle)) //######### check the walls like amine said
 		{
 			cb->player.x = next_x;
             cb->player.y = next_y;
@@ -339,7 +360,7 @@ void change_player(t_cub3D *cb, int KEY)
 	{
 		next_x = cb->player.x - (cos(cb->angle * M_PI / 180) * 1);
 		next_y = cb->player.y - (sin(cb->angle * M_PI / 180) * 1);
-		if (is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
+		if (is_wall_pixel(cb, next_x, cb->player.y, cb->angle) && is_wall_pixel(cb, cb->player.x, next_y, cb->angle))
 		{
 			cb->player.x = next_x;
             cb->player.y = next_y;
@@ -351,7 +372,7 @@ void change_player(t_cub3D *cb, int KEY)
 	{
 		next_x = cb->player.x + cos((90 - cb->angle) * M_PI / 180) * 1;
 		next_y = cb->player.y + sin((-90 - cb->angle) * M_PI / 180) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
+		if(is_wall_pixel(cb, next_x, cb->player.y, cb->angle) && is_wall_pixel(cb, cb->player.x, next_y, cb->angle))
 		{
 			cb->player.x = next_x;
 			cb->player.y = next_y;
@@ -363,7 +384,7 @@ void change_player(t_cub3D *cb, int KEY)
 	{
 		next_x = cb->player.x - cos((90 - cb->angle) * M_PI / 180) * 1;
 		next_y = cb->player.y - sin((-90 - cb->angle) * M_PI / 180) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
+		if(is_wall_pixel(cb, next_x, cb->player.y, cb->angle) && is_wall_pixel(cb, cb->player.x, next_y, cb->angle))
 		{
 			cb->player.x = next_x;
 			cb->player.y = next_y;
