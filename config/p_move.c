@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 15:29:47 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:33:16 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int is_wall_pixel(t_cub3D *cb, float x, float y, int angle)
 		|| y / COF_PIXEL > cb->map.height - 1 || x / COF_PIXEL  > cb->map.width - 1)
 		return (0);
 	
-	// pos_y = y / COF_PIXEL;
-	// pos_x = x / COF_PIXEL;
+	pos_y = y / COF_PIXEL;
+	pos_x = x / COF_PIXEL;
 	// // printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
-	// if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
-	// {
-	// 	printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
-	// 	return (0);
-	// }
+	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
+	{
+		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
+		return (0);
+	}
 	printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
 	if (angle >= 0 && angle <= 90)
 	{

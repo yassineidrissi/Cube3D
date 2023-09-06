@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 15:39:36 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:37:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,25 @@ void	walls(void *v)
 	float	mini_angl;
 	float 	dis_x;
 	float 	dis_y;
-	float 	start = cb->angle - (FOV / 2.0);
+	float 	start = cb->angle - (AGNGLE_VUE / 2.0);
 	float	ang_rays = FOV / WINDOW_WIDTH;
 	float	ray_dis;
 	float	cast_hight;
 	float	decalage;
 	float	y_start_drawing;
-	int i = -1;
-	while (++i < WINDOW_WIDTH)
+	int i = -AGNGLE_VUE;
+	while (++i < AGNGLE_VUE)
 	{
-		mini_angl = start + (ang_rays * i);
-		dis_x = cos(mini_angl);
-		dis_y = sin(mini_angl);
-		next_x = cb->player.x;
-		next_y = cb->player.y;
-		while (cb->map.map_tmp[(int)next_y / COF_PIXEL][(int)next_x / COF_PIXEL] != '1')
-		{
-			next_x += dis_x;
-			next_y += dis_y;
-		}
-		ray_dis = sqrt((next_x - cb->player.x) * (next_x - cb->player.x)
-			+ (next_y - cb->player.y) * (next_y - cb->player.y));
-		ray_dis = ray_dis * cos(mini_angl - cb->angle);
+		// mini_angl = start + (ang_rays * i);
+		t_pos wall = ft_calculate_next_wall(cb, i);
+		ray_dis = sqrt((wall.x - cb->player.x) * (wall.x - cb->player.x)
+			+ (wall.y - cb->player.y) * (wall.y - cb->player.y));
+		printf("x[%d] y[%d] dis[%f] i[%d]\n",wall.x, wall.y, ray_dis, i);
+		// ray_dis = ray_dis * cos(mini_angl - cb->angle);
 		cast_hight = (((COF_PIXEL / 2.0) * WINDOW_HEIGHT) / ray_dis) / 2.0;// testing /2 in cof and 2.0 in all 
 		y_start_drawing = WINDOW_HEIGHT / 2 - (cast_hight / 2);
 		decalage = cast_hight + (WINDOW_HEIGHT / 2 - (cast_hight / 2));
-		printf("nx=[%f] ny=[%f] ray_dis[%f] decalage[%f] ystart[%f] casthi[%f]\n",next_x, next_y,ray_dis,decalage,y_start_drawing,cast_hight);
+		// printf("nx=[%f] ny=[%f] ray_dis[%f] decalage[%f] ystart[%f] casthi[%f]\n",next_x, next_y,ray_dis,decalage,y_start_drawing,cast_hight);
 		while (++y_start_drawing < decalage)
 		{
 			if (y_start_drawing < WINDOW_HEIGHT)
@@ -85,7 +78,7 @@ void    testing(t_cub3D *cb)
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 	map(cb);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
-	// mlx_loop_hook(cb->mlx, walls, cb);
+	mlx_loop_hook(cb->mlx, walls, cb);
 	// mlx_loop_hook(cb->mlx, map, cb);
 	mlx_loop(cb->mlx);
 }
