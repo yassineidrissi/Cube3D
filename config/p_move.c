@@ -290,10 +290,10 @@ void	map(void *v)
 	// while(i < AGNGLE_VUE/2)
 	// {
 		int starta = -AGNGLE_VUE/2;
-	while(++i < AGNGLE_VUE/2)//WINDOW_WIDTH)
+	while(++i < WINDOW_WIDTH)
 	{
-		
-		t_pos wall = ft_calculate_next_wall(cb, cb->angle + starta + i);//*(AGNGLE_VUE/WINDOW_WIDTH));
+		int angle = (i*AGNGLE_VUE)/WINDOW_WIDTH + starta;
+		t_pos wall = ft_calculate_next_wall(cb, cb->angle + angle);//*(AGNGLE_VUE/WINDOW_WIDTH));
 		int dist = dis(cb, wall);
 		int line_hight = WINDOW_HEIGHT / dist * 5;
 		if(line_hight > WINDOW_HEIGHT)
@@ -301,7 +301,7 @@ void	map(void *v)
 		int start = (WINDOW_HEIGHT /2 ) - line_hight / 2;
 		// printf("dis = %d, line_hight = %d, start = %d i: %d\n", dist, line_hight, start, i);
 		// mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
-		draw_line(cb->img, i, start, i, start + line_hight, 0xFAFAFAFF);
+		draw_line(cb->img, i, start, i ,start + line_hight, 0xFAFAFAFF);
 		draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
 	}
 		
