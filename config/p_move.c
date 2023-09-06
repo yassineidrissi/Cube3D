@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 14:23:01 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:29:47 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,22 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 // 	return(wall);
 // }
 
+void	map(void *v)
+{
+	t_cub3D	*cb;
+
+	cb = v;
+	draw_C_F(cb);
+	draw_map(cb);
+	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
+		int i = 0;// -AGNGLE_VUE/2;
+	// while(i < AGNGLE_VUE/2)
+	// {
+		t_pos wall = ft_calculate_next_wall(cb, cb->angle + i++);
+		mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+	// }
+}
+
 int indice_h(int *i,int *check, int angle,int option)
 {
 	if (!option)
@@ -333,7 +349,7 @@ void change_angle(t_cub3D *cb, int KEY)
 		cb->angle = 360 - ANGLE_MOV;
 	// else
 	// 	cb->angle = 350;
-	draw_C_F(cb);
+	// draw_C_F(cb);
 	map(cb);
 	// walls(cb);
 	// ft_calculate_next_wall(cb);
@@ -394,14 +410,8 @@ void change_player(t_cub3D *cb, int KEY)
 		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
 	}
 	// walls(cb);
-	draw_C_F(cb);
 	map(cb);
-	int i = 0;// -AGNGLE_VUE/2;
-	// while(i < AGNGLE_VUE/2)
-	// {
-		t_pos wall = ft_calculate_next_wall(cb, cb->angle + i++);
-		mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
-	// }
+
 	// ft_calculate_next_wall(cb);
 }
 

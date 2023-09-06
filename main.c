@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/01 15:04:42 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:39:36 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,7 @@ void	walls(void *v)
 	}
 }
 
-void	map(void *v)
-{
-	t_cub3D	*cb;
 
-	cb = v;
-	draw_map(cb);
-	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
-}
 
 void    testing(t_cub3D *cb)
 {
@@ -90,6 +83,7 @@ void    testing(t_cub3D *cb)
 	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT , "cub3D", false);
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
+	map(cb);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	// mlx_loop_hook(cb->mlx, walls, cb);
 	// mlx_loop_hook(cb->mlx, map, cb);
