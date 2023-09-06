@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 16:21:46 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:19:06 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	draw_player(t_cub3D *cb, int angle, int playerSize, int angle_vue);
 int		is_wall_pixel(t_cub3D *cb, float x, float y, int angle);
 void	walls(void *v);
 void	map(void *v);	
+void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 t_pos   ft_calculate_next_wall(t_cub3D *cb, int angle);
-
+float dis(t_cub3D *cb,t_pos a);
 #endif

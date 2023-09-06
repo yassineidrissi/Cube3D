@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 16:33:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:28:33 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 	int sy = y1 < y2 ? 1 : -1;
 	int err = (dx > dy ? dx : -dy) / 2;
 	int e2;
-	printf("the player[%d][%d] and wall[%d][%d]\n", x1, y1, x2, y2);
+	// printf("the player[%d][%d] and wall[%d][%d]\n", x1, y1, x2, y2);
 	mlx_put_pixel(cb->img, x1, y1, color);
 	while (x1 != x2 && y1 != y2)
 	{
@@ -40,6 +40,40 @@ void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 			y1 += sy;
 		}
 	}
+}
+
+void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color)
+{
+    int x0 = start_x;
+    int y0 = start_y;
+    int x1 = end_x;
+    int y1 = end_y;
+    int x = x0;
+    int y = y0;
+
+    int dx1 = abs(x1 - x0);
+    int dy1 = abs(y1 - y0);
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx1 - dy1;
+
+    while (x != x1 || y != y1)
+    {
+        // if(x >=0 && x < max.x && y>= 0 && y < max.y)
+        // printf("x: %d   y: %d\n",x,y);
+        mlx_put_pixel(img, x, y, color);
+        int e2 = 2 * err;
+        if (e2 > -dy1)
+        {
+            err -= dy1;
+            x += sx;
+        }
+        if (e2 < dx1)
+        {
+            err += dx1;
+            y += sy;
+        }
+    }
 }
 
 
@@ -68,7 +102,7 @@ int is_wall_pixel(t_cub3D *cb, float x, float y, int angle)
 		printf("we out of maps and x is %d and y is %d\n", pos_x, pos_y);		
 		return (0);
 	}
-	printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
+	// printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
 	if (angle >= 0 && angle <= 90)
 	{
 		pos_y = (y + 1)/ COF_PIXEL;
@@ -183,7 +217,7 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 	}
     wall.x = next_x;
     wall.y = next_y;
-	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
+	// printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
 	return (wall);
 }
 // t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
@@ -248,13 +282,30 @@ void	map(void *v)
 
 	cb = v;
 	draw_C_F(cb);
+	// walls(cb);
 	draw_map(cb);
 	draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
-		int i = 0;// -AGNGLE_VUE/2;
+		int i = -1;
+		;// -AGNGLE_VUE/2;
 	// while(i < AGNGLE_VUE/2)
 	// {
-		t_pos wall = ft_calculate_next_wall(cb, cb->angle + i++);
-		mlx_draw_line(cb, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+		int starta = -AGNGLE_VUE/2;
+	while(++i < AGNGLE_VUE/2)//WINDOW_WIDTH)
+	{
+		
+		t_pos wall = ft_calculate_next_wall(cb, cb->angle + starta + i);//*(AGNGLE_VUE/WINDOW_WIDTH));
+		int dist = dis(cb, wall);
+		int line_hight = WINDOW_HEIGHT / dist * 5;
+		if(line_hight > WINDOW_HEIGHT)
+			line_hight = WINDOW_HEIGHT;
+		int start = (WINDOW_HEIGHT /2 ) - line_hight / 2;
+		// printf("dis = %d, line_hight = %d, start = %d i: %d\n", dist, line_hight, start, i);
+		// mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
+		draw_line(cb->img, i, start, i, start + line_hight, 0xFAFAFAFF);
+		draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);
+	}
+		
+		
 	// }
 }
 
@@ -306,7 +357,7 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
 	}
     wall.x = next_x;
     wall.y = next_y; 
-	printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
+	// printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
 	return (wall);
 }
 
