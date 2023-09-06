@@ -157,7 +157,7 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
-		next_y = cb->player.y + (cb->player.x - next_x)* tan(angle * M_PI / 180);
+		next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180);
 	}
     wall.x = next_x;
     wall.y = next_y;
