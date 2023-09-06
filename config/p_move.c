@@ -15,6 +15,8 @@
 //! i didn't uset because it print ligne but i can't move it around 
 void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color)
 {
+	if (x2 < 0  || y2 < 0)
+		return;
 	int dx = abs(x2 - x1);
 	int sx = x1 < x2 ? 1 : -1;
 	int dy = abs(y2 - y1);
@@ -130,8 +132,11 @@ int indice_v(int *i,int *check, int angle)
 	}	
 	else
 	{
-		if (!(*check)++)
+		if (!(*check))
+		{
+			*check += 1;
 			return(0);
+		}
 		*i -= 1;
 		return(*i);
 	}
@@ -148,7 +153,7 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, int angle)
 	float next_y;
 
 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
-	next_y = cb->player.y + (cb->player.x - next_x)* tan(angle * M_PI / 180);
+	next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180);
 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
@@ -239,14 +244,14 @@ t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
 	float next_y;
 
 	next_y = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, angle));
-	next_x = cb->player.x - (next_y - cb->player.y)* tan(-angle * M_PI / 180);
+	next_x = cb->player.x - (next_y - cb->player.y)* tan(angle * M_PI / 180);
 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
 	{
 		next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, angle));
-		next_x = cb->player.x - (next_y - cb->player.y)* tan(-angle * M_PI / 180);
+		next_x = cb->player.x - (next_y - cb->player.y)* tan(angle * M_PI / 180);
 	}
     wall.x = next_x;
-    wall.y = next_y;
+    wall.y = next_y; 
 	printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
 	return (wall);
 }
