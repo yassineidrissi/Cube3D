@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_move.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/07 10:35:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/07 22:46:45 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,9 @@ void draw_3d(t_cub3D *cb)
 	while(++i < WINDOW_WIDTH)
 	{
 		float angle = (i*AGNGLE_VUE)/WINDOW_WIDTH + starta;
+		// if (angle + starta <= 0)
+		// 	angle = angle + 360;
+		// angle = (angle + 360) % 360;
 		t_pos wall = ft_calculate_next_wall(cb, cb->angle + angle);//*(AGNGLE_VUE/WINDOW_WIDTH));
 		int dist = dis(cb, wall);
 		int line_hight = WINDOW_HEIGHT / dist * 1;
@@ -289,9 +292,9 @@ void draw_3d(t_cub3D *cb)
 			line_hight = WINDOW_HEIGHT;
 		int start = (WINDOW_HEIGHT /2 ) - line_hight / 2;
 		// printf("dis = %d, line_hight = %d, start = %d i: %d\n", dist, line_hight, start, i);
-		// mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
+		mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
 		draw_line(cb->img, i, start, i ,start + line_hight, 0xFAFAFAFF);//! 3d lines 
-		draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
+		// draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
 	}	
 }
 void	map(void *v)
@@ -302,7 +305,7 @@ void	map(void *v)
 	draw_C_F(cb);
 	// walls(cb);
 	draw_map(cb);
-	// draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
+	draw_player(cb, COF_PIXEL / 8, cb->angle);
 	draw_3d(cb);
 		// -AGNGLE_VUE/2;
 	// while(i < AGNGLE_VUE/2)
