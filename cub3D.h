@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/06 22:19:06 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:32:05 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
 # define COF_PIXEL 50//After validation 2D map , we need to change it to 1
-# define AGNGLE_VUE 60
+# define AGNGLE_VUE 60 
 # define ANGLE_MOV 1
 # define ROT_SPEED 0.1
 # define ESC 65307
@@ -162,6 +162,6 @@ int		is_wall_pixel(t_cub3D *cb, float x, float y, int angle);
 void	walls(void *v);
 void	map(void *v);	
 void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
-t_pos   ft_calculate_next_wall(t_cub3D *cb, int angle);
+t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
 float dis(t_cub3D *cb,t_pos a);
 #endif
