@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/07 20:25:15 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/10 12:25:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct s_cub3D
 	t_texture   text[4];
 	t_colore	colors[2];
 	int			p;
-	int		angle;
+	float		angle;
 	int   	 	fd;
 	int			fdr;
 	char		**cnt;
@@ -159,11 +159,16 @@ void	ft_hook(void* param);
 void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
 void	draw_player(t_cub3D *cb, int playerSize, int angle_vue);
-int		is_wall_pixel(t_cub3D *cb, float x, float y, int angle);
+int		is_wall_pixel(t_cub3D *cb, float x, float y);
 void	walls(void *v);
 void	map(void *v);	
 void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
 float dis(t_cub3D *cb,t_pos a);
 void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
+
+
+
+void	test(t_cub3D *cb);
+
 #endif

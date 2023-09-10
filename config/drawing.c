@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/10 10:09:36 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/10 12:28:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void draw_player(t_cub3D *cb, int playerSize, int angle_vue) {
     double directionRadians = (angle_vue) * (PI / 180.0);
     int arrowX = centerX + (int)((radius + 10) * cos(directionRadians));
     int arrowY = centerY + (int)((radius + 10) * sin(directionRadians));
-	mlx_draw_line(cb, centerX, centerY, arrowX, arrowY, 0xFF0000FF);
+	// mlx_draw_line(cb, centerX, centerY, arrowX, arrowY, 0xFF0000FF);
 
     // Draw or render the arrow at (arrowX, arrowY) here
 }
