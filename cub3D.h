@@ -54,7 +54,7 @@
 # define MAP_NUM_ROWS 13
 # define MAP_NUM_COLS 20
 # define MINIMAP_SCALE_FACTOR 0.3
-# define WINDOW_WIDTH 2000
+# define WINDOW_WIDTH 1500
 # define WINDOW_HEIGHT 1000
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
@@ -136,6 +136,7 @@ typedef struct s_pos
 {
     int      x;
     int      y;
+	int		 w; 
 }                t_pos;
 
 /*################################################################*/

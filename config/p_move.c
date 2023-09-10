@@ -275,17 +275,48 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, float angle)
 // 	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
 // 	return(wall);
 // }
+int wall_color(t_pos wall, float angle)
+{
+	if (angle < 90)
+	{
+		if (wall.w)
+			return (0x000000FF);
+		else
+			return (0xFFFFFFFF);
+	}
+	else if (angle > 90 || angle < 180)
+	{
+		if (wall.w)
+			return (0x000000FF);
+		else
+			return (0xFFFFFFFF);
+	}
+	else if (angle > 0 || angle < 270)
+	{
+		if (wall.w)
+			return (0x000000FF);
+		else
+			return (0xFFFFFFFF);
+	}
+	else
+	{
+		if (wall.w)
+			return (0x000000FF);
+		else
+			return (0xFFFFFFFF);
+	}
+}
 void draw_3d(t_cub3D *cb)
 {
 			float i = -1;
 		float starta = -AGNGLE_VUE/2;
 	while(++i < WINDOW_WIDTH)
 	{
-		float angle = (i*AGNGLE_VUE)/WINDOW_WIDTH + starta;
+		float angle = (i*AGNGLE_VUE)/WINDOW_WIDTH + starta + cb->angle;
 		// if (angle + starta <= 0)
 		// 	angle = angle + 360;
 		// angle = (angle + 360) % 360;
-		t_pos wall = ft_calculate_next_wall(cb, cb->angle + angle);//*(AGNGLE_VUE/WINDOW_WIDTH));
+		t_pos wall = ft_calculate_next_wall(cb, angle);//*(AGNGLE_VUE/WINDOW_WIDTH));
 		int dist = dis(cb, wall);
 		int line_hight = WINDOW_HEIGHT / dist * 1;
 		if(line_hight > WINDOW_HEIGHT)
@@ -293,8 +324,8 @@ void draw_3d(t_cub3D *cb)
 		int start = (WINDOW_HEIGHT /2 ) - line_hight / 2;
 		// printf("dis = %d, line_hight = %d, start = %d i: %d\n", dist, line_hight, start, i);
 		mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
-		draw_line(cb->img, i, start, i ,start + line_hight, 0xFAFAFAFF);//! 3d lines 
-		// draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
+		draw_line(cb->img, i, start, i ,start + line_hight, wall_color(wall, angle));//! 3d lines 
+		draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
 	}	
 }
 void	map(void *v)
@@ -383,9 +414,15 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 	c.x = cb->player.x;
 	c.y = cb->player.y;
 	if (dis(cb, a) < dis(cb, b))
+	{
+		a.w = 1;
 		return(a);
+	}
 	else
+	{
+		a.w = 0;
 		return(b);
+	}
 }
 
 t_pos ft_calculate_next_wall(t_cub3D *cb,float angle)
