@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/07 22:46:45 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/10 12:03:30 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,35 +277,44 @@ t_pos ft_calculate_next_wall_v(t_cub3D *cb, float angle)
 // }
 int wall_color(t_pos wall, float angle)
 {
-	if (angle < 90)
-	{
-		if (wall.w)
-			return (0x000000FF);
-		else
-			return (0xFFFFFFFF);
-	}
-	else if (angle > 90 || angle < 180)
-	{
-		if (wall.w)
-			return (0x000000FF);
-		else
-			return (0xFFFFFFFF);
-	}
-	else if (angle > 0 || angle < 270)
-	{
-		if (wall.w)
-			return (0x000000FF);
-		else
-			return (0xFFFFFFFF);
-	}
-	else
-	{
-		if (wall.w)
-			return (0x000000FF);
-		else
-			return (0xFFFFFFFF);
-	}
+	if (wall.w == 0 || wall.w == 90)
+		return (0xFF0000FF);//S in red color
+	else if(wall.w == 180 || wall.w == 270)
+		return (0x00FF00FF);//N in green color
+	else if (wall.w == 10 || wall.w == 1270)
+		return (0x0000FFFF);//E in blue color
+	else if (wall.w == 190 || wall.w == 1180)
+		return (0x800080FF);//W in porpul color
 }
+	// if (an)
+	// {
+	// 	if (wall.w)
+	// 		return (0x000000FF);
+	// 	else
+	// 		return (0xFFFFFFFF);
+	// }
+	// else if (angle > 90 || angle < 180)
+	// {
+	// 	if (wall.w)
+	// 		return (0x000000FF);
+	// 	else
+	// 		return (0xFFFFFFFF);
+	// }
+	// else if (angle > 0 || angle < 270)
+	// {
+	// 	if (wall.w)
+	// 		return (0x000000FF);
+	// 	else
+	// 		return (0xFFFFFFFF);
+	// }
+	// else
+	// {
+	// 	if (wall.w)
+	// 		return (0x000000FF);
+	// 	else
+	// 		return (0xFFFFFFFF);
+	// }
+
 void draw_3d(t_cub3D *cb)
 {
 			float i = -1;
@@ -415,12 +424,26 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 	c.y = cb->player.y;
 	if (dis(cb, a) < dis(cb, b))
 	{
-		a.w = 1;
+		if(cb->angle <= 90)
+			a.w = 0;
+		else if(cb->angle <= 180)
+			a.w = 90;
+		else if(cb->angle <= 270)
+			a.w = 180;
+		else
+			a.w = 270;	
 		return(a);
 	}
 	else
 	{
-		a.w = 0;
+		if(cb->angle <= 90)
+			b.w = 10;
+		else if(cb->angle <= 180)
+			b.w = 190;
+		else if(cb->angle <= 270)
+			b.w = 1180;
+		else
+			b.w = 1270;	
 		return(b);
 	}
 }
