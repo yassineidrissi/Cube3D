@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/11 16:30:40 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:06:33 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	test(void *param)
 	int i = -1;
 	float rx,ry;
 	float dis_w ;
-
+	int m_width = cb->map.width*COF_PIXEL;
+	int m_height = cb->map.height*COF_PIXEL;
+	// printf("the width is %d and the height is %d\n",m_width,m_height);
 	draw_C_F(cb);
 	draw_map(cb);
 	ra = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
@@ -68,9 +70,9 @@ void	test(void *param)
 			hx = x;
 			hy = y;
 		}
-		while (hy < WINDOW_HEIGHT && hy > 0)
+		while (hy < m_height && hy > 0)// WINDOW_HEIGHT && hy > 0)
 		{
-			if (hx > WINDOW_WIDTH || hx < 0)
+			if (hx > m_width || hx < 0)//WINDOW_WIDTH + 1000 || hx < 0)
 				break ;
 			else if (!is_wall_pixel(cb, hx, hy))
 				break ;
@@ -99,10 +101,10 @@ void	test(void *param)
 			hy = y;
 		}
 
-		while (vx < WINDOW_WIDTH && vx > 0)
+		while (vx < m_width && vx > 0) // WINDOW_WIDTH + 1000 && vx > 0)
 		{
 			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / COF_PIXEL, (int)hy / COF_PIXEL, cb->map.map_tmp[(int)hy / COF_PIXEL][(int)hx / COF_PIXEL]);
-			if (vy > WINDOW_HEIGHT || vy < 0)
+			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)
 				break ;
 			else if (!is_wall_pixel(cb, vx, vy))
 				break ;
