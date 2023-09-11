@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/11 16:24:08 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:12:35 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,11 @@ void    testing(t_cub3D *cb)
 	// printf("width = %d\n", cb->map.width);
 	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT , "cub3D", false);
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cb->img2 = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
+	mlx_image_to_window(cb->mlx, cb->img2, 0, 0);
 	// map(cb);
+	
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop_hook(cb->mlx, test, cb);
 	// mlx_loop_hook(cb->mlx, walls, cb);

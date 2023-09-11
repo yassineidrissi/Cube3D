@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/11 16:28:34 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:16:17 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_cub3D
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_image_t	*img2;
+	mlx_image_t	*img3;
 	t_map  		map;
 	t_player 	player;
 	t_texture   text[4];

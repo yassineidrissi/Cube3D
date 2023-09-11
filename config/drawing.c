@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/11 16:30:12 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:18:50 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void draw_map(t_cub3D *cb)
 				while (++i < (COF_PIXEL/4) - 1)
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
-						mlx_put_pixel(cb->img, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
+						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
 					else if (cb->map.map_tmp[y][x] == '0' || if_player(cb->map.map_tmp[y][x]))
-						mlx_put_pixel(cb->img, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0xFFFFFFFF);
+						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0xFFFFFFFF);
 				}
 			}
 		}

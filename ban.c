@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/11 19:06:33 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:11:49 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	test(void *param)
 		float Projection_to_wall = ((float)WINDOW_HEIGHT/4)/-tan(30) * ((float)WINDOW_HEIGHT/dis_w);
 		if (Projection_to_wall > WINDOW_HEIGHT)
 			Projection_to_wall = WINDOW_HEIGHT;
-		draw_line(cb->img, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
+		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
 		draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
 		// while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
