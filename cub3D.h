@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/10 12:25:09 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:28:34 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
 # define SPEED 10
-# define COF_PIXEL 50//After validation 2D map , we need to change it to 1
+# define COF_PIXEL 64//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 60 
 # define ANGLE_MOV 1
 # define ROT_SPEED 0.1
@@ -169,6 +169,6 @@ void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
 
 
 
-void	test(t_cub3D *cb);
+void	test(void *param);
 
 #endif

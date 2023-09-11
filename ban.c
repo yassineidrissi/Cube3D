@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/10 12:17:32 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:30:40 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ float angle_overlap(float angle)
 	return (angle);
 }
 
-void	test(t_cub3D *cb)
+void	test(void *param)
 {
+	t_cub3D  *cb = param;
 	float hx;
 	float hy;
 	float vx;
@@ -40,6 +41,8 @@ void	test(t_cub3D *cb)
 	float rx,ry;
 	float dis_w ;
 
+	draw_C_F(cb);
+	draw_map(cb);
 	ra = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
 	while (++i < WINDOW_WIDTH)
@@ -128,14 +131,14 @@ void	test(t_cub3D *cb)
 		float Projection_to_wall = ((float)WINDOW_HEIGHT/4)/-tan(30) * ((float)WINDOW_HEIGHT/dis_w);
 		if (Projection_to_wall > WINDOW_HEIGHT)
 			Projection_to_wall = WINDOW_HEIGHT;
-		draw_line(cb->img, x, y, rx, ry, 0x000000FF);//line draw
+		draw_line(cb->img, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
-		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x000000FF);//line draw
-		while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
-		{
-			mlx_put_pixel(cb->img, i, y_wall, 0x0000ffff);
-			y_wall++;
-		}
+		draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
+		// while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
+		// {
+		// 	mlx_put_pixel(cb->img, i, y_wall, 0x0000ffff);
+		// 	y_wall++;
+		// }
 		ra += angle_step;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/10 12:28:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:30:12 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,15 @@ void draw_map(t_cub3D *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < COF_PIXEL - 1)
+			while (++j < (COF_PIXEL/4) - 1)
 			{
 				i = -1;
-				while (++i < COF_PIXEL - 1)
+				while (++i < (COF_PIXEL/4) - 1)
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
-						mlx_put_pixel(cb->img, x  * COF_PIXEL + i, y * COF_PIXEL + j, 0x00FFFFFF);
+						mlx_put_pixel(cb->img, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
 					else if (cb->map.map_tmp[y][x] == '0' || if_player(cb->map.map_tmp[y][x]))
-						mlx_put_pixel(cb->img, x  * COF_PIXEL + i, y * COF_PIXEL + j, 0xFFFFFFFF);
-						
+						mlx_put_pixel(cb->img, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0xFFFFFFFF);
 				}
 			}
 		}

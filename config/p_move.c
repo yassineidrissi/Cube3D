@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/10 12:29:11 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:31:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,55 +488,44 @@ void change_angle(t_cub3D *cb, int KEY)
 //! this function to change player position
 void change_player(t_cub3D *cb, int KEY)
 {
-	float next_x;
-	float next_y;
+	int next_x;
+	int next_y;
 	if (KEY == MLX_KEY_W)
 	{
-		next_x = cb->player.x + cos(cb->angle) * 1;
-		next_y = cb->player.y + sin(cb->angle) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y)) //######### check the walls like amine said
-		{
-			cb->player.x = next_x;
-            cb->player.y = next_y;
-		}
-		// printf("the angle is %d in s\n", cb->angle);
-		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
-	}
-	else if (KEY == MLX_KEY_S)
-	{
-		next_x = cb->player.x - (cos(cb->angle) * 1);
-		next_y = cb->player.y - (sin(cb->angle) * 1);
-		if (is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
-		{
-			cb->player.x = next_x;
-            cb->player.y = next_y;
-		}
-		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
-		// printf("the angle is %d in w and cos %f\n", cb->angle,cos(cb->angle));
-	}
-	else if (KEY == MLX_KEY_A)
-	{
-		next_x = cb->player.x + cos((M_PI / 2 - cb->angle)) * 1;
-		next_y = cb->player.y + sin(((3 * M_PI) / 2 - cb->angle)) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
-		{
-			cb->player.x = next_x;
+		next_x = cb->player.x + (cos(cb->angle) * 3);
+		next_y = cb->player.y + (sin(cb->angle) * 3);
+		if(cb->map.map_tmp[(int)next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
-		}
-		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
-		// printf("map x is %d, and y is %d\n",(cb->player.x/COF_PIXEL),(cb->player.y/COF_PIXEL));
-	}
-	else if (KEY == MLX_KEY_D)
-	{
-		next_x = cb->player.x - cos((M_PI / 2 - cb->angle)) * 1;
-		next_y = cb->player.y - sin(((3 * M_PI) / 2 - cb->angle)) * 1;
-		if(is_wall_pixel(cb, next_x, cb->player.y) && is_wall_pixel(cb, cb->player.x, next_y))
-		{
+		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
 			cb->player.x = next_x;
+	}
+	
+	if (KEY == MLX_KEY_S)
+	{
+		next_x = cb->player.x + (cos(cb->angle + M_PI) * 3);
+		next_y = cb->player.y + (sin(cb->angle + M_PI) * 3);
+		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
-		}
-		// printf("the angle is %d in a\n", cb->angle);
-		// printf("the map is %c\n",cb->map.map_tmp[(int)next_y/COF_PIXEL][(int)next_x/COF_PIXEL]);
+		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
+			cb->player.x = next_x;
+	}
+	if (KEY == MLX_KEY_A)
+	{
+		next_x = cb->player.x + (cos(cb->angle - ( M_PI / 2)) * 3);
+		next_y = cb->player.y + (sin(cb->angle - ( M_PI / 2)) * 3);
+		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
+			cb->player.y = next_y;
+		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
+			cb->player.x = next_x;
+	}
+	if (KEY == MLX_KEY_D)
+	{
+		next_x = cb->player.x + (cos(cb->angle +( M_PI / 2)) * 3);
+		next_y = cb->player.y + (sin(cb->angle +( M_PI / 2)) * 3);
+		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
+			cb->player.y = next_y;
+		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
+			cb->player.x = next_x;
 	}
 }
 
@@ -547,17 +536,17 @@ void ft_hook(void* param)
 
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cb->mlx);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_LEFT))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_LEFT))
 		change_angle(cb, MLX_KEY_LEFT);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
 		change_angle(cb, MLX_KEY_RIGHT);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_W))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_W))
 		change_player(cb, MLX_KEY_W);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_S))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_S))
 		change_player(cb, MLX_KEY_S);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_A))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_A))
 		change_player(cb, MLX_KEY_A);
-	else if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
+	if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
 		change_player(cb, MLX_KEY_D);
 	// draw_C_F(cb);
 	// map(cb);
@@ -568,9 +557,9 @@ void ft_hook(void* param)
 	// 		mlx_draw_line(cb, 0, 0, 100, 100, 0xFF0000FF);			
 	// 		// printf("up\n");
 	// 	}
-	map(cb);
+	// map(cb);
 
-	test(cb);
+	// test(cb);
 	// draw_C_F(cb);
 	// mlx_close_window(mlx);
 	// draw_ray(cb);//appreciate the effort
