@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/12 14:59:53 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:4 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,28 @@ float angle_overlap(float angle)
 	return (angle);
 }
 
+int wall_side(t_cub3D *cb, float angle, int side)
+{
+	if(!side)
+	{
+		if (angle > M_PI)
+			return(0x00FF0000);//color is black
+			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
+		else
+			return(0x0000FF00);//color is green
+			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
+	}
+	else
+	{
+		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
+			return(0x000000FF);//color is blue
+			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
+		else
+			return(0x00FFFF00);//color is yellow
+			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
+	}
+}
+
 void	test(void *param)
 {
 	t_cub3D  *cb = param;
@@ -29,6 +51,7 @@ void	test(void *param)
 	float vx;
 	float vy;
 	float ra;
+	int rc;
 	float hyblock;
 	float hxblock;
 	float vxblock;
@@ -119,12 +142,14 @@ void	test(void *param)
 			dis_w = dis_h;
 			rx = hx;
 			ry = hy;
+			rc = 0;
 		}
 		else
 		{
 			dis_w = dis_v;
 			rx = vx;
 			ry = vy;
+			rc = 1;
 		}
 		
 		// printf("hx[%f] hy[%f]\n",hx,hy);
@@ -139,7 +164,7 @@ void	test(void *param)
 		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
 		while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
 		{
-			mlx_put_pixel(cb->img, i, y_wall, 0x0000ffff);
+			mlx_put_pixel(cb->img, i, y_wall, wall_side(cb, ra,rc));
 			y_wall++;
 		}
 		ra += angle_step;
