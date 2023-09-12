@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/11 21:11:49 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:59:53 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,16 +131,17 @@ void	test(void *param)
 		//printf("x[%f] y[%f]  vx[%f] vy[%f]\n", x, y, vx, vy);
 		dis_w = cos(((AGNGLE_VUE / 2) *M_PI/180) - (i * angle_step)) * dis_w;
 		float Projection_to_wall = ((float)WINDOW_HEIGHT/4)/-tan(30) * ((float)WINDOW_HEIGHT/dis_w);
+		Projection_to_wall *= 2; //wall is square 
 		if (Projection_to_wall > WINDOW_HEIGHT)
 			Projection_to_wall = WINDOW_HEIGHT;
 		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
-		draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
-		// while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
-		// {
-		// 	mlx_put_pixel(cb->img, i, y_wall, 0x0000ffff);
-		// 	y_wall++;
-		// }
+		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
+		while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
+		{
+			mlx_put_pixel(cb->img, i, y_wall, 0x0000ffff);
+			y_wall++;
+		}
 		ra += angle_step;
 	}
 }

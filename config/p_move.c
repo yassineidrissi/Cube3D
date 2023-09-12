@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/11 16:31:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:56:25 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -421,6 +421,7 @@ float dis(t_cub3D *cb,t_pos a)
 t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 {
 	t_pos c;
+
 	c.x = cb->player.x;
 	c.y = cb->player.y;
 	if (dis(cb, a) < dis(cb, b))
@@ -432,7 +433,7 @@ t_pos ft_min(t_cub3D *cb, t_pos a,t_pos b)
 		else if(cb->angle <= 270)
 			a.w = 180;
 		else
-			a.w = 270;	
+			a.w = 270;
 		return(a);
 	}
 	else
@@ -460,13 +461,13 @@ void change_angle(t_cub3D *cb, int KEY)
 {
 	if (KEY == MLX_KEY_RIGHT)
 	{
-		cb->angle += 0.05;
+		cb->angle += 0.02;
 		if (cb->angle >= 2 * M_PI)
 			cb->angle -= 2 * M_PI;
 	}
 	else if (KEY == MLX_KEY_LEFT)
 	{
-		cb->angle -= 0.05;
+		cb->angle -= 0.02;
 		if (cb->angle < 0)
 			cb->angle += 2 * M_PI;
 	}
@@ -492,8 +493,8 @@ void change_player(t_cub3D *cb, int KEY)
 	int next_y;
 	if (KEY == MLX_KEY_W)
 	{
-		next_x = cb->player.x + (cos(cb->angle) * 3);
-		next_y = cb->player.y + (sin(cb->angle) * 3);
+		next_x = cb->player.x + (cos(cb->angle) * 4);
+		next_y = cb->player.y + (sin(cb->angle) * 4);
 		if(cb->map.map_tmp[(int)next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
 		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
@@ -502,8 +503,8 @@ void change_player(t_cub3D *cb, int KEY)
 	
 	if (KEY == MLX_KEY_S)
 	{
-		next_x = cb->player.x + (cos(cb->angle + M_PI) * 3);
-		next_y = cb->player.y + (sin(cb->angle + M_PI) * 3);
+		next_x = cb->player.x + (cos(cb->angle + M_PI) * 4);
+		next_y = cb->player.y + (sin(cb->angle + M_PI) * 4);
 		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
 		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
@@ -511,8 +512,8 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 	if (KEY == MLX_KEY_A)
 	{
-		next_x = cb->player.x + (cos(cb->angle - ( M_PI / 2)) * 3);
-		next_y = cb->player.y + (sin(cb->angle - ( M_PI / 2)) * 3);
+		next_x = cb->player.x + (cos(cb->angle - ( M_PI / 2)) * 4);
+		next_y = cb->player.y + (sin(cb->angle - ( M_PI / 2)) * 4);
 		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
 		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
@@ -520,8 +521,8 @@ void change_player(t_cub3D *cb, int KEY)
 	}
 	if (KEY == MLX_KEY_D)
 	{
-		next_x = cb->player.x + (cos(cb->angle +( M_PI / 2)) * 3);
-		next_y = cb->player.y + (sin(cb->angle +( M_PI / 2)) * 3);
+		next_x = cb->player.x + (cos(cb->angle +( M_PI / 2)) * 4);
+		next_y = cb->player.y + (sin(cb->angle +( M_PI / 2)) * 4);
 		if(cb->map.map_tmp[(int )next_y / COF_PIXEL][(int)cb->player.x/COF_PIXEL] != '1')
 			cb->player.y = next_y;
 		if(cb->map.map_tmp[(int)cb->player.y/COF_PIXEL][(int )next_x / COF_PIXEL] != '1')
@@ -548,22 +549,4 @@ void ft_hook(void* param)
 		change_player(cb, MLX_KEY_A);
 	if(mlx_is_key_down(cb->mlx, MLX_KEY_D))
 		change_player(cb, MLX_KEY_D);
-	// draw_C_F(cb);
-	// map(cb);
-	
-	// else if(mlx_is_key_down(cb->mlx, MLX_KEY_UP))
-	// 	{
-
-	// 		mlx_draw_line(cb, 0, 0, 100, 100, 0xFF0000FF);			
-	// 		// printf("up\n");
-	// 	}
-	// map(cb);
-
-	// test(cb);
-	// draw_C_F(cb);
-	// mlx_close_window(mlx);
-	// draw_ray(cb);//appreciate the effort
-	// draw_map(cb);
-	// draw_player(cb, cb->angle, cb->ray_dis, 1);//appreciate the effort
-	// draw_player(cb, cb->angle, COF_PIXEL / 2, AGNGLE_VUE);
 }
