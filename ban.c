@@ -26,19 +26,19 @@ int wall_side(t_cub3D *cb, float angle, int side)
 	if(!side)
 	{
 		if (angle > M_PI)
-			return(0x00FF0000);//color is black
+			return(0x00FF00FF);//color is black
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
-			return(0x0000FF00);//color is green
+			return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
 	}
 	else
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
-			return(0x000000FF);//color is blue
+			return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
-			return(0x00FFFF00);//color is yellow
+			return(0xc0ccccFF);//color is yellow
 			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
 	}
 }
