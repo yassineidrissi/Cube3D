@@ -3,70 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/11 21:12:35 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:55:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// void draw_player(t_cub3D *cb)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = -1;
-// 	j = -1;
-// 	while(++i < COF_PIXEL)
-// 	{
-// 		j= 0;
-// 		while(++j < COF_PIXEL)
-// 		{
-// 			if((i - j)*(i - j) < COF_PIXEL/2)
-// 				mlx_put_pixel(cb->img, cb->player.x*COF_PIXEL + i, cb->player.y*COF_PIXEL + j,cb->p_color);
-// 		}
-// 	}
-// 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
-// }
-void	walls(void *v)
-{
-	t_cub3D	*cb;
-	
-	cb = v;
-	float	next_x;
-	float	next_y;
-	float	mini_angl;
-	float 	dis_x;
-	float 	dis_y;
-	float 	start = cb->angle - (AGNGLE_VUE / 2.0);
-	float	ang_rays = FOV / WINDOW_WIDTH;
-	float	ray_dis;
-	float	cast_hight;
-	float	decalage;
-	float	y_start_drawing;
-	int i = -1;
-	// printf("the width %d\n", cb->map.width*COF_PIXEL);
-	while (++i < WINDOW_WIDTH)
-	{
-		mini_angl = start + ((AGNGLE_VUE/WINDOW_WIDTH) * i);
-		t_pos wall = ft_calculate_next_wall(cb, mini_angl);
-		ray_dis = sqrt((wall.x - cb->player.x) * (wall.x - cb->player.x)
-			+ (wall.y - cb->player.y) * (wall.y - cb->player.y));
-		// printf("x[%d] y[%d] dis[%f] i[%d]\n",wall.x, wall.y, ray_dis, i);
-		// ray_dis = ray_dis * cos(mini_angl - cb->angle);
-		cast_hight = (((COF_PIXEL / 2.0) * WINDOW_HEIGHT) / ray_dis) / 2.0;// testing /2 in cof and 2.0 in all 
-		y_start_drawing = WINDOW_HEIGHT / 2 - (cast_hight / 2);
-		decalage = cast_hight + (WINDOW_HEIGHT / 2 - (8 / 2));
-		// printf("nx=[%f] ny=[%f] ray_dis[%f] decalage[%f] ystart[%f] casthi[%f]\n",next_x, next_y,ray_dis,decalage,y_start_drawing,cast_hight);
-		while (++y_start_drawing < decalage)
-		{
-			if (y_start_drawing < WINDOW_HEIGHT)
-				mlx_put_pixel(cb->img, i, y_start_drawing, 0x0000FFFF);
-		}
-	}
-}
 
 void    testing(t_cub3D *cb)
 {
@@ -131,6 +75,6 @@ int main(int ac, char **av)
 	// }
 	// *cb.map.map[a] = '\0';
 	// ft_free_double(cb.map.map_tmp);
-	// system("leaks cub3D");
+	system("leaks -q cub3D");
 	return 0;
 }

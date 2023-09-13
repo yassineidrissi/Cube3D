@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/31 10:53:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:49:59 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ void	init_cub3D(t_cub3D *cb)
 	cb->colors[C].bol = 0;
 	cb->p = 0;
 	cb->nl = 0;
-	cb->s2[0] = "NO";
-	cb->s2[1] = "SO";
-	cb->s2[2] = "WE";
-	cb->s2[3] = "EA";
+	cb->map.height = 0;
+	cb->EWSN[0] = "NO";
+	cb->EWSN[1] = "SO";
+	cb->EWSN[2] = "WE";
+	cb->EWSN[3] = "EA";
 }
 
 void	ft_to_space(char *str)
@@ -87,12 +88,12 @@ int	compare(t_cub3D *cb)
 	{
 		j = 0;
 		k = 0;
-		while (cb->cnt[0][j] && cb->cnt[0][j] == cb->s2[i][k])
+		while (cb->cnt[0][j] && cb->cnt[0][j] == cb->EWSN[i][k])
 		{
 			j++;
 			k++;
 		}
-		if (!cb->cnt[0][j] && !cb->s2[i][k])
+		if (!cb->cnt[0][j] && !cb->EWSN[i][k])
 		{
 			cb->text[i].bol++;
 			cb->map_bol++;
