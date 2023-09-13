@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/11 19:18:50 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/13 20:38:36 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void draw_map(t_cub3D *cb)
 // }
 
 void draw_player(t_cub3D *cb, int playerSize, int angle_vue) {
-    int centerX = (int)cb->player.x;
-    int centerY = (int)cb->player.y;
+    int centerX = (int)cb->player.x/4;
+    int centerY = (int)cb->player.y/4;
     int radius = playerSize;
 
     int angle = 0;
@@ -124,15 +124,15 @@ void draw_player(t_cub3D *cb, int playerSize, int angle_vue) {
         int y = centerY + (int)(radius * sin(radians));
 
         // Draw or render the circle point at (x, y) here
-		mlx_put_pixel(cb->img, x, y, 0xFF0000FF);
+		mlx_put_pixel(cb->img2, x, y, 0xFF0000FF);
         angle++;
     }
 	// printf("im here\n");
 
     // Draw a small arrow to indicate the player's direction
-    double directionRadians = (angle_vue) * (PI / 180.0);
-    int arrowX = centerX + (int)((radius + 10) * cos(directionRadians));
-    int arrowY = centerY + (int)((radius + 10) * sin(directionRadians));
+    // double directionRadians = (angle_vue) * (PI / 180.0);
+    // int arrowX = centerX + (int)((radius + 10) * cos(directionRadians));
+    // int arrowY = centerY + (int)((radius + 10) * sin(directionRadians));
 	// mlx_draw_line(cb, centerX, centerY, arrowX, arrowY, 0xFF0000FF);
 
     // Draw or render the arrow at (arrowX, arrowY) here

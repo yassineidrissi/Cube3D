@@ -68,6 +68,7 @@ void	test(void *param)
 	// printf("the width is %d and the height is %d\n",m_width,m_height);
 	draw_C_F(cb);
 	draw_map(cb);
+	draw_player(cb, COF_PIXEL/16, ra);
 	ra = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
 	while (++i < WINDOW_WIDTH)
