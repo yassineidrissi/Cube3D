@@ -77,7 +77,7 @@ void	test(void *param)
 		atan = -1 / tan(ra);
 		if (ra > M_PI)
 		{
-			hy = ((y / COF_PIXEL) * COF_PIXEL) - 0.0001;
+			hy = ((y / COF_PIXEL) * COF_PIXEL) - 0.001;
 			hx = x + (y - hy) * atan;
 			hyblock = -COF_PIXEL;
 			hxblock = -hyblock * atan;
@@ -114,7 +114,7 @@ void	test(void *param)
 		}
 		else if (ra < (3 * M_PI) / 2 && ra > M_PI / 2)
 		{
-			vx = ((x / COF_PIXEL) * COF_PIXEL) - 0.0001;
+			vx = ((x / COF_PIXEL) * COF_PIXEL) - 0.001;
 			vy = y + (x - vx) * atan;
 			vxblock = -COF_PIXEL;
 			vyblock = -vxblock * atan;

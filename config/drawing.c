@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/13 20:38:36 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/14 13:08:17 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void draw_map(t_cub3D *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < (COF_PIXEL/4) - 1)
+			while (++j < (COF_PIXEL/4)/* - 1*/)
 			{
 				i = -1;
-				while (++i < (COF_PIXEL/4) - 1)
+				while (++i < (COF_PIXEL/4)/* - 1*/)
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
 						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
