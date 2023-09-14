@@ -43,6 +43,15 @@ int wall_side(t_cub3D *cb, float angle, int side)
 	}
 }
 
+void put_texture(t_cub3D *cb, int Projection_to_wall,int i, int ra , int rc, int y_wall)
+{
+	while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
+		{
+			mlx_put_pixel(cb->img, i, y_wall, wall_side(cb, ra,rc));
+			y_wall++;
+		}
+}
+
 void	test(void *param)
 {
 	t_cub3D  *cb = param;
@@ -163,11 +172,7 @@ void	test(void *param)
 		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
 		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall, 0x0000ffFF);//line draw
-		while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
-		{
-			mlx_put_pixel(cb->img, i, y_wall, wall_side(cb, ra,rc));
-			y_wall++;
-		}
+		put_texture(cb, Projection_to_wall,i, ra , rc,  y_wall);
 		ra += angle_step;
 	}
 }
