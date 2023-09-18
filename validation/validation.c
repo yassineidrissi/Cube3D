@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/13 16:44:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:58:53 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void load_text(t_cub3D *cb)
 	while (++i < 4)
 	{
 		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
-		if (!cb->text[i].txtr)
+		if (!cb->text[i].txtr && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height
 			handl_errors(1);
 	}
 }
