@@ -11,7 +11,7 @@ CC				= cc
 RM				= rm -f
 GLFW			= $(shell brew --prefix glfw)
 MLX_FLAG		= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-LIBS            = -Wall -Wextra -Werror #-fsanitize=address  -g
+LIBS            = -Wall -Wextra -Werror -fsanitize=address  -g
 NAME			= cub3D
 
 
@@ -50,7 +50,7 @@ cube_3d_logo:
 	@echo "\033[92m██║     ██║   ██║██╔══██╗██╔══╝  \033[0m ╚═══██╗██║  ██║"
 	@echo "\033[92m╚██████╗╚██████╔╝██████╔╝███████ \033[0m██████╔╝██████╔╝"
 	@echo "\033[92m ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝\033[0m╚═════╝ ╚═════╝"
-	@echo "\033[92m⌛CREATING .O FILES AND SO_LONG⌛\033[0m"
+	@echo "\033[92m⌛CREATING .O FILES AND cub3D⌛\033[0m"
 
 
 .PHONY: all fclean clean re cube_3d_logo

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/18 20:56:47 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:05:51 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_texture
 	mlx_texture_t* txtr;
 	char	*path;
 	int		bol;
-	int 	**img;
+	unsigned int 	**img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;

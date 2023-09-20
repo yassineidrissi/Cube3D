@@ -21,29 +21,54 @@ float angle_overlap(float angle)
 	return (angle);
 }
 
-int **map_to_doublemap(t_cub3D *cb, int *map)
+unsigned int	get_rgba(int r, int g, int b, int a)
 {
-	int height = cb->text[0].txtr->width;
-	int width = cb->text[0].txtr->height;
+	unsigned int	c;
+
+	c = (r << 24 | g << 16 | b << 8 | a);
+	return (c);
+}
+
+unsigned int *get_rgbas(uint8_t *pixels, int height, int width)
+{
+	int i = 0;
+	int j = 0;
+	unsigned int *rgbas;
+	rgbas = (unsigned int *)malloc(sizeof(unsigned int) * (height * width));
+	while(i < height * width * 4)
+	{
+		rgbas[j++] = get_rgba(pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]);
+		i+=4;
+	}
+	return(rgbas);
+}
+
+unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txt)
+{
+	int height = txt->height;
+	int width = txt->width;
+	// printf("im here\n");
+	unsigned int *map = get_rgbas(txt->pixels, height, width);
 	int i = -1;
 	int j = -1;
-	int **double_map;
+	unsigned int **double_map;
 	double_map = malloc(sizeof(int *) *height);
 	while (++i < height)
 	{
 		double_map[i] = malloc(sizeof(int) * width);
 		while (++j < width)
-			double_map[i][j] = map[i * map.width + j];
+			double_map[i][j] = map[i*width + j];
 		j = -1;
 	}
+	free(map);
 	return (double_map);
 }
 
-int load_textur(t_cub3D *cb)
+void load_textur(t_cub3D *cb)
 {
 	int i = -1;
 	while(++i < 4)
-		cb->text[i].img = (int **)map_to_doublemap(cb, cb->text[i].txtr->img);
+		cb->text[i].img = (unsigned int **)map_to_doublemap(cb, cb->text[i].txtr);
 	i = -1;
 	while(++i < 4)
 	{
@@ -54,31 +79,35 @@ int load_textur(t_cub3D *cb)
 		// cb->text[0].img[i] = cb->text[0].img[i] << 8 | cb->text[0].img[i] >> 24;
 }
 
-int put_pixel_textur(t_cub3D *cb, )
+// int put_pixel_textur(t_cub3D *cb, )
 
 int load_color(char r, char g, char b, char a)
 {
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-int wall_side(t_cub3D *cb,int i , float angle, int side)
+unsigned wall_side(t_cub3D *cb,int txt , float angle, int side)
 {
 	if(!side)
 	{
 		if (angle > M_PI)
-			return();//color is black
+			// return(0x00000000);//color is green
+			return(cb->text[0].img[0][txt]);//*(cb->text[0])).width/COF_PIXEL)]);//color is black
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
-			return(0x0000FFFF);//color is green
+			return(cb->text[1].img[0][txt]);//*cb->text[1].width]);//color is red
+			// return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
 	}
 	else
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
-			return(0xcc0000FF);//color is blue
+			return(cb->text[2].img[0][txt]);//*cb->text[2].width]);
+			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
-			return(0xc0ccccFF);//color is yellow
+			return(cb->text[3].img[0][txt]);
+			// return(0xc0ccccFF);//color is yellow
 			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
 	}
 }
@@ -87,11 +116,29 @@ void put_texture(t_cub3D *cb, int Projection_to_wall,int i, int ra , int rc, int
 {
 	while (y_wall < WINDOW_HEIGHT/2+(Projection_to_wall/2))
 		{
-			mlx_put_pixel(cb->img, i, y_wall, wall_side(cb, ra,rc, (txt % COF_PIXEL));
+			mlx_put_pixel(cb->img, i, y_wall, wall_side(cb,((int)(txt)%COF_PIXEL) ,ra, rc));
 			y_wall++;
 		}
 }
 
+void draw_3d_image(t_cub3D *cb)
+{
+	mlx_texture_t *txt = mlx_load_png("./imgs/1337.png");
+	unsigned int **img = map_to_doublemap(cb, txt);
+	int i = -1;
+	int j= -1;
+	int width = txt->width;
+	int height = txt->height;
+	// printf("the width is %d and the height is %d\n",width,height);
+	while(++i < height)
+	{
+		while(++j < width)
+		{
+			mlx_put_pixel(cb->img2, j + 1000 , i, img[i][j]);
+		}
+		j = -1;
+	}
+}
 void	test(void *param)
 {
 	t_cub3D  *cb = param;
@@ -120,6 +167,7 @@ void	test(void *param)
 	draw_C_F(cb);
 	draw_map(cb);
 	draw_player(cb, COF_PIXEL/16, ra);
+	draw_3d_image(cb);
 	ra = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
 	while (++i < WINDOW_WIDTH)
@@ -216,8 +264,8 @@ void	test(void *param)
 			Projection_to_wall = WINDOW_HEIGHT;
 		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
-		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall,wall_side(cb, ra,rc));//line draw
-		put_texture(cb, Projection_to_wall,i, ra , rc,  y_wall , txt);
+		draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall,wall_side(cb,(((int)(txt)%COF_PIXEL)) ,ra, rc));//line draw
+		// put_texture(cb, Projection_to_wall,i, ra , rc,  y_wall , txt);
 		ra += angle_step;
 	}
 }
