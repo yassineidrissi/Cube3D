@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/20 17:05:51 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:12:43 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@
 # define ANGLE_MOV 1
 # define ROT_SPEED 0.1
 # define ESC 65307
-# define NO 0
-# define SO 1
+# define N 0
+# define S 1
 # define WE 2
 # define EA 3
 # define F 0
 # define C 1
 # define W 119
-# define S 115
 # define A 97
 # define D 100
 # define LEFT 65361

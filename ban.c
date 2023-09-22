@@ -51,13 +51,42 @@ unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txt)
 	unsigned int *map = get_rgbas(txt->pixels, height, width);
 	int i = -1;
 	int j = -1;
+	int k = width * height;
 	unsigned int **double_map;
 	double_map = malloc(sizeof(int *) *height);
+	while(++i < height)
+		double_map[i] = malloc(sizeof(int) * width);
+	i = -1;
 	while (++i < height)
 	{
-		double_map[i] = malloc(sizeof(int) * width);
+		// double_map[i] = malloc(sizeof(int) * width);
 		while (++j < width)
-			double_map[i][j] = map[i*width + j];
+			double_map[i][j] = map[k--];
+		j = -1;
+	}
+	free(map);
+	return (double_map);
+}
+
+unsigned int **map_to_doublemap_3d(t_cub3D *cb, mlx_texture_t *txt)
+{
+	int height = txt->height;
+	int width = txt->width;
+	// printf("im here\n");
+	unsigned int *map = get_rgbas(txt->pixels, height, width);
+	int i = -1;
+	int j = -1;
+	int k = -1;
+	unsigned int **double_map;
+	double_map = malloc(sizeof(int *) *height);
+	while(++i < height)
+		double_map[i] = malloc(sizeof(int) * width);
+	i = -1;
+	while (++i < height)
+	{
+		// double_map[i] = malloc(sizeof(int) * width);
+		while (++j < width)
+			double_map[i][j] = map[++k];
 		j = -1;
 	}
 	free(map);
@@ -93,17 +122,19 @@ unsigned wall_side(t_cub3D *cb,int txt , float angle, int side, int y_wall, floa
 	{
 		if (angle > M_PI)
 		{
-			txt = (int)cb->text[0].width*txt/COF_PIXEL;
-			*j += (float)cb->text[0].height/y_wall;
-			return(cb->text[0].img[txt][i]);//*(cb->text[0])).width/COF_PIXEL)]);//color is black
+			txt = (int)cb->text[N].width*(COF_PIXEL - txt)/COF_PIXEL;
+			// txt = (int)cb->text[0].width - txt;
+			*j += (float)cb->text[N].height/y_wall;
+			return(cb->text[N].img[i][txt]);//*(cb->text[0])).width/COF_PIXEL)]);//color is black
 		}
 			// return(0x00000000);//color is green
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
 		{
-			txt = (int)cb->text[1].width*txt/COF_PIXEL;
-			*j += (float) cb->text[1].height/y_wall;
-			return(cb->text[1].img[txt][i]);//*cb->text[1].width]);//color is red
+			txt = (int)cb->text[S].width*(COF_PIXEL- txt)/COF_PIXEL;
+			// txt = (int)cb->text[1].width - txt;
+			*j += (float) cb->text[S].height/y_wall;
+			return(cb->text[S].img[i][txt]);//*cb->text[1].width]);//color is red
 		}
 			// return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
@@ -112,17 +143,19 @@ unsigned wall_side(t_cub3D *cb,int txt , float angle, int side, int y_wall, floa
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
 		{
-			txt = cb->text[2].height*txt/COF_PIXEL;
-			*j += (float)cb->text[2].height/y_wall;
-			return(cb->text[2].img[txt][i]);//*cb->text[2].width]);
+			txt = cb->text[WE].height*txt/COF_PIXEL;
+			// txt = (int)cb->text[2].width - txt;
+			*j += (float)cb->text[WE].height/y_wall;
+			return(cb->text[WE].img[i][txt]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
 		{
-			txt = cb->text[3].height*txt/COF_PIXEL;
-			*j += (float)cb->text[3].height/y_wall;
-			return(cb->text[3].img[txt][i]);
+			txt = cb->text[EA].height*txt/COF_PIXEL;
+			// txt = (int)cb->text[2].width - txt;
+			*j += (float)cb->text[EA].height/y_wall;
+			return(cb->text[EA].img[i][txt]);
 		}
 			// return(0xc0ccccFF);//color is yellow
 			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
@@ -142,21 +175,52 @@ void put_texture(t_cub3D *cb, int Projection_to_wall,int i, float ra , int hv, i
 		}
 }
 
+void double_free_int(unsigned int **map, int height, int width)
+{
+	int i = -1;
+	while (++i < height)
+		free(map[i]);
+	free(map);
+}
+
+// void reverse_3d_map(unsigned int **img, int width, int height)
+// {
+// 	// printf("im here\n");
+// 	int i = -1;
+// 	int j = -1;
+// 	unsigned int **double_map;
+// 	double_map = malloc(sizeof(int *) *height);
+// 	while(++i < height)
+// 		double_map[i] = malloc(sizeof(int) * width);
+// 	i = -1;
+// 	while (++i < height)
+// 	{
+// 		// double_map[i] = malloc(sizeof(int) * width);
+// 		while (++j < width)
+// 			double_map[i][j] = img[width - 1 - i][height - 1 - j];
+// 		j = -1;
+// 	}
+			
+// 	double_free_int(img, height, width);
+// 	img = double_map;
+// 	// return (double_map);
+// }
+
+
 void draw_3d_image(t_cub3D *cb)
 {
 	mlx_texture_t *txt = mlx_load_png("./imgs/1337.png");
-	unsigned int **img = map_to_doublemap(cb, txt);
+	unsigned int **img = map_to_doublemap_3d(cb, txt);
 	int i = -1;
 	int j= -1;
 	int width = txt->width;
 	int height = txt->height;
 	// printf("the width is %d and the height is %d\n",width,height);
+	// reverse_3d_map(img, width, height);
 	while(++i < height)
 	{
 		while(++j < width)
-		{
-			mlx_put_pixel(cb->img2, j + 1000 , i, img[i][j]);
-		}
+			mlx_put_pixel(cb->img2, j + 1000 ,i, img[i][j]);
 		j = -1;
 	}
 }

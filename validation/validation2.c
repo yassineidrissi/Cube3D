@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/13 16:49:59 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:12:59 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_cub3D(t_cub3D *cb)
 	cb->joined_map = NULL;
 	cb->line = NULL;
 	cb->map_bol = 0;
-	cb->text[NO].bol = 0;
-	cb->text[SO].bol = 0;
+	cb->text[N].bol = 0;
+	cb->text[S].bol = 0;
 	cb->text[WE].bol = 0;
 	cb->text[EA].bol = 0;
 	cb->colors[F].bol = 0;
