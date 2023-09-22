@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/10 12:17:13 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/12 19:4 by yaidriss         ###   ########.fr       */
+/*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
+/*   Updated: 2023/09/22 15:58:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 float angle_overlap(float angle)
 {
 	if (angle < 0)
-		angle+=2*M_PI;
+		angle += 2 * M_PI;
 	else if (angle > 2*M_PI)
-		angle-=2*M_PI;
+		angle -= 2 * M_PI;
 	return (angle);
 }
 
@@ -31,14 +31,17 @@ unsigned int	get_rgba(int r, int g, int b, int a)
 
 unsigned int *get_rgbas(uint8_t *pixels, int height, int width)
 {
-	int i = 0;
-	int j = 0;
-	unsigned int *rgbas;
+	unsigned int	*rgbas;
+	int				i;
+	int				j;
+
+	i = 0;
+	j = 0;
 	rgbas = (unsigned int *)malloc(sizeof(unsigned int) * (height * width));
 	while(i < height * width * 4)
 	{
-		rgbas[j++] = get_rgba(pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]);
-		i+=4;
+		rgbas[j++] = get_rgba(pixels[i], pixels[i + 1], pixels[i + 2], pixels[i + 3]);
+		i += 4;
 	}
 	return(rgbas);
 }
@@ -214,9 +217,9 @@ void	test(void *param)
 			hx = x;
 			hy = y;
 		}
-		while (hy < m_height && hy > 0 )// WINDOW_HEIGHT && hy > 0)
+		while (hy < m_height && hy > 0 )
 		{
-			if (hx > m_width || hx < 0)//WINDOW_WIDTH + 1000 || hx < 0)
+			if (hx > m_width || hx < 0)
 				break ;
 			else if (!is_wall_pixel(cb, hx, hy))
 				break ;
@@ -245,7 +248,7 @@ void	test(void *param)
 			hy = y;
 		}
 
-		while (vx < m_width && vx > 0 && is_wall_pixel(cb, vx, vy)) // WINDOW_WIDTH + 1000 && vx > 0)
+		while (vx < m_width && vx > 0 && is_wall_pixel(cb, vx, vy))
 		{
 			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / COF_PIXEL, (int)hy / COF_PIXEL, cb->map.map_tmp[(int)hy / COF_PIXEL][(int)hx / COF_PIXEL]);
 			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)

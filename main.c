@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 14:59:19 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:27:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void    testing(t_cub3D *cb)
 	
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop_hook(cb->mlx, test, cb);
-	// mlx_loop_hook(cb->mlx, walls, cb);
 	// mlx_loop_hook(cb->mlx, map, cb);
 	mlx_loop(cb->mlx);
 }

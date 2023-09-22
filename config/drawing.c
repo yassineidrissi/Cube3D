@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/14 13:08:17 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:51:28 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void draw_map(t_cub3D *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < (COF_PIXEL/4)/* - 1*/)
+			while (++j < (COF_PIXEL / 4))
 			{
 				i = -1;
-				while (++i < (COF_PIXEL/4)/* - 1*/)
+				while (++i < (COF_PIXEL / 4))
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
 						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
@@ -112,13 +112,15 @@ void draw_map(t_cub3D *cb)
 //     }
 // }
 
-void draw_player(t_cub3D *cb, int playerSize, int angle_vue) {
+void draw_player(t_cub3D *cb, int playerSize, int angle_vue) 
+{
     int centerX = (int)cb->player.x/4;
     int centerY = (int)cb->player.y/4;
     int radius = playerSize;
 
     int angle = 0;
-    while (angle < 360) {
+    while (angle < 360) 
+	{
         double radians = (angle + angle_vue) * (PI / 180.0);
         int x = centerX + (int)(radius * cos(radians));
         int y = centerY + (int)(radius * sin(radians));

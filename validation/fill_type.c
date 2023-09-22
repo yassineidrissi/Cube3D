@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/22 15:07:10 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:58:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,15 @@ void	fill_texture(t_cub3D *cb)
 	char *str;
 
 	i = 0;
-	ft_to_space(cb->line);
-	cb->cnt = malloc(sizeof(char *) * 3);
+	non_printable(cb->line);
 	str = ft_strtrim(cb->line, " ", 0);
-	if (str[2] > 32)//if there is no space after NO
-	{
-		free(str);
-		handl_errors(10);
-	}
-	cb->cnt[0] = ft_substr(str, 0, 2);
-	if (!cb->cnt[0])
-	{
-		free(str);
-		ft_free_double(cb->cnt);
-		handl_errors(10);
-	}
-	cb->cnt[1] = ft_substr(str, 2, ft_strlen(str));
-	if (!cb->cnt[1])
-	{
-		free(str);
-		ft_free_double(cb->cnt);
-		handl_errors(10);
-	}
+	cb->cnt = ft_split(str, 31);
 	free(str);
-	cb->cnt[1] = ft_strtrim(cb->cnt[1], " ", 1);
-	cb->cnt[2] = NULL;
-	if (compare(cb))
+	if (!cb->cnt)
+		handl_errors(6);
+	while (cb->cnt[i])
+		i++;
+	if (i != 2 || compare(cb))
 	{
 		ft_free_double(cb->cnt);
 		handl_errors(10);
@@ -81,23 +64,6 @@ void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 		|| cb->colors[i].g < 0 || cb->colors[i].g > 255)
 	{
 		ft_free_double(RGB);
-		handl_errors(10);
-	}
-}
-
-void	ft_count_quote(char *str)
-{
-	int	i;
-	int	count;
-
-	i = -1;
-	count = 0;
-	while (str[++i])
-		if (str[i] == ',')
-			count++;
-	if (count != 2)
-	{
-		free(str);
 		handl_errors(10);
 	}
 }

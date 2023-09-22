@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:13:38 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:58:34 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ void	ft_to_space(char *str)
 	while (str[++i])
 		if (str[i] == ',' || str[i] == '\t' || str[i] == '\n')
 			str[i] = ' ';
+}
+
+void	non_printable(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\n')
+			str[i] = '\0';
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+		{
+			str[i] = 31;
+			break ;
+		}
+	}
 }
 
 void	remove_nl(char *str)

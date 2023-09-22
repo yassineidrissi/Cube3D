@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:13:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:21:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,21 @@ int ft_max(int a, int b)
 	if (a > b)
 		return (a);
 	return (b);
+}
+
+void	ft_count_quote(char *str)
+{
+	int	i;
+	int	count;
+
+	i = -1;
+	count = 0;
+	while (str[++i])
+		if (str[i] == ',')
+			count++;
+	if (count != 2)
+	{
+		free(str);
+		handl_errors(10);
+	}
 }

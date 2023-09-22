@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:17:25 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:49:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 # define FOV 60 * (M_PI / 180)
-# define SPEED 10
+# define SPEED 4
 # define COF_PIXEL 64//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 60 
-# define ANGLE_MOV 1
+# define ANGLE_MOV 0.02
 # define ROT_SPEED 0.1
 # define ESC 65307
 # define NO 0
@@ -156,6 +156,7 @@ int		check_content(t_cub3D *cb);
 int		fill_type(t_cub3D *cb);
 int		p_or_z(t_cub3D *cb, char c, int x, int y);
 int 	ft_max(int a, int b);
+void	ft_count_quote(char *str);
 
 /*################################################################*/
 /*                       config functions         			  */
@@ -165,10 +166,9 @@ void	ft_hook(void* param);
 void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
 void	draw_player(t_cub3D *cb, int playerSize, int angle_vue);
-void	map(void *v);	
 void	mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
-t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
+// t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
 float	dis(t_cub3D *cb,t_pos a);
 int		is_wall_pixel(t_cub3D *cb, float x, float y);
 
