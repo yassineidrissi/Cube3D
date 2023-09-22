@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/20 17:05:51 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:17:25 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,15 @@ typedef struct s_pos
 
 void	init_cub3D(t_cub3D *cb);
 void	ft_to_space(char *str);
+void	remove_nl(char *str);
+void	check_bol(t_cub3D *cb);
+void	check_repeat(t_cub3D *cb);
 int		compare(t_cub3D *cb);
 int		check_parameters(char *av);
 int		check_content(t_cub3D *cb);
 int		fill_type(t_cub3D *cb);
-void	remove_nl(char *str);
+int		p_or_z(t_cub3D *cb, char c, int x, int y);
+int 	ft_max(int a, int b);
 
 /*################################################################*/
 /*                       config functions         			  */
@@ -161,13 +165,12 @@ void	ft_hook(void* param);
 void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
 void	draw_player(t_cub3D *cb, int playerSize, int angle_vue);
-int		is_wall_pixel(t_cub3D *cb, float x, float y);
-void	walls(void *v);
 void	map(void *v);	
-void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
+void	mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
+void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
-float dis(t_cub3D *cb,t_pos a);
-void mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
+float	dis(t_cub3D *cb,t_pos a);
+int		is_wall_pixel(t_cub3D *cb, float x, float y);
 
 
 

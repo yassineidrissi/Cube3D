@@ -6,25 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/13 16:42:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:07:10 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-// void fill_texture_img(t_cub3D *cb)
-// {
-// 	int i;
-
-// 	i = -1;
-// 	while (cb->text[++i].path)
-// 	{
-// 		cb->text[i].img = mlx_xpm_file_to_image(cb->mlx, cb->text[i].path, &cb->text[i].width, &cb->text[i].height);
-// 		if (!cb->text[i].img)
-// 			handl_errors(6);
-// 		cb->text[i].addr = mlx_get_data_addr(cb->text[i].img, &cb->text[i].bits_per_pixel, &cb->text[i].line_length, &cb->text[i].endian);
-// 	}
-// }
 
 void	fill_texture(t_cub3D *cb)
 {
@@ -85,10 +71,6 @@ void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 		ft_free_double(RGB);
 		handl_errors(10);
 	}
-	// printf("*********************\n");
-	// printf("RGB[1] = %s\n", RGB[1]);
-	// printf("RGB[2] = %s\n", RGB[2]);
-	// printf("RGB[3] = %s\n", RGB[3]);
 	cb->colors[i].r = ft_atoi(RGB[1]);
 	cb->colors[i].g = ft_atoi(RGB[2]);
 	cb->colors[i].b = ft_atoi(RGB[3]);
@@ -101,7 +83,6 @@ void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 		ft_free_double(RGB);
 		handl_errors(10);
 	}
-	// printf("r = %d, g = %d, b = %d\n",cb->colors[i].r, cb->colors[i].g, cb->colors[i].b);
 }
 
 void	ft_count_quote(char *str)
@@ -168,8 +149,8 @@ int fill_type(t_cub3D *cb)
 		|| cb->line[i] == 'W' || cb->line[i] == 'E')
 		{
 			fill_texture(cb);
-			system("leaks -q cub3D");
-			printf("---------------------LEAKS---------------------\n");
+			// system("leaks -q cub3D");
+			// printf("---------------------LEAKS---------------------\n");
 		}
 	else if (cb->line[i] == 'F' || cb->line[i] =='C')
 		fill_colors(cb);
