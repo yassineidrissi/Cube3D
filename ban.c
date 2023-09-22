@@ -134,7 +134,8 @@ void put_texture(t_cub3D *cb, int Projection_to_wall,int i, float ra , int hv, i
 	float j = 0;
 
 	while (y_wall > WINDOW_HEIGHT/2 - 3*(Projection_to_wall/2))
-		{
+	{
+		if (y_wall + Projection_to_wall >= 0 && y_wall + Projection_to_wall < WINDOW_HEIGHT)
 			mlx_put_pixel(cb->img, i, y_wall + Projection_to_wall , wall_side(cb,((int)(txt)%(COF_PIXEL)) ,ra, hv, Projection_to_wall, &j));
 			y_wall--;
 			// j++;
@@ -280,8 +281,8 @@ void	test(void *param)
 		dis_w = cos(((AGNGLE_VUE / 2) *M_PI/180) - (i * angle_step)) * dis_w;
 		float Projection_to_wall = ((float)WINDOW_HEIGHT/4)/-tan(30) * ((float)WINDOW_HEIGHT/dis_w);
 		Projection_to_wall *= 2; //wall is square 
-		if (Projection_to_wall > WINDOW_HEIGHT)
-			Projection_to_wall = WINDOW_HEIGHT;
+		// if (Projection_to_wall > WINDOW_HEIGHT)
+		// 	Projection_to_wall = WINDOW_HEIGHT;
 		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
 		int j = 0;
