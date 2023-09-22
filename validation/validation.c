@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/16 17:58:53 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:21:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,6 @@ void	check_repeat(t_cub3D *cb)
 	}
 }
 
-void	check_all_sides(char **str, int x, int y)
-{
-	if (str[y][x] != '1' && str[y][x] != '0'
-		&& str[y][x] != 'N' && str[y][x] != 'S'
-		&& str[y][x] != 'W' && str[y][x] != 'E')
-	{
-		ft_free_double(str);
-		handl_errors(10);
-	}
-}
-
 /* store player position and check if 0 or player are surrounded by other than 1 and 0  */
 //! when i put the player  to W character the forme of the player is changed we need to check this errurs
 
@@ -95,177 +84,19 @@ int ft_max(int a, int b)
 	return (b);
 }
 
-int	ft_limit(t_cub3D *cb, int x, int y)
-{
-	// printf("%d %d\n",x, y);
-	if (y < 0 || y >= cb->map.height || x < 0)
-		return (handl_errors(1), 0);
-	return (1);
-}
-
-void	check_valid_map(t_cub3D *cb)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	cb->map.width = 0;
-	while (cb->map.map_tmp[++y])
-	{
-		x = 0;
-		while (cb->map.map_tmp[y][x])
-		{
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x - 1, y))
-				check_all_sides(cb->map.map_tmp, x - 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x + 1, y))
-				check_all_sides(cb->map.map_tmp, x + 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x, y - 1))
-				check_all_sides(cb->map.map_tmp, x, y - 1);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x, y + 1))
-				check_all_sides(cb->map.map_tmp, x, y + 1);
-			x++;
-		}
-		cb->map.width = ft_max(cb->map.width, x);
-	}
-}
-
-void load_text(t_cub3D *cb)
+void	ft_count_quote(char *str)
 {
 	int	i;
+	int	count;
 
 	i = -1;
-	while (++i < 4)
+	count = 0;
+	while (str[++i])
+		if (str[i] == ',')
+			count++;
+	if (count != 2)
 	{
-		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
-		if (!cb->text[i].txtr && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height
-			handl_errors(1);
+		free(str);
+		handl_errors(10);
 	}
 }
-
-int	check_content(t_cub3D *cb)
-{
-	cb->line = get_next_line(cb->fd);
-	while (cb->line)
-	{
-		if (fill_type(cb))
-		{
-			free(cb->line);
-			handl_errors(6);
-		}
-		free(cb->line);
-		cb->line = get_next_line(cb->fd);
-	}
-	close(cb->fd);
-	load_text(cb);
-	check_bol(cb);
-	check_repeat(cb);
-	cb->map.map_tmp = ft_split(cb->joined_map, '\n');
-	free(cb->joined_map);
-	check_valid_map(cb);
-	return (0);
-}
-
-// void init_cub3D(t_cub3D *cb)
-// {
-// 	return;
-// 	// cb.map = init_map(fd);
-// }
-
-// void	fill_map(t_map *map)
-// {
-// 	char	*buffer;
-// 	char	*buffer2;
-// 	int		i;
-
-// 	i = -1;
-// 	map->next = (char *)1;
-// 	buffer = NULL;
-// 	while (map->next)
-// 	{
-// 		map->next = get_next_line(map->fd);
-// 		buffer = ft_my_strjoin(buffer, map->next, 1);
-// 	}
-// 	while (buffer[++i])
-// 		if (buffer[0] == '\n' || (buffer[i] == '\n' && buffer[i + 1] == '\n'))
-// 			handl_errors(3);
-// 	buffer2 = ft_strdup(buffer);
-// 	map->map = ft_split(buffer, '\n');
-// 	if (!map->map[0])
-// 		handl_errors(3);
-// 	map->map2 = ft_split(buffer2, '\n');
-// 	free(buffer);
-// 	free(buffer2);
-// }
-
-// void	test_rectangular(t_map *map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	i = 0;
-// 	map->hight = 0;
-// 	while (map->map[map->hight])
-// 		map->hight++;
-// 	map->width = ft_strlen(map->map[0]);
-// 	while (map->map[i])
-// 		if (ft_strlen(map->map[i++]) == map->width)
-// 			j++;
-// 	if (j != map->hight)
-// 		handl_errors(3);
-// }
-
-// void	test_walls(t_map *map)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (map->map[0][++i])
-// 		if (map->map[0][i] != '1' || map->map[map->hight - 1][i] != '1')
-// 			handl_errors(3);
-// 	i = -1;
-// 	while (++i < map->hight)
-// 		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
-// 			handl_errors(3);
-// }
-
-// void	test_caraters(t_map *map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = -1;
-// 	map->count_p = 0;
-// 	map->count_e = 0;
-// 	map->count_c = 0;
-// 	while (++i < map->hight)
-// 	{
-// 		j = -1;
-// 		while (map->map[i][++j])
-// 		{
-// 			if (map->map[i][j] == 'P')
-// 				map->count_p++;
-// 			else if (map->map[i][j] == 'C')
-// 				map->count_c++;
-// 			else if (map->map[i][j] == 'E')
-// 				map->count_e++;
-// 			else if (map->map[i][j] != '0' && map->map[i][j] != '1')
-// 				handl_errors(1);
-// 		}
-// 	}
-// 	if (map->count_p != 1 || map->count_e != 1 || map->count_c < 1)
-// 		handl_errors(9);
-// }
-//!need to set the postion of all character ( Player and exit)
-
-// void	change_neighbor(char **mp, int i, int j)
-// {
-// 	if (mp[i][j - 1] != 'V' && mp[i][j - 1] != '1')
-// 				mp[i][j - 1] = 'V';
-// 	if (mp[i][j + 1] != 'V' && mp[i][j + 1] != '1')
-// 				mp[i][j + 1] = 'V';
-// 	if (mp[i + 1][j] != 'V' && mp[i + 1][j] != '1')
-// 				mp[i + 1][j] = 'V';
-// 	if (mp[i - 1][j] != 'V' && mp[i - 1][j] != '1')
-// 				mp[i - 1][j] = 'V';
-// }

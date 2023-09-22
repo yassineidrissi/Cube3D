@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:34:13 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/13 15:53:23 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:49:51 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void       ft_free_double(char **p);
 int        ft_strlen(char *s);
 char		*ft_strcpy(char *dst, char *src);
 int         ft_atoi(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, size_t len);
-char	*ft_strtrim(char *s1, char *set, int fre);
+char		*ft_strjoin(char *s1, char *s2);
+char		*ft_substr(char *s, unsigned int start, size_t len);
+char		*ft_strtrim(char *s1, char *set, int fre);
+void		non_printable(char *str);
 
 #endif
