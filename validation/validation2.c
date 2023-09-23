@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validation2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 22:42:11 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:52:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	init_cub3D(t_cub3D *cb)
+void	init_cub3d(t_cub3D *cb)
 {
 	cb->joined_map = NULL;
 	cb->line = NULL;
@@ -71,11 +71,11 @@ void	remove_nl(char *str)
 			str[i] = '\0';
 }
 
-int check_parameters(char *av)
+int	check_parameters(char *av)
 {
-	char 	*ext;
-	int 	i;
-	int 	j;
+	char	*ext;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -92,36 +92,6 @@ int check_parameters(char *av)
 			return (0);
 		i--;
 		j--;
-	}
-	return (1);
-}
-
-int	compare(t_cub3D *cb)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = -1;
-	while (++i < 4)
-	{
-		j = 0;
-		k = 0;
-		while (cb->cnt[0][j] && cb->cnt[0][j] == cb->EWSN[i][k])
-		{
-			j++;
-			k++;
-		}
-		if (!cb->cnt[0][j] && !cb->EWSN[i][k])
-		{
-			cb->text[i].bol++;
-			cb->map_bol++;
-			if (cb->text[i].bol != 1)
-				return (1);
-			else
-				cb->text[i].path = ft_strdup(cb->cnt[1]);
-			return (0);
-		}
 	}
 	return (1);
 }

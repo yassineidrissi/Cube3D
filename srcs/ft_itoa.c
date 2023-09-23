@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:01:25 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/08/20 08:39:16 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:27:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_nbrlen(int nbr)
 	{
 		mod = -nbr / 10;
 		len++;
-	}	
+	}
 	while (mod > 0)
 	{
 		len++;

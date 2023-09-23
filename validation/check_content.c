@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation3.c                                      :+:      :+:    :+:   */
+/*   check_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:13:48 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:41:00 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	ft_limit(t_cub3D *cb, int x, int y)
+int	edge(t_cub3D *cb, int x, int y)
 {
 	if (y < 0 || y >= cb->map.height || x < 0)
 		return (handl_errors(1), 0);
@@ -42,13 +42,13 @@ void	check_valid_map(t_cub3D *cb)
 		x = 0;
 		while (cb->map.map_tmp[y][x])
 		{
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x - 1, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && edge(cb, x - 1, y))
 				check_all_sides(cb->map.map_tmp, x - 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x + 1, y))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && edge(cb, x + 1, y))
 				check_all_sides(cb->map.map_tmp, x + 1, y);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x, y - 1))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && edge(cb, x, y - 1))
 				check_all_sides(cb->map.map_tmp, x, y - 1);
-			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && ft_limit(cb, x, y + 1))
+			if (p_or_z(cb, cb->map.map_tmp[y][x], x, y) && edge(cb, x, y + 1))
 				check_all_sides(cb->map.map_tmp, x, y + 1);
 			x++;
 		}
@@ -56,7 +56,7 @@ void	check_valid_map(t_cub3D *cb)
 	}
 }
 
-void load_text(t_cub3D *cb)
+void	load_text(t_cub3D *cb)
 {
 	int	i;
 

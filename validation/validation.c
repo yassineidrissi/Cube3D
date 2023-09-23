@@ -6,12 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:21:02 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:43:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
 /* chek bol to see if there is something other than NO SO WE EA F C before arriving to the map*/
 void	check_bol(t_cub3D *cb)
 {
@@ -39,8 +38,8 @@ void	check_repeat(t_cub3D *cb)
 			|| cb->joined_map[i] == 'W' || cb->joined_map[i] == 'E')
 			cb->p++;
 		else if (cb->joined_map[i] != '1' && cb->joined_map[i] != '0'
-				&& cb->joined_map[i] != ' ' && cb->joined_map[i] != '\t'
-				&& cb->joined_map[i] != '\n')
+			&& cb->joined_map[i] != ' ' && cb->joined_map[i] != '\t'
+			&& cb->joined_map[i] != '\n')
 		{
 			free(cb->joined_map);
 			handl_errors(10);
@@ -48,14 +47,13 @@ void	check_repeat(t_cub3D *cb)
 	}
 	if (cb->p != 1)
 	{
-			free(cb->joined_map);
-			handl_errors(10);
+		free(cb->joined_map);
+		handl_errors(10);
 	}
 }
 
 /* store player position and check if 0 or player are surrounded by other than 1 and 0  */
 //! when i put the player  to W character the forme of the player is changed we need to check this errurs
-
 int	p_or_z(t_cub3D *cb, char c, int x, int y)
 {
 	if (c == '0')
@@ -66,9 +64,9 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		cb->player.y = y * COF_PIXEL + (COF_PIXEL / 2);
 		if (c == 'N')
 			cb->angle = (3 * M_PI) / 2;
-		else if(c == 'S')
+		else if (c == 'S')
 			cb->angle = M_PI / 2;
-		else if(c == 'E')
+		else if (c == 'E')
 			cb->angle = 0;
 		else if (c == 'W')
 			cb->angle = M_PI;
@@ -77,7 +75,7 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 	return (0);
 }
 
-int ft_max(int a, int b)
+int	ft_max(int a, int b)
 {
 	if (a > b)
 		return (a);

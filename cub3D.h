@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/23 13:01:08 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:55:23 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include  <MLX42/MLX42.h>
+# include <MLX42/MLX42.h>
 // # include "validation/validation.h"
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
@@ -29,7 +29,7 @@
 # define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
-# define FOV 60 * (M_PI / 180)
+# define FOV (60 * (M_PI / 180))
 # define SPEED 10
 # define COF_PIXEL 64//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 60 
@@ -144,18 +144,19 @@ typedef struct s_pos
 /*                       validation functions         			  */
 /*################################################################*/
 
-void	init_cub3D(t_cub3D *cb);
+void	init_cub3d(t_cub3D *cb);
 void	ft_to_space(char *str);
 void	remove_nl(char *str);
 void	check_bol(t_cub3D *cb);
 void	check_repeat(t_cub3D *cb);
+void	ft_count_quote(char *str);
 int		compare(t_cub3D *cb);
 int		check_parameters(char *av);
 int		check_content(t_cub3D *cb);
 int		fill_type(t_cub3D *cb);
 int		p_or_z(t_cub3D *cb, char c, int x, int y);
 int 	ft_max(int a, int b);
-void	ft_count_quote(char *str);
+int		ft_max(int a, int b);
 
 /*################################################################*/
 /*                       config functions         			  */
@@ -168,7 +169,7 @@ void	draw_player(t_cub3D *cb, int playerSize, int angle_vue);
 void	mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 // t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
-float	dis(t_cub3D *cb,t_pos a);
+// float	dis(t_cub3D *cb,t_pos a);
 int		is_wall_pixel(t_cub3D *cb, float x, float y);
 
 

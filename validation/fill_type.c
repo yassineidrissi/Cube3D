@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/22 16:58:54 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:13:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int fill_type(t_cub3D *cb)
 		fill_colors(cb);
 	else if (cb->line[i] != '\n')
 		fill_map(cb);
-	else if (cb->line[i] == '\n' && cb->nl)
-		handl_errors(10);
+	// else if (cb->line[i] == '\n' && cb->nl)
+	// 	handl_errors(10);
 	return (0);
 }

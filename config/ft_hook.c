@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/23 14:50:28 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:23:40 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	move_player(t_cub3D *cb, double x, double y)
 {
 	int	marge_x;
 	int	marge_y;
-	int next_x;
-	int next_y;
+	int	next_x;
+	int	next_y;
 
 	x *= SPEED;
 	y *= SPEED;
@@ -42,9 +42,11 @@ void	move_player(t_cub3D *cb, double x, double y)
 		marge_x *= -1;
 	if (y < 0)
 		marge_y *= -1;
-	if (cb->map.map_tmp[(cb->player.y + next_y + marge_y) / COF_PIXEL][cb->player.x / COF_PIXEL] != '1')
+	if (cb->map.map_tmp[(cb->player.y + next_y + marge_y) / COF_PIXEL]
+		[cb->player.x / COF_PIXEL] != '1')
 		cb->player.y += next_y;
-	if (cb->map.map_tmp[cb->player.y / COF_PIXEL][(cb->player.x + next_x + marge_x) / COF_PIXEL] != '1')
+	if (cb->map.map_tmp[cb->player.y / COF_PIXEL]
+		[(cb->player.x + next_x + marge_x) / COF_PIXEL] != '1')
 		cb->player.x += next_x;
 }
 
@@ -54,18 +56,20 @@ void	ft_hook(void *param)
 	t_cub3D	*cb;
 
 	cb = param;
-	if (mlx_is_key_down(cb->mlx, MLX_KEY_W))
-		move_player(cb, cos(cb->angle), sin(cb->angle));
-	if (mlx_is_key_down(cb->mlx, MLX_KEY_S))
-		move_player(cb, -cos(cb->angle), -sin(cb->angle));
-	if (mlx_is_key_down(cb->mlx, MLX_KEY_A))
-		move_player(cb, -cos(cb->angle + (M_PI / 2)), -sin(cb->angle + (M_PI / 2)));
-	if (mlx_is_key_down(cb->mlx, MLX_KEY_D))
-		move_player(cb, cos(cb->angle + (M_PI / 2)), sin(cb->angle + (M_PI / 2)));
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cb->mlx);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_LEFT))
 		change_angle(cb, MLX_KEY_LEFT);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
 		change_angle(cb, MLX_KEY_RIGHT);
+	if (mlx_is_key_down(cb->mlx, MLX_KEY_W))
+		move_player(cb, cos(cb->angle), sin(cb->angle));
+	if (mlx_is_key_down(cb->mlx, MLX_KEY_S))
+		move_player(cb, -cos(cb->angle), -sin(cb->angle));
+	if (mlx_is_key_down(cb->mlx, MLX_KEY_A))
+		move_player(cb, -cos(cb->angle + (M_PI / 2)),
+			-sin(cb->angle + (M_PI / 2)));
+	if (mlx_is_key_down(cb->mlx, MLX_KEY_D))
+		move_player(cb, cos(cb->angle + (M_PI / 2)),
+			sin(cb->angle + (M_PI / 2)));
 }
