@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/23 10:07:53 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:11:04 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,30 @@
 void	change_angle(t_cub3D *cb, int KEY)
 {
 	if (KEY == MLX_KEY_RIGHT)
-	{
 		cb->angle += ANGLE_MOV;
-		if (cb->angle >= 2 * M_PI)
-			cb->angle -= 2 * M_PI;
-	}
 	else if (KEY == MLX_KEY_LEFT)
-	{
 		cb->angle -= ANGLE_MOV;
-		if (cb->angle < 0)
-			cb->angle += 2 * M_PI;
-	}
+	if (cb->angle < 0)
+		cb->angle += 2 * M_PI;
+	if (cb->angle > 2 * M_PI)
+		cb->angle -= 2 * M_PI;
 }
 
-void	move_player(t_cub3D *cb, double rad_angle)
+void	move_player(t_cub3D *cb, int next_x, int next_y)
 {
-	int	next_x;
-	int	next_y;
 	int	marge_x;
 	int	marge_y;
 
-	marge_x = 20;
-	marge_y = 20;
-	next_x = cb->player.x + (cos(rad_angle) * SPEED);
-	next_y = cb->player.y + (sin(rad_angle) * SPEED);
+	marge_x = 15;
+	marge_y = 15;
 	if (next_x < 0)
 		marge_x *= -1;
-	if (marge_y < 0)
-		next_y *= -1;
-	if (cb->map.map_tmp[(int)(next_y + marge_y) / COF_PIXEL]
-		[(int)cb->player.x / COF_PIXEL] != '1')
-		cb->player.y = next_y;
-	if (cb->map.map_tmp[(int)cb->player.y / COF_PIXEL]
-		[(int)(next_x + marge_x) / COF_PIXEL] != '1')
-		cb->player.x = next_x;
+	if (next_y < 0)
+		marge_y *= -1;
+	if (cb->map.map_tmp[(int)((cb->player.y + next_y + marge_y) / COF_PIXEL)][(int)(cb->player.x / COF_PIXEL)] != '1')
+		cb->player.y += next_y;
+	if (cb->map.map_tmp[(int) (cb->player.y / COF_PIXEL)][(int)((cb->player.x + next_x + marge_x) / COF_PIXEL)] != '1')
+		cb->player.x += next_x;
 }
 
 //! this function for key hook so every key do action functionality
@@ -65,11 +55,11 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_RIGHT))
 		change_angle(cb, MLX_KEY_RIGHT);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_W))
-		move_player(cb, cb->angle);
+		move_player(cb, cos(cb->angle) * SPEED, sin(cb->angle)* SPEED);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_S))
-		move_player(cb, (cb->angle + M_PI));
+		move_player(cb, -cos(cb->angle)* SPEED, -sin(cb->angle)* SPEED);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_A))
-		move_player(cb, (cb->angle - (M_PI / 2)));
+		move_player(cb, -cos(cb->angle + (M_PI / 2))* SPEED, -sin(cb->angle + (M_PI / 2))* SPEED);
 	if (mlx_is_key_down(cb->mlx, MLX_KEY_D))
-		move_player(cb, (cb->angle + (M_PI / 2)));
+		move_player(cb, cos(cb->angle + (M_PI / 2))* SPEED, sin(cb->angle + (M_PI / 2))* SPEED);
 }
