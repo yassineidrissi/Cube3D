@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 19:55:25 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:24:29 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,32 @@ unsigned int *get_rgbas(uint8_t *pixels, int height, int width)
 	return(rgbas);
 }
 
-unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
-{
-	int height = txtr->height;
-	int width = txtr->width;
-	// printf("im here\n");
-	unsigned int *map = get_rgbas(txtr->pixels, height, width);
-	int i = -1;
-	int j = -1;
-	int k = width * height;
-	unsigned int **double_map;
-	double_map = malloc(sizeof(int *) *height);
-	while(++i < height)
-		double_map[i] = malloc(sizeof(int) * width);
-	i = -1;
-	while (++i < height)
-	{
-		// double_map[i] = malloc(sizeof(int) * width);
-		while (++j < width)
-			double_map[i][j] = map[k--];
-		j = -1;
-	}
-	free(map);
-	return (double_map);
-}
+// unsigned int **map_to_doublemap_reverse(t_cub3D *cb, mlx_texture_t *txtr)
+// {
+// 	int height = txtr->height;
+// 	int width = txtr->width;
+// 	// printf("im here\n");
+// 	unsigned int *map = get_rgbas(txtr->pixels, height, width);
+// 	int i = -1;
+// 	int j = -1;
+// 	int k = width * height;
+// 	unsigned int **double_map;
+// 	double_map = malloc(sizeof(int *) *height);
+// 	while(++i < height)
+// 		double_map[i] = malloc(sizeof(int) * width);
+// 	i = -1;
+// 	while (++i < height)
+// 	{
+// 		// double_map[i] = malloc(sizeof(int) * width);
+// 		while (++j < width)
+// 			double_map[i][j] = map[k--];
+// 		j = -1;
+// 	}
+// 	free(map);
+// 	return (double_map);
+// }
 
-unsigned int **map_to_doublemap_3d(t_cub3D *cb, mlx_texture_t *txtr)
+unsigned int ** map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
 {
 	int height = txtr->height;
 	int width = txtr->width;
@@ -100,7 +100,7 @@ void load_textur(t_cub3D *cb)
 {
 	int i = -1;
 	while(++i < 4)
-		cb->text[i].img = (unsigned int **)map_to_doublemap_3d(cb, cb->text[i].txtr);
+		cb->text[i].img = (unsigned int **) map_to_doublemap(cb, cb->text[i].txtr);
 	i = -1;
 	while(++i < 4)
 	{
@@ -120,23 +120,23 @@ int load_color(char r, char g, char b, char a)
 
 unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall, int ty)
 {
-	// int i = *j;
+	// =int i = *j;
 	if(!side)
 	{
 		if (angle > M_PI)
 		{
-			tx = (int)cb->text[N].width*(TILE_SIZE - tx)/TILE_SIZE;
+			tx = (float)cb->text[N].width*(tx)/TILE_SIZE;
 			// tx = (int)cb->text[0].width - tx;
-			ty += (int)cb->text[N].height/start_wall;
+			// ty += (int)cb->text[N].height/start_wall;
 			return(cb->text[N].img[ty][tx]);//*(cb->text[0])).width/TILE_SIZE)]);//color is black
 		}
 			// return(0x00000000);//color is green
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
 		{
-			tx = (int)cb->text[S].width*(TILE_SIZE- tx)/TILE_SIZE;
+			tx = (int)cb->text[S].width*(tx)/TILE_SIZE;
 			// tx = (int)cb->text[1].width - tx;
-			ty += (float) cb->text[S].height/start_wall;
+			// ty += (float) cb->text[S].height/start_wall;
 			return(cb->text[S].img[ty][tx]);//*cb->text[1].width]);//color is red
 		}
 			// return(0x0000FFFF);//color is green
@@ -148,7 +148,7 @@ unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall,
 		{
 			tx = cb->text[WE].height*tx/TILE_SIZE;
 			// tx = (int)cb->text[2].width - tx;
-			ty += (float)cb->text[WE].height/start_wall;
+			// ty += (float)cb->text[WE].height/start_wall;
 			return(cb->text[WE].img[ty][tx]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
@@ -157,7 +157,7 @@ unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall,
 		{
 			tx = cb->text[EA].height*tx/TILE_SIZE;
 			// tx = (int)cb->text[2].width - tx;
-			ty += (float)cb->text[EA].height/start_wall;
+			// ty += (float)cb->text[EA].height/start_wall;
 			return(cb->text[EA].img[ty][tx]);
 		}
 			// return(0xc0ccccFF);//color is yellow
@@ -177,25 +177,40 @@ int height_image(t_cub3D *cb ,int hv, float angle)
 	else
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
-			return(cb->text[WE].height);
+			return(cb->text[WE].width);
 		else
-			return(cb->text[EA].height);
+			return(cb->text[EA].width);
 	}
 
 }
 
-void put_texture(t_cub3D *cb, int line_lenth,int i, float  angle , int hv, int start_wall, float tx)
+// void put_texture(t_cub3D *cb, int line_lenth,int i, float  angle , int hv, int start_wall, float tx)
+// {
+// 	float j = 0;
+// 	double ty_step = (float)height_image(cb, hv, angle)/line_lenth;
+// 	while (start_wall > WINDOW_HEIGHT/2 - 3*(line_lenth/2))
+// 	{
+// 		if (start_wall + line_lenth >= 0 && start_wall + line_lenth < WINDOW_HEIGHT)
+// 			mlx_put_pixel(cb->img, i, start_wall + line_lenth , pixel_value(cb,((int)(tx)%(TILE_SIZE)) , angle, hv, line_lenth, j));
+// 			start_wall--;
+// 			j += ty_step;
+// 		}
+// }
+void put_texture(t_cub3D *cb, int line_lenth,int i, float angle, int hv, int start_wall, float tx)
 {
 	float j = 0;
-	double ty_step = (float)height_image(cb, hv, angle)/line_lenth;
-	while (start_wall > WINDOW_HEIGHT/2 - 3*(line_lenth/2))
+	double	 ty_max = (float)height_image(cb, hv, angle) - 1;
+	float ty = 0;
+	double 	ty_step = ty_max/line_lenth;
+	while (start_wall  < WINDOW_HEIGHT/2 +(line_lenth/2))
 	{
-		if (start_wall + line_lenth >= 0 && start_wall + line_lenth < WINDOW_HEIGHT)
-			mlx_put_pixel(cb->img, i, start_wall + line_lenth , pixel_value(cb,((int)(tx)%(TILE_SIZE)) , angle, hv, line_lenth, j));
-			start_wall--;
-			j += ty_step;
-		}
+		if (start_wall  >= 0 && start_wall < WINDOW_HEIGHT)// && ty > 0 && ty < ty_max)
+			mlx_put_pixel(cb->img, i, start_wall , pixel_value(cb,((int)(tx)%(TILE_SIZE)) ,angle, hv, line_lenth,ty));
+		start_wall++;
+		ty += ty_step;
+	}
 }
+
 
 void double_free_int(unsigned int **map, int height, int width)
 {
@@ -232,7 +247,7 @@ void double_free_int(unsigned int **map, int height, int width)
 void draw_3d_image(t_cub3D *cb)
 {
 	mlx_texture_t *txt = mlx_load_png("./imgs/1337.png");
-	unsigned int **img = map_to_doublemap_3d(cb, txt);
+	unsigned int **img =  map_to_doublemap(cb, txt);
 	int i = -1;
 	int j= -1;
 	int width = txt->width;
