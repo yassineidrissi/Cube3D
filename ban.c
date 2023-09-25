@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 22:05:09 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/25 22:25:01 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ void put_texture(t_cub3D *cb, int line_lenth,int i, double angle, int hv, int st
 	while (start_wall  < WINDOW_HEIGHT/2 +(line_lenth/2))
 	{
 		if (start_wall  >= 0 && start_wall <= WINDOW_HEIGHT)// && ty > 0 && ty < ty_max)
-			mlx_put_pixel(cb->img, i, start_wall , pixel_value(cb,((int)(tx)%(TILE_SIZE)) ,angle, hv, line_lenth,ty));
+			mlx_put_pixel(cb->img, i, start_wall , pixel_value(cb,(fmod(tx, TILE_SIZE)) ,angle, hv, line_lenth,ty));
 		start_wall++;
 		ty += ty_step;
 	}
@@ -293,8 +293,8 @@ void	test(void *param)
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
 	while (++i < WINDOW_WIDTH)
 	{
-		 angle = angle_overlap( angle);
-		atan = -1 / tan( angle);
+		 angle = angle_overlap(angle);
+		atan = -1 / tan(angle);
 		if ( angle > M_PI)
 		{
 			hy = ((y / TILE_SIZE) * TILE_SIZE) - 0.001;
@@ -387,7 +387,7 @@ void	test(void *param)
 		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
 		int j = 0;
 		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw
-		put_texture(cb, line_lenth,i,  angle , hv ,  start_wall , tx);
+		put_texture(cb, line_lenth, i,  angle , hv ,  start_wall , tx);
 		 angle += angle_step;
 	}
 }
