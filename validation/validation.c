@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/23 15:43:35 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		return (1);
 	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		cb->player.x = x * COF_PIXEL + (COF_PIXEL / 2);
-		cb->player.y = y * COF_PIXEL + (COF_PIXEL / 2);
+		cb->player.x = x * TILE_SIZE + (TILE_SIZE / 2);
+		cb->player.y = y * TILE_SIZE + (TILE_SIZE / 2);
 		if (c == 'N')
 			cb->angle = (3 * M_PI) / 2;
 		else if (c == 'S')

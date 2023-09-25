@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/23 15:55:23 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MIN_INT -2147483648
 # define FOV (60 * (M_PI / 180))
 # define SPEED 10
-# define COF_PIXEL 64//After validation 2D map , we need to change it to 1
+# define TILE_SIZE 64//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 60 
 # define ANGLE_MOV 0.087266
 # define ROT_SPEED 0.1

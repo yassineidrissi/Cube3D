@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/22 15:51:28 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void draw_map(t_cub3D *cb)
 		while (cb->map.map_tmp[y][++x])
 		{
 			j = -1;
-			while (++j < (COF_PIXEL / 4))
+			while (++j < (TILE_SIZE / 4))
 			{
 				i = -1;
-				while (++i < (COF_PIXEL / 4))
+				while (++i < (TILE_SIZE / 4))
 				{
 					if (cb->map.map_tmp[y][x] == '1') 
-						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0x00FFFFFF);
+						mlx_put_pixel(cb->img2, (x  * TILE_SIZE)/4 + i, (y * TILE_SIZE)/4 + j, 0x00FFFFFF);
 					else if (cb->map.map_tmp[y][x] == '0' || if_player(cb->map.map_tmp[y][x]))
-						mlx_put_pixel(cb->img2, (x  * COF_PIXEL)/4 + i, (y * COF_PIXEL)/4 + j, 0xFFFFFFFF);
+						mlx_put_pixel(cb->img2, (x  * TILE_SIZE)/4 + i, (y * TILE_SIZE)/4 + j, 0xFFFFFFFF);
 				}
 			}
 		}

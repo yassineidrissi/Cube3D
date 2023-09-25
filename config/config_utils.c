@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/22 15:50:46 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 	int pos_y;
 	int pos_x;
 
-	if (y / COF_PIXEL  < 1 || x / COF_PIXEL < 1
-		|| y / COF_PIXEL > cb->map.height - 1 || x / COF_PIXEL  > cb->map.width - 1)
+	if (y / TILE_SIZE  < 1 || x / TILE_SIZE < 1
+		|| y / TILE_SIZE > cb->map.height - 1 || x / TILE_SIZE  > cb->map.width - 1)
 		return (0);
 	
-	pos_y = y / COF_PIXEL;
-	pos_x = x / COF_PIXEL;
+	pos_y = y / TILE_SIZE;
+	pos_x = x / TILE_SIZE;
 	// // printf("x[%f] y=[%f] xp[%d] yp=[%d] hi [%d] wid [%d]\n",x, y,pos_x,pos_y, cb->map.height, cb->map.width);// it segfault when it goes down
 	if (pos_x < 0 || pos_y < 0 || pos_x > cb->map.width || pos_y > cb->map.height)
 	{
@@ -96,24 +96,24 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 	// printf("the wall check is check[%d][%d]\n",pos_y, pos_x);
 	// if (angle >= 0 && angle <= 90)
 	// {
-	// 	pos_y = (y + 1)/ COF_PIXEL;
-	// 	pos_x = (x + 1) / COF_PIXEL;
+	// 	pos_y = (y + 1)/ TILE_SIZE;
+	// 	pos_x = (x + 1) / TILE_SIZE;
 	// }
 	// else if (angle > 90 && angle <= 180)
 	// {
-	// 	pos_y = (y + 1) / COF_PIXEL;
-	// 	pos_x = (x - 1) / COF_PIXEL;
+	// 	pos_y = (y + 1) / TILE_SIZE;
+	// 	pos_x = (x - 1) / TILE_SIZE;
 
 	// }
 	// else if (angle > 180 && angle <= 270)
 	// {
-	// 	pos_y = (y - 1) / COF_PIXEL;
-	// 	pos_x = (x - 1) / COF_PIXEL;
+	// 	pos_y = (y - 1) / TILE_SIZE;
+	// 	pos_x = (x - 1) / TILE_SIZE;
 	// }
 	// else if (angle > 270 && angle < 360)
 	// {
-	// 	pos_y = (y - 1) / COF_PIXEL;
-	// 	pos_x = (x + 1) / COF_PIXEL;
+	// 	pos_y = (y - 1) / TILE_SIZE;
+	// 	pos_x = (x + 1) / TILE_SIZE;
 		
 	// }
 	if (cb->map.map_tmp[pos_y][pos_x] == '1')
@@ -126,8 +126,8 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // {
 // 	t_pos next_wall;
 
-//     next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-//     next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+//     next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
 //     return (next_wall);
 // }
 
@@ -138,12 +138,12 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	float next_y;
 // 	int i;
 
-// 	next_x = cb->player.x + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-//     next_y = cb->player.y + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-// 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL* cb->map.width && next_y < COF_PIXEL* cb->map.height)
+// 	next_x = cb->player.x + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->player.y + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+// 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE* cb->map.width && next_y < TILE_SIZE* cb->map.height)
 // 	{
-// 		next_x = next_x + sin(cb->angle * M_PI / 180) * COF_PIXEL / 2;
-//         next_y = next_y + cos(cb->angle * M_PI / 180) * COF_PIXEL / 2;
+// 		next_x = next_x + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//         next_y = next_y + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
 // 	}
 // 	printf("the position of the h wall is x[%d] and y[%d]and angle %d\n", (int)next_x, (int)next_y,cb->angle);
 // 	wall.x = next_x;//need to be optimited change next_x by wall.x
@@ -180,16 +180,16 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	int check = 0;
 // 	float next_y;
 
-// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
+// 	next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
 // 	next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180.0);
-// 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
+// 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
-// 		next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_v(&i,&check, angle));
+// 		next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
 // 		next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180.0);
 // 	}
 //     wall.x = next_x;
 //     wall.y = next_y;
-// 	// printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
+// 	// printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/TILE_SIZE, wall.y, (int)(next_x/TILE_SIZE),wall.x,cb->angle);
 // 	return (wall);
 // }
 // t_pos ft_calculate_next_wall_h(t_cub3D *cb, int angle)
@@ -201,19 +201,19 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 //     int i = 0;
 //     float next_y;
 
-//     next_x = cb->player.x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
-//     next_y = cb->player.y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
+//     next_x = cb->player.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->player.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 
-//     while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL * cb->map.width && next_y < COF_PIXEL * cb->map.height)
+//     while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE * cb->map.width && next_y < TILE_SIZE * cb->map.height)
 //     {
-//         next_x = next_x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
-//         next_y = next_y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
+//         next_x = next_x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//         next_y = next_y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 //     }
 
 //     wall.x = next_x;
-//     wall.y = (int)(next_y / COF_PIXEL) * COF_PIXEL;
+//     wall.y = (int)(next_y / TILE_SIZE) * TILE_SIZE;
 
-//     printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_x / COF_PIXEL, wall.x, (int)(next_y / COF_PIXEL), cb->angle, wall.y);
+//     printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_x / TILE_SIZE, wall.x, (int)(next_y / TILE_SIZE), cb->angle, wall.y);
     
 //     return wall;
 // }
@@ -227,24 +227,24 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	int i = 0;
 // 	int next_y;
 
-// 	// next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
+// 	// next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
 // 	// next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 
-// 	next_x = cb->player.x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
-//     next_y = cb->player.y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
-// 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
+// 	next_x = cb->player.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->player.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
+// 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
-// 		next_x = next_x + cos(angle * M_PI / 180) * COF_PIXEL / 2;
-//         next_y = next_y + sin(angle * M_PI / 180) * COF_PIXEL / 2;
+// 		next_x = next_x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//         next_y = next_y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 // 	}
 // 	// {
-// 	// 	next_x = (int)(cb->player.x / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(++i);
+// 	// 	next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
 // 	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
 // 	// }
-// 	// wall.x = (int)(next_x/COF_PIXEL)*COF_PIXEL;//convert 
+// 	// wall.x = (int)(next_x/TILE_SIZE)*TILE_SIZE;//convert 
 // 	wall.x = next_x;
 // 	wall.y = next_y;
-// 	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/COF_PIXEL),wall.x, (int)next_y/COF_PIXEL, wall.y,cb->angle);
+// 	printf("the position of the V wall is x[%d = %d] y[%d = %d] angle %d\n", (int)(next_x/TILE_SIZE),wall.x, (int)next_y/TILE_SIZE, wall.y,cb->angle);
 // 	return(wall);
 // }
 // int wall_color(t_pos wall, float angle)
@@ -352,16 +352,16 @@ int is_wall_pixel(t_cub3D *cb, float x, float y)
 // 	int i = 0;
 // 	float next_y;
 
-// 	next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
+// 	next_y = (int)(cb->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
 // 	next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180.0*(indice_h(&i, &check, angle, 1)));
-// 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < COF_PIXEL*cb->map.width && next_y < COF_PIXEL*cb->map.height)
+// 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
-// 		next_y = (int)(cb->player.y / COF_PIXEL) * COF_PIXEL + COF_PIXEL*(indice_h(&i, &check, angle, 0));
+// 		next_y = (int)(cb->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
 // 		next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180.0)*(indice_h(&i, &check, angle, 1));
 // 	}
 //     wall.x = next_x;
 //     wall.y = next_y; 
-// 	// printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/COF_PIXEL, wall.y, (int)(next_x/COF_PIXEL),wall.x,cb->angle);
+// 	// printf("the position of the H wall is x[%d = %d] y[%d = %d] angle %d\n", (int)next_y/TILE_SIZE, wall.y, (int)(next_x/TILE_SIZE),wall.x,cb->angle);
 // 	return (wall);
 // }
 

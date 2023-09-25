@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/22 15:58:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ unsigned int *get_rgbas(uint8_t *pixels, int height, int width)
 	return(rgbas);
 }
 
-unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txt)
+unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
 {
-	int height = txt->height;
-	int width = txt->width;
+	int height = txtr->height;
+	int width = txtr->width;
 	// printf("im here\n");
-	unsigned int *map = get_rgbas(txt->pixels, height, width);
+	unsigned int *map = get_rgbas(txtr->pixels, height, width);
 	int i = -1;
 	int j = -1;
 	int k = width * height;
@@ -71,12 +71,12 @@ unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txt)
 	return (double_map);
 }
 
-unsigned int **map_to_doublemap_3d(t_cub3D *cb, mlx_texture_t *txt)
+unsigned int **map_to_doublemap_3d(t_cub3D *cb, mlx_texture_t *txtr)
 {
-	int height = txt->height;
-	int width = txt->width;
+	int height = txtr->height;
+	int width = txtr->width;
 	// printf("im here\n");
-	unsigned int *map = get_rgbas(txt->pixels, height, width);
+	unsigned int *map = get_rgbas(txtr->pixels, height, width);
 	int i = -1;
 	int j = -1;
 	int k = -1;
@@ -100,7 +100,7 @@ void load_textur(t_cub3D *cb)
 {
 	int i = -1;
 	while(++i < 4)
-		cb->text[i].img = (unsigned int **)map_to_doublemap(cb, cb->text[i].txtr);
+		cb->text[i].img = (unsigned int **)map_to_doublemap_3d(cb, cb->text[i].txtr);
 	i = -1;
 	while(++i < 4)
 	{
@@ -118,26 +118,26 @@ int load_color(char r, char g, char b, char a)
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-unsigned wall_side(t_cub3D *cb,int txt , float angle, int side, int y_wall, float *j)
+unsigned wall_side(t_cub3D *cb,int tx , float angle, int side, int y_wall, float *j)
 {
 	int i = *j;
 	if(!side)
 	{
 		if (angle > M_PI)
 		{
-			txt = (int)cb->text[N].width*(COF_PIXEL - txt)/COF_PIXEL;
-			// txt = (int)cb->text[0].width - txt;
+			tx = (int)cb->text[N].width*(TILE_SIZE - tx)/TILE_SIZE;
+			// tx = (int)cb->text[0].width - tx;
 			*j += (float)cb->text[N].height/y_wall;
-			return(cb->text[N].img[i][txt]);//*(cb->text[0])).width/COF_PIXEL)]);//color is black
+			return(cb->text[N].img[i][tx]);//*(cb->text[0])).width/TILE_SIZE)]);//color is black
 		}
 			// return(0x00000000);//color is green
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
 		{
-			txt = (int)cb->text[S].width*(COF_PIXEL- txt)/COF_PIXEL;
-			// txt = (int)cb->text[1].width - txt;
+			tx = (int)cb->text[S].width*(TILE_SIZE- tx)/TILE_SIZE;
+			// tx = (int)cb->text[1].width - tx;
 			*j += (float) cb->text[S].height/y_wall;
-			return(cb->text[S].img[i][txt]);//*cb->text[1].width]);//color is red
+			return(cb->text[S].img[i][tx]);//*cb->text[1].width]);//color is red
 		}
 			// return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
@@ -146,33 +146,33 @@ unsigned wall_side(t_cub3D *cb,int txt , float angle, int side, int y_wall, floa
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
 		{
-			txt = cb->text[WE].height*txt/COF_PIXEL;
-			// txt = (int)cb->text[2].width - txt;
+			tx = cb->text[WE].height*tx/TILE_SIZE;
+			// tx = (int)cb->text[2].width - tx;
 			*j += (float)cb->text[WE].height/y_wall;
-			return(cb->text[WE].img[i][txt]);//*cb->text[2].width]);
+			return(cb->text[WE].img[i][tx]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
 		{
-			txt = cb->text[EA].height*txt/COF_PIXEL;
-			// txt = (int)cb->text[2].width - txt;
+			tx = cb->text[EA].height*tx/TILE_SIZE;
+			// tx = (int)cb->text[2].width - tx;
 			*j += (float)cb->text[EA].height/y_wall;
-			return(cb->text[EA].img[i][txt]);
+			return(cb->text[EA].img[i][tx]);
 		}
 			// return(0xc0ccccFF);//color is yellow
 			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
 	}
 }
 
-void put_texture(t_cub3D *cb, int Projection_to_wall,int i, float ra , int hv, int y_wall, float txt)
+void put_texture(t_cub3D *cb, int Projection_to_wall,int i, float ra , int hv, int y_wall, float tx)
 {
 	float j = 0;
 
 	while (y_wall > WINDOW_HEIGHT/2 - 3*(Projection_to_wall/2))
 	{
 		if (y_wall + Projection_to_wall >= 0 && y_wall + Projection_to_wall < WINDOW_HEIGHT)
-			mlx_put_pixel(cb->img, i, y_wall + Projection_to_wall , wall_side(cb,((int)(txt)%(COF_PIXEL)) ,ra, hv, Projection_to_wall, &j));
+			mlx_put_pixel(cb->img, i, y_wall + Projection_to_wall , wall_side(cb,((int)(tx)%(TILE_SIZE)) ,ra, hv, Projection_to_wall, &j));
 			y_wall--;
 			// j++;
 		}
@@ -236,7 +236,7 @@ void	test(void *param)
 	float vy;
 	float ra;
 	int hv;
-	float txt;
+	float tx;
 	float hyblock;
 	float hxblock;
 	float vxblock;
@@ -248,13 +248,13 @@ void	test(void *param)
 	int i = -1;
 	float rx,ry;
 	float dis_w ;
-	int m_width = cb->map.width*COF_PIXEL;
-	int m_height = cb->map.height*COF_PIXEL;
+	int m_width = cb->map.width*TILE_SIZE;
+	int m_height = cb->map.height*TILE_SIZE;
 	// printf("the width is %d and the height is %d\n",m_width,m_height);
 	load_textur(cb);
 	draw_C_F(cb);
 	draw_map(cb);
-	draw_player(cb, COF_PIXEL/16, ra);
+	draw_player(cb, TILE_SIZE/16, ra);
 	draw_3d_image(cb);
 	ra = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
@@ -264,16 +264,16 @@ void	test(void *param)
 		atan = -1 / tan(ra);
 		if (ra > M_PI)
 		{
-			hy = ((y / COF_PIXEL) * COF_PIXEL) - 0.001;
+			hy = ((y / TILE_SIZE) * TILE_SIZE) - 0.001;
 			hx = x + (y - hy) * atan;
-			hyblock = -COF_PIXEL;
+			hyblock = -TILE_SIZE;
 			hxblock = -hyblock * atan;
 		}
 		else if (ra < M_PI)
 		{
-			hy = ((y / COF_PIXEL) * COF_PIXEL) + COF_PIXEL;
+			hy = ((y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 			hx = x + (y - hy) * atan;
-			hyblock = COF_PIXEL;
+			hyblock = TILE_SIZE;
 			hxblock = -hyblock * atan;
 		}
 		if (ra == 0 || ra == M_PI)
@@ -294,16 +294,16 @@ void	test(void *param)
 		atan = -tan(ra);
 		if (ra > (3 * M_PI) / 2 || ra < M_PI / 2)
 		{
-			vx = ((x / COF_PIXEL) * COF_PIXEL) + COF_PIXEL;
+			vx = ((x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 			vy = y + (x - vx) * atan;
-			vxblock = COF_PIXEL;
+			vxblock = TILE_SIZE;
 			vyblock = -vxblock * atan;
 		}
 		else if (ra < (3 * M_PI) / 2 && ra > M_PI / 2)
 		{
-			vx = ((x / COF_PIXEL) * COF_PIXEL) - 0.001;
+			vx = ((x / TILE_SIZE) * TILE_SIZE) - 0.001;
 			vy = y + (x - vx) * atan;
-			vxblock = -COF_PIXEL;
+			vxblock = -TILE_SIZE;
 			vyblock = -vxblock * atan;
 		}
 		if (ra == 0 || ra == M_PI)
@@ -314,7 +314,7 @@ void	test(void *param)
 
 		while (vx < m_width && vx > 0 && is_wall_pixel(cb, vx, vy))
 		{
-			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / COF_PIXEL, (int)hy / COF_PIXEL, cb->map.map_tmp[(int)hy / COF_PIXEL][(int)hx / COF_PIXEL]);
+			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / TILE_SIZE, (int)hy / TILE_SIZE, cb->map.map_tmp[(int)hy / TILE_SIZE][(int)hx / TILE_SIZE]);
 			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)
 				break ;
 			else if (!is_wall_pixel(cb, vx, vy))
@@ -331,7 +331,7 @@ void	test(void *param)
 			rx = hx;
 			ry = hy;
 			hv = 0;// is this horizontal or vertical intersection 
-			txt = rx;
+			tx = rx;
 
 		}
 		else
@@ -340,7 +340,7 @@ void	test(void *param)
 			rx = vx;
 			ry = vy;
 			hv = 1;
-			txt = ry;
+			tx = ry;
 		}
 		
 		// printf("hx[%f] hy[%f]\n",hx,hy);
@@ -353,8 +353,8 @@ void	test(void *param)
 		draw_line(cb->img2, x/4, y/4, rx/4, ry/4, 0x000000FF);//line draw
 		int y_wall = WINDOW_HEIGHT/2-(Projection_to_wall/2);
 		int j = 0;
-		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall,wall_side(cb,((int)(txt)/(COF_PIXEL)) ,ra, hv, Projection_to_wall, &j));//line draw
-		put_texture(cb, Projection_to_wall,i, ra , hv ,  y_wall , txt);
+		// draw_line(cb->img, i, y_wall, i, y_wall + Projection_to_wall,wall_side(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, Projection_to_wall, &j));//line draw
+		put_texture(cb, Projection_to_wall,i, ra , hv ,  y_wall , tx);
 		ra += angle_step;
 	}
 }

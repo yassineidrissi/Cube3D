@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/23 15:23:40 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	move_player(t_cub3D *cb, double x, double y)
 		marge_x *= -1;
 	if (y < 0)
 		marge_y *= -1;
-	if (cb->map.map_tmp[(cb->player.y + next_y + marge_y) / COF_PIXEL]
-		[cb->player.x / COF_PIXEL] != '1')
+	if (cb->map.map_tmp[(cb->player.y + next_y + marge_y) / TILE_SIZE]
+		[cb->player.x / TILE_SIZE] != '1')
 		cb->player.y += next_y;
-	if (cb->map.map_tmp[cb->player.y / COF_PIXEL]
-		[(cb->player.x + next_x + marge_x) / COF_PIXEL] != '1')
+	if (cb->map.map_tmp[cb->player.y / TILE_SIZE]
+		[(cb->player.x + next_x + marge_x) / TILE_SIZE] != '1')
 		cb->player.x += next_x;
 }
 
