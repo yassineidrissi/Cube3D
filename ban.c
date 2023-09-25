@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 19:50:53 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:55:25 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,17 +118,17 @@ int load_color(char r, char g, char b, char a)
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall, float *j)
+unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall, int ty)
 {
-	int i = *j;
+	// int i = *j;
 	if(!side)
 	{
 		if (angle > M_PI)
 		{
 			tx = (int)cb->text[N].width*(TILE_SIZE - tx)/TILE_SIZE;
 			// tx = (int)cb->text[0].width - tx;
-			*j += (float)cb->text[N].height/start_wall;
-			return(cb->text[N].img[i][tx]);//*(cb->text[0])).width/TILE_SIZE)]);//color is black
+			ty += (int)cb->text[N].height/start_wall;
+			return(cb->text[N].img[ty][tx]);//*(cb->text[0])).width/TILE_SIZE)]);//color is black
 		}
 			// return(0x00000000);//color is green
 			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
@@ -136,8 +136,8 @@ unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall,
 		{
 			tx = (int)cb->text[S].width*(TILE_SIZE- tx)/TILE_SIZE;
 			// tx = (int)cb->text[1].width - tx;
-			*j += (float) cb->text[S].height/start_wall;
-			return(cb->text[S].img[i][tx]);//*cb->text[1].width]);//color is red
+			ty += (float) cb->text[S].height/start_wall;
+			return(cb->text[S].img[ty][tx]);//*cb->text[1].width]);//color is red
 		}
 			// return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
@@ -148,8 +148,8 @@ unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall,
 		{
 			tx = cb->text[WE].height*tx/TILE_SIZE;
 			// tx = (int)cb->text[2].width - tx;
-			*j += (float)cb->text[WE].height/start_wall;
-			return(cb->text[WE].img[i][tx]);//*cb->text[2].width]);
+			ty += (float)cb->text[WE].height/start_wall;
+			return(cb->text[WE].img[ty][tx]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
@@ -157,8 +157,8 @@ unsigned pixel_value(t_cub3D *cb,int tx , float angle, int side, int start_wall,
 		{
 			tx = cb->text[EA].height*tx/TILE_SIZE;
 			// tx = (int)cb->text[2].width - tx;
-			*j += (float)cb->text[EA].height/start_wall;
-			return(cb->text[EA].img[i][tx]);
+			ty += (float)cb->text[EA].height/start_wall;
+			return(cb->text[EA].img[ty][tx]);
 		}
 			// return(0xc0ccccFF);//color is yellow
 			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
@@ -187,13 +187,13 @@ int height_image(t_cub3D *cb ,int hv, float angle)
 void put_texture(t_cub3D *cb, int line_lenth,int i, float  angle , int hv, int start_wall, float tx)
 {
 	float j = 0;
-
+	double ty_step = (float)height_image(cb, hv, angle)/line_lenth;
 	while (start_wall > WINDOW_HEIGHT/2 - 3*(line_lenth/2))
 	{
 		if (start_wall + line_lenth >= 0 && start_wall + line_lenth < WINDOW_HEIGHT)
-			mlx_put_pixel(cb->img, i, start_wall + line_lenth , pixel_value(cb,((int)(tx)%(TILE_SIZE)) , angle, hv, line_lenth, &j));
+			mlx_put_pixel(cb->img, i, start_wall + line_lenth , pixel_value(cb,((int)(tx)%(TILE_SIZE)) , angle, hv, line_lenth, j));
 			start_wall--;
-			// j++;
+			j += ty_step;
 		}
 }
 
