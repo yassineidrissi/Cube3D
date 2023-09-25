@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 22:25:01 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/25 22:52:51 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ void	test(void *param)
 		atan = -1 / tan(angle);
 		if ( angle > M_PI)
 		{
-			hy = ((y / TILE_SIZE) * TILE_SIZE) - 0.001;
+			hy = (double)((y / TILE_SIZE) * TILE_SIZE) - 0.0001;
 			hx = x + (y - hy) * atan;
 			hyblock = -TILE_SIZE;
 			hxblock = -hyblock * atan;
@@ -334,7 +334,7 @@ void	test(void *param)
 		}
 		else if ( angle < (3 * M_PI) / 2 &&  angle > M_PI / 2)
 		{
-			vx = ((x / TILE_SIZE) * TILE_SIZE) - 0.001;
+			vx = (double)((x / TILE_SIZE) * TILE_SIZE) - 0.001;
 			vy = y + (x - vx) * atan;
 			vxblock = -TILE_SIZE;
 			vyblock = -vxblock * atan;
@@ -383,7 +383,7 @@ void	test(void *param)
 		line_lenth *= 2; //wall is square 
 		// if (line_lenth > WINDOW_HEIGHT)
 		// 	line_lenth = WINDOW_HEIGHT;
-		draw_line(cb->img2, x/MAP_SIZE, y/MAP_SIZE, rx/MAP_SIZE, ry/MAP_SIZE, 0x000000FF);//line draw
+		draw_line(cb->img2, x/MAP_SIZE, y/MAP_SIZE, rx/MAP_SIZE, ry/MAP_SIZE, 0xFF5733FF);//line draw
 		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
 		int j = 0;
 		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw
