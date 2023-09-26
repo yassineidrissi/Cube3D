@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/26 15:41:22 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:17:41 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define RAISE_COLOR 0xFF5733FF
 # define SPEED 10
 # define TILE_SIZE 64//After validation 2D map , we need to change it to 1
-# define MAP_SIZE (TILE_SIZE/16)
+// # define (TILE_SIZE / 16) (TILE_SIZE / 16)
 # define MAP_COFF 4
 # define AGNGLE_VUE 60 
 # define ANGLE_MOV 0.087266
@@ -60,8 +60,8 @@
 # define NUM_TEXTURES 5
 # define FPS 30
 # define NUM_RAYS WINDOW_WIDTH
-# define DIST_PROJ_PLANE ((WINDOW_WIDTH / 2) / tan(FOV / 2))
-# define PROJECTED_SLICE_HEIGHT (TILE_SIZE / ray.dist * DIST_PROJ_PLANE)
+// # define DIST_PROJ_PLANE ((WINDOW_WIDTH / 2) / tan(FOV / 2))
+// # define PROJECTED_SLICE_HEIGHT (TILE_SIZE / ray.dist * DIST_PROJ_PLANE)
 # define NUM_SPRITES 19
 # define SPRITE_WIDTH 64
 # define SPRITE_HEIGHT 64
@@ -71,10 +71,10 @@
 typedef struct s_map
 {
 	char	**map_tmp;
-	char	map[2800][2900];//[MAP_MAX_ROWS][MAP_MAX_COLS];
 	int		width;
 	int		height;
 }				t_map;
+
 typedef struct s_texture
 {
 	mlx_texture_t* txtr;
@@ -82,24 +82,18 @@ typedef struct s_texture
 	int		bol;
 	unsigned int 	**img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	int		width;
 	int		height;
 }				t_texture;
+
 typedef struct s_player
 {
 	int		x;
 	int		y;
 	double	width;
 	double	height;
-	int		turn_direction;
-	int		walk_direction;
-	double	rotation_angle;
-	double	walk_speed;
-	double	turn_speed;
-}				t_player;   
+}				t_player;
+
 typedef struct s_colore
 {
 	int		r;
@@ -127,10 +121,10 @@ typedef struct s_cub3D
 	t_texture	logo[3];
 	char		*line;
 	char		*joined_map;
-	char		*EWSN[4];
+	char		*ewsn[4];
 	int			map_bol;
 	int			nl;
-	float	ray_dis;
+	float		ray_dis;
 }       t_cub3D;
 
 typedef struct s_putxt

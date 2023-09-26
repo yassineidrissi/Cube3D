@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/26 16:10:15 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:17:30 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ void	test(void *param)
 	// load_textur(cb);
 	draw_C_F(cb);
 	draw_map(cb);
-	draw_player(cb, TILE_SIZE/(MAP_SIZE*4),  angle);
+	draw_player(cb, TILE_SIZE/((TILE_SIZE / 16)*4),  angle);
 	draw_3d_image(cb);
 	 angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
 	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
@@ -345,7 +345,7 @@ void	test(void *param)
 			hy = y;
 		}
 
-		while (vx < m_width && vx > 0 && is_wall_pixel(cb, vx, vy))
+		while (vx < m_width && vx > 0)
 		{
 			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / TILE_SIZE, (int)hy / TILE_SIZE, cb->map.map_tmp[(int)hy / TILE_SIZE][(int)hx / TILE_SIZE]);
 			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)
@@ -383,7 +383,7 @@ void	test(void *param)
 		line_lenth *= 2; //wall is square 
 		// if (line_lenth > WINDOW_HEIGHT)
 		// 	line_lenth = WINDOW_HEIGHT;
-		draw_line(cb->img2, x/MAP_SIZE, y/MAP_SIZE, rx/MAP_SIZE, ry/MAP_SIZE, RAISE_COLOR);//line draw
+		draw_line(cb->img2, x/(TILE_SIZE / 16), y/(TILE_SIZE / 16), rx/(TILE_SIZE / 16), ry/(TILE_SIZE / 16), RAISE_COLOR);//line draw
 		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
 		int j = 0;
 		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw

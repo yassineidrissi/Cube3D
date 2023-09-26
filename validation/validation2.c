@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/23 15:52:31 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:06:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	init_cub3d(t_cub3D *cb)
 	cb->p = 0;
 	cb->nl = 0;
 	cb->map.height = 0;
-	cb->EWSN[0] = "NO";
-	cb->EWSN[1] = "SO";
-	cb->EWSN[2] = "WE";
-	cb->EWSN[3] = "EA";
+	cb->ewsn[0] = "NO";
+	cb->ewsn[1] = "SO";
+	cb->ewsn[2] = "WE";
+	cb->ewsn[3] = "EA";
 }
 
 void	ft_to_space(char *str)
