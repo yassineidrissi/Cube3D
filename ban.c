@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 22:52:51 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:41:05 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ void	test(void *param)
 		atan = -1 / tan(angle);
 		if ( angle > M_PI)
 		{
-			hy = (double)((y / TILE_SIZE) * TILE_SIZE) - 0.0001;
+			hy = (double)((y / TILE_SIZE) * TILE_SIZE) - 0.001;
 			hx = x + (y - hy) * atan;
 			hyblock = -TILE_SIZE;
 			hxblock = -hyblock * atan;

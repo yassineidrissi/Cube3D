@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/25 22:19:48 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:36:55 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 # define RAISE_COLOR 0xFF5733FF
-# define FOV (60 * (M_PI / 180))
 # define SPEED 10
 # define TILE_SIZE 64//After validation 2D map , we need to change it to 1
 # define MAP_SIZE (TILE_SIZE/16)
