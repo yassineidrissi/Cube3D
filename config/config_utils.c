@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:01:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y,
     }
 }
 
-int is_wall_pixel(t_cub3D *cb, float x, float y)
+int is_wall_pixel(t_cub3D *cb, double x, double y)
 {
 	int pos_y;
 	int pos_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/26 14:36:55 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:41:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,15 @@ typedef struct s_cub3D
 	float	ray_dis;
 }       t_cub3D;
 
+typedef struct s_putxt
+{
+	int line_lenth;
+	int i;
+	double angle;
+	int hv;
+	int start_wall;
+	double tx;
+}t_putxt;
 
 typedef struct s_pos
 {
@@ -171,7 +180,7 @@ void	mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 // t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);
 // float	dis(t_cub3D *cb,t_pos a);
-int		is_wall_pixel(t_cub3D *cb, float x, float y);
+int		is_wall_pixel(t_cub3D *cb, double x, double y);
 
 /*################################################################*/
 /*                      texture 								 */

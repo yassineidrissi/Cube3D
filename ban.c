@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/26 14:41:05 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:10:15 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,16 +196,16 @@ int height_image(t_cub3D *cb ,int hv, double angle)
 // 			j += ty_step;
 // 		}
 // }
-void put_texture(t_cub3D *cb, int line_lenth,int i, double angle, int hv, int start_wall, double tx)
+void put_texture(t_cub3D *cb,t_putxt *p)
 {
-	double	 ty_max = (double)height_image(cb, hv, angle) - 1;
+	double	 ty_max = (double)height_image(cb, p->hv, p->angle) - 1;
 	double ty = 0;
-	double 	ty_step = ty_max/line_lenth;
-	while (start_wall  < WINDOW_HEIGHT/2 +(line_lenth/2))
+	double 	ty_step = ty_max/p->line_lenth;
+	while (p->start_wall  < WINDOW_HEIGHT/2 +(p->line_lenth/2))
 	{
-		if (start_wall  >= 0 && start_wall <= WINDOW_HEIGHT)// && ty > 0 && ty < ty_max)
-			mlx_put_pixel(cb->img, i, start_wall , pixel_value(cb,(fmod(tx, TILE_SIZE)) ,angle, hv, line_lenth,ty));
-		start_wall++;
+		if (p->start_wall  >= 0 && p->start_wall <= WINDOW_HEIGHT)// && ty > 0 && ty < ty_max)
+			mlx_put_pixel(cb->img, p->i, p->start_wall , pixel_value(cb,(fmod(p->tx, TILE_SIZE)) ,p->angle, p->hv, p->line_lenth,ty));
+		p->start_wall++;
 		ty += ty_step;
 	}
 }
@@ -295,21 +295,21 @@ void	test(void *param)
 	{
 		 angle = angle_overlap(angle);
 		atan = -1 / tan(angle);
-		if ( angle > M_PI)
+		if (angle > M_PI)
 		{
-			hy = (double)((y / TILE_SIZE) * TILE_SIZE) - 0.001;
+			hy = (double)((y / TILE_SIZE) * TILE_SIZE);
 			hx = x + (y - hy) * atan;
 			hyblock = -TILE_SIZE;
 			hxblock = -hyblock * atan;
 		}
-		else if ( angle < M_PI)
+		else if (angle < M_PI)
 		{
 			hy = ((y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 			hx = x + (y - hy) * atan;
 			hyblock = TILE_SIZE;
 			hxblock = -hyblock * atan;
 		}
-		if ( angle == 0 ||  angle == M_PI)
+		if (angle == 0 ||  angle == M_PI)
 		{
 			hx = x;
 			hy = y;
@@ -318,23 +318,23 @@ void	test(void *param)
 		{
 			if (hx > m_width || hx < 0)
 				break ;
-			else if (!is_wall_pixel(cb, hx, hy))
+			else if (!is_wall_pixel(cb, hx, hy - (1 * (angle > M_PI))))
 				break ;
 			hx += hxblock;
 			hy += hyblock;
 		}
 		
 		atan = -tan( angle);
-		if ( angle > (3 * M_PI) / 2 ||  angle < M_PI / 2)
+		if (angle > (3 * M_PI) / 2 ||  angle < M_PI / 2)
 		{
 			vx = ((x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
 			vy = y + (x - vx) * atan;
 			vxblock = TILE_SIZE;
 			vyblock = -vxblock * atan;
 		}
-		else if ( angle < (3 * M_PI) / 2 &&  angle > M_PI / 2)
+		else if (angle < (3 * M_PI) / 2 &&  angle > M_PI / 2)
 		{
-			vx = (double)((x / TILE_SIZE) * TILE_SIZE) - 0.001;
+			vx = (double)((x / TILE_SIZE) * TILE_SIZE);
 			vy = y + (x - vx) * atan;
 			vxblock = -TILE_SIZE;
 			vyblock = -vxblock * atan;
@@ -350,12 +350,12 @@ void	test(void *param)
 			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / TILE_SIZE, (int)hy / TILE_SIZE, cb->map.map_tmp[(int)hy / TILE_SIZE][(int)hx / TILE_SIZE]);
 			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)
 				break ;
-			else if (!is_wall_pixel(cb, vx, vy))
+			else if (!is_wall_pixel(cb, vx - (1 * (angle < (3 * M_PI) / 2 && angle > M_PI / 2)), vy))
 				break ;
 			vx += vxblock;
 			vy += vyblock;
 		}
-		
+
 		double dis_h = sqrt((hx - x) * (hx - x) + (hy - y) * (hy - y));
 		double dis_v = sqrt((vx - x) * (vx - x) + (vy - y) * (vy - y));
 		if (dis_h < dis_v)
@@ -387,7 +387,14 @@ void	test(void *param)
 		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
 		int j = 0;
 		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw
-		put_texture(cb, line_lenth, i,  angle , hv ,  start_wall , tx);
+		t_putxt p;
+		p.line_lenth = line_lenth;
+		p.i = i;
+		p.angle = angle;
+		p.hv = hv;
+		p.start_wall = start_wall;
+		p.tx = tx;
+		put_texture(cb, &p);
 		 angle += angle_step;
 	}
 }
