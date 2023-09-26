@@ -122,8 +122,9 @@ typedef struct s_cub3D
 	int			p;
 	float		angle;
 	int   	 	fd;
-	int			fdr;
 	char		**cnt;
+	int			fdr;
+	t_texture	logo[3];
 	char		*line;
 	char		*joined_map;
 	char		*EWSN[4];
@@ -172,6 +173,22 @@ void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y,
 // float	dis(t_cub3D *cb,t_pos a);
 int		is_wall_pixel(t_cub3D *cb, float x, float y);
 
+/*################################################################*/
+/*                      texture 								 */
+/*################################################################*/
+
+double angle_overlap(double angle);
+unsigned int get_rgba(int r, int g, int b, int a);
+unsigned int *get_rgbas(uint8_t *pixels, int height, int width);
+unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
+void load_textur(t_cub3D *cb);
+int load_color(char r, char g,char b, char a);
+unsigned pixel_value(t_cub3D *cb, double tx, double angle, int hv, int start_wall, int ty);
+int height_image(t_cub3D *cb, int hv, double angle);
+void put_textur(t_cub3D *cb, int line_lenth, int i, double angle, int hv, int start_wall, double tx);
+void double_free_int(unsigned int **map, int height, int width);
+void draw_3d_image(t_cub3D *cb);
+void test(void *param);
 
 
 void	test(void *param);

@@ -59,7 +59,7 @@ void	check_valid_map(t_cub3D *cb)
 void	load_text(t_cub3D *cb)
 {
 	int	i;
-
+	mlx_image_t	*logo;
 	i = -1;
 	while (++i < 4)
 	{
@@ -67,6 +67,8 @@ void	load_text(t_cub3D *cb)
 		if (!cb->text[i].txtr)// && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height ############ what do you mean by that
 			handl_errors(1);
 	}
+	cb->logo[0].txtr = mlx_load_png("imgs/1337.png");
+	cb->logo->img = map_to_doublemap(cb, cb->logo[0].txtr);
 }
 
 int	check_content(t_cub3D *cb)

@@ -118,10 +118,10 @@ int load_color(char r, char g, char b, char a)
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-unsigned pixel_value(t_cub3D *cb,double tx , double angle, int side, int start_wall, int ty)
+unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wall, int ty)
 {
 	int i;
-	if(!side)
+	if(!hv)
 	{
 		if (angle > M_PI)
 		{
@@ -245,8 +245,8 @@ void double_free_int(unsigned int **map, int height, int width)
 
 void draw_3d_image(t_cub3D *cb)
 {
-	mlx_texture_t *txt = mlx_load_png("./imgs/1337.png");
-	unsigned int **img =  map_to_doublemap(cb, txt);
+	mlx_texture_t *txt = cb->logo[0].txtr;
+	unsigned int **img = cb->logo[0].img;
 	int i = -1;
 	int j= -1;
 	int width = txt->width;
