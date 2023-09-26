@@ -96,7 +96,7 @@ unsigned int ** map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
 	return (double_map);
 }
 
-void load_textur(t_cub3D *cb)
+void load_text2(t_cub3D *cb)
 {
 	int i = -1;
 	while(++i < 4)
@@ -284,7 +284,7 @@ void	test(void *param)
 	int m_width = cb->map.width*TILE_SIZE;
 	int m_height = cb->map.height*TILE_SIZE;
 	// printf("the width is %d and the height is %d\n",m_width,m_height);
-	load_textur(cb);
+	// load_textur(cb);
 	draw_C_F(cb);
 	draw_map(cb);
 	draw_player(cb, TILE_SIZE/(MAP_SIZE*4),  angle);

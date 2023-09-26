@@ -181,7 +181,7 @@ double angle_overlap(double angle);
 unsigned int get_rgba(int r, int g, int b, int a);
 unsigned int *get_rgbas(uint8_t *pixels, int height, int width);
 unsigned int **map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
-void load_textur(t_cub3D *cb);
+void load_text2(t_cub3D *cb);
 int load_color(char r, char g,char b, char a);
 unsigned pixel_value(t_cub3D *cb, double tx, double angle, int hv, int start_wall, int ty);
 int height_image(t_cub3D *cb, int hv, double angle);

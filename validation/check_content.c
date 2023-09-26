@@ -69,6 +69,7 @@ void	load_text(t_cub3D *cb)
 	}
 	cb->logo[0].txtr = mlx_load_png("imgs/1337.png");
 	cb->logo->img = map_to_doublemap(cb, cb->logo[0].txtr);
+	load_text2(cb);
 }
 
 int	check_content(t_cub3D *cb)
