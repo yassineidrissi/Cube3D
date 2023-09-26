@@ -28,6 +28,7 @@
 # define BUFFER_SIZE 1000
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define RAISE_COLOR 0xFF5733FF
 # define FOV (60 * (M_PI / 180))
 # define SPEED 10
 # define TILE_SIZE 64//After validation 2D map , we need to change it to 1

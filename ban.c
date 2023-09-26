@@ -383,7 +383,7 @@ void	test(void *param)
 		line_lenth *= 2; //wall is square 
 		// if (line_lenth > WINDOW_HEIGHT)
 		// 	line_lenth = WINDOW_HEIGHT;
-		draw_line(cb->img2, x/MAP_SIZE, y/MAP_SIZE, rx/MAP_SIZE, ry/MAP_SIZE, 0xFF5733FF);//line draw
+		draw_line(cb->img2, x/MAP_SIZE, y/MAP_SIZE, rx/MAP_SIZE, ry/MAP_SIZE, RAISE_COLOR);//line draw
 		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
 		int j = 0;
 		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw
