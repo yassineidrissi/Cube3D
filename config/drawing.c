@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/26 17:05:06 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:15:49 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void draw_map(t_cub3D *cb)
 //     int j;
 // 	int x;
 // 	int y;
-//     int centerX = cb->player.x;
-//     int centerY = cb->player.y;
+//     int centerX = cb->p.x;
+//     int centerY = cb->p.y;
 // 	// angle += 90; //for ajustement
 //     i = -playerSize;
 //     while (++i <= playerSize)
@@ -112,10 +112,11 @@ void draw_map(t_cub3D *cb)
 //     }
 // }
 
-void draw_player(t_cub3D *cb, int playerSize, int angle_vue) 
+void draw_player(t_cub3D *cb, int playerSize) 
 {
-    int centerX = (int)cb->player.x/(TILE_SIZE / 16);
-    int centerY = (int)cb->player.y/(TILE_SIZE / 16);
+	int angle_vue;
+    int centerX = (int)cb->p.x/(TILE_SIZE / 16);
+    int centerY = (int)cb->p.y/(TILE_SIZE / 16);
     int radius = playerSize;
 
     int angle = 0;

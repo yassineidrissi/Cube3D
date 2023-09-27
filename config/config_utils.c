@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/26 15:01:09 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:15:49 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // {
 // 	t_pos next_wall;
 
-//     next_wall.x = cb->player.x + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
-//     next_wall.y = cb->player.y + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_wall.x = cb->p.x + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_wall.y = cb->p.y + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
 //     return (next_wall);
 // }
 
@@ -138,8 +138,8 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 	float next_y;
 // 	int i;
 
-// 	next_x = cb->player.x + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
-//     next_y = cb->player.y + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+// 	next_x = cb->p.x + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->p.y + cos(cb->angle * M_PI / 180) * TILE_SIZE / 2;
 // 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE* cb->map.width && next_y < TILE_SIZE* cb->map.height)
 // 	{
 // 		next_x = next_x + sin(cb->angle * M_PI / 180) * TILE_SIZE / 2;
@@ -180,12 +180,12 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 	int check = 0;
 // 	float next_y;
 
-// 	next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
-// 	next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180.0);
+// 	next_x = (int)(cb->p.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
+// 	next_y = cb->p.y - (cb->p.x - next_x)* tan(angle * M_PI / 180.0);
 // 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
-// 		next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
-// 		next_y = cb->player.y - (cb->player.x - next_x)* tan(angle * M_PI / 180.0);
+// 		next_x = (int)(cb->p.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_v(&i,&check, angle));
+// 		next_y = cb->p.y - (cb->p.x - next_x)* tan(angle * M_PI / 180.0);
 // 	}
 //     wall.x = next_x;
 //     wall.y = next_y;
@@ -201,8 +201,8 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 //     int i = 0;
 //     float next_y;
 
-//     next_x = cb->player.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
-//     next_y = cb->player.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_x = cb->p.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->p.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 
 //     while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE * cb->map.width && next_y < TILE_SIZE * cb->map.height)
 //     {
@@ -227,19 +227,19 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 	int i = 0;
 // 	int next_y;
 
-// 	// next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
-// 	// next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
+// 	// next_x = (int)(cb->p.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
+// 	// next_y = cb->p.y + (next_x - cb->p.x)* tan((cb->angle)* M_PI / 180);
 
-// 	next_x = cb->player.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
-//     next_y = cb->player.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
+// 	next_x = cb->p.x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
+//     next_y = cb->p.y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 // 	while (is_wall_pixel(cb, next_x, next_y) && next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
 // 		next_x = next_x + cos(angle * M_PI / 180) * TILE_SIZE / 2;
 //         next_y = next_y + sin(angle * M_PI / 180) * TILE_SIZE / 2;
 // 	}
 // 	// {
-// 	// 	next_x = (int)(cb->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
-// 	// 	next_y = cb->player.y + (next_x - cb->player.x)* tan((cb->angle)* M_PI / 180);
+// 	// 	next_x = (int)(cb->p.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(++i);
+// 	// 	next_y = cb->p.y + (next_x - cb->p.x)* tan((cb->angle)* M_PI / 180);
 // 	// }
 // 	// wall.x = (int)(next_x/TILE_SIZE)*TILE_SIZE;//convert 
 // 	wall.x = next_x;
@@ -308,7 +308,7 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 		// printf("dis = %d, line_hight = %d, start = %d i: %d\n", dist, line_hight, start, i);
 // 		// mlx_draw_line(cb, i, 0, i, line_hight, 0x000000FF);
 // 		// draw_line(cb->img, i, start, i ,start + line_hight, wall_color(wall, angle));//! 3d lines 
-// 		// draw_line(cb->img, cb->player.x, cb->player.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
+// 		// draw_line(cb->img, cb->p.x, cb->p.y, wall.x, wall.y, 0x000000FF);//raise in mini maps lines
 // 	}	
 // }
 
@@ -352,12 +352,12 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 	int i = 0;
 // 	float next_y;
 
-// 	next_y = (int)(cb->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
-// 	next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180.0*(indice_h(&i, &check, angle, 1)));
+// 	next_y = (int)(cb->p.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
+// 	next_x = cb->p.x + (next_y - cb->p.y)/tan(angle * M_PI / 180.0*(indice_h(&i, &check, angle, 1)));
 // 	while (is_wall_pixel(cb, next_x, next_y)&& next_x > 0 && next_y > 0 && next_x < TILE_SIZE*cb->map.width && next_y < TILE_SIZE*cb->map.height)
 // 	{
-// 		next_y = (int)(cb->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
-// 		next_x = cb->player.x + (next_y - cb->player.y)/tan(angle * M_PI / 180.0)*(indice_h(&i, &check, angle, 1));
+// 		next_y = (int)(cb->p.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE*(indice_h(&i, &check, angle, 0));
+// 		next_x = cb->p.x + (next_y - cb->p.y)/tan(angle * M_PI / 180.0)*(indice_h(&i, &check, angle, 1));
 // 	}
 //     wall.x = next_x;
 //     wall.y = next_y; 
@@ -370,8 +370,8 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // 	t_pos c;
 // 	float d;
 
-// 	c.x = cb->player.x;
-// 	c.y = cb->player.y;
+// 	c.x = cb->p.x;
+// 	c.y = cb->p.y;
 // 	d = sqrt((c.x - a.x)*(c.x - a.x) + (c.y - a.y)*(c.y - a.y));
 // 	return(d);
 // }
@@ -380,8 +380,8 @@ int is_wall_pixel(t_cub3D *cb, double x, double y)
 // {
 // 	t_pos c;
 
-// 	c.x = cb->player.x;
-// 	c.y = cb->player.y;
+// 	c.x = cb->p.x;
+// 	c.y = cb->p.y;
 // 	if (dis(cb, a) < dis(cb, b))
 // 	{
 // 		if(cb->angle <= 90)

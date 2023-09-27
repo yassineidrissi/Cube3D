@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/26 17:17:41 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:26:28 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,33 @@ typedef struct s_colore
 	int 	bol;
 }				 t_colore;
 
+typedef struct s_var
+{
+	int		i;
+	double	hx;
+	double	hy;
+	double	vx;
+	double	vy;
+	double	angle;
+	double	tx;
+	double	hyblock;
+	double	hxblock;
+	double	vxblock;
+	double	vyblock;
+	double	angle_step;
+	double	line_lenth;
+	int		start_wall;
+	double	atan;
+	double	rx;
+	double	ry;
+	double	dis_w ;
+	int		hv;
+	int		x;
+	int		y;
+	int		m_width;
+	int		m_height;
+}t_var;
+
 //!add img and mlx variables in t_cub3D struct
 typedef struct s_cub3D
 {
@@ -110,10 +137,11 @@ typedef struct s_cub3D
 	mlx_image_t	*img2;
 	mlx_image_t	*img3;
 	t_map  		map;
-	t_player 	player;
+	t_player 	p;
 	t_texture   text[4];
 	t_colore	colors[2];
-	int			p;
+	t_var		var;
+	int			player;
 	float		angle;
 	int   	 	fd;
 	char		**cnt;
@@ -169,7 +197,7 @@ int		ft_max(int a, int b);
 void	ft_hook(void* param);
 void	draw_C_F(t_cub3D *cb);
 void	draw_map(t_cub3D *cb);
-void	draw_player(t_cub3D *cb, int playerSize, int angle_vue);
+void	draw_player(t_cub3D *cb, int playerSize);
 void	mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
 void	draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 // t_pos   ft_calculate_next_wall(t_cub3D *cb, float angle);

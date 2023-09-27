@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/26 17:17:30 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:34:47 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,141 +260,130 @@ void draw_3d_image(t_cub3D *cb)
 		j = -1;
 	}
 }
+
+void	calculate_dis(t_cub3D *cb)
+{
+	double	dis_h;
+	double	dis_v;
+
+	dis_v = sqrt((cb->var.vx - cb->p.x) * (cb->var.vx - cb->p.x)
+		+ (cb->var.vy - cb->p.y) * (cb->var.vy - cb->p.y));
+	dis_h = sqrt((cb->var.hx - cb->p.x) * (cb->var.hx - cb->p.x)
+		 + (cb->var.hy - cb->p.y) * (cb->var.hy - cb->p.y));
+	if (dis_h < dis_v)
+	{
+		cb->var.dis_w = dis_h;
+		cb->var.rx = cb->var.hx;
+		cb->var.ry = cb->var.hy;
+		cb->var.hv = 0;// is this horizontal or vertical intersection 
+		cb->var.tx = cb->var.rx;
+	}
+	else
+	{
+		cb->var.dis_w = dis_v;
+		cb->var.rx = cb->var.vx;
+		cb->var.ry = cb->var.vy;
+		cb->var.hv = 1;
+		cb->var.tx = cb->var.ry;
+	}
+}
+
+void	put_tx(t_cub3D *cb)
+{
+	t_putxt p;
+
+	p.line_lenth = cb->var.line_lenth;
+	p.i = cb->var.i;
+	p.angle = cb->var.angle;
+	p.hv = cb->var.hv;
+	p.start_wall = cb->var.start_wall;
+	p.tx = cb->var.tx;
+	put_texture(cb, &p);
+}
+
 void	test(void *param)
 {
 	t_cub3D  *cb = param;
-	double hx;
-	double hy;
-	double vx;
-	double vy;
-	double angle;
-	int hv;
-	double tx;
-	double hyblock;
-	double hxblock;
-	double vxblock;
-	double vyblock;
-	double angle_step;
-	double atan;
-	int x = cb->player.x;
-	int y = cb->player.y;
-	int i = -1;
-	double rx,ry;
-	double dis_w ;
-	int m_width = cb->map.width*TILE_SIZE;
-	int m_height = cb->map.height*TILE_SIZE;
-	// printf("the width is %d and the height is %d\n",m_width,m_height);
-	// load_textur(cb);
+
 	draw_C_F(cb);
 	draw_map(cb);
-	draw_player(cb, TILE_SIZE/((TILE_SIZE / 16)*4),  angle);
+	draw_player(cb, TILE_SIZE/((TILE_SIZE / 16) * 4));
 	draw_3d_image(cb);
-	 angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
-	angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
-	while (++i < WINDOW_WIDTH)
+	cb->var.m_width = cb->map.width * TILE_SIZE;
+	cb->var.m_height = cb->map.height * TILE_SIZE;
+	cb->var.angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
+	cb->var.angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
+	cb->var.i = -1;
+	while (++cb->var.i < WINDOW_WIDTH)
 	{
-		 angle = angle_overlap(angle);
-		atan = -1 / tan(angle);
-		if (angle > M_PI)
+		cb->var.angle = angle_overlap(cb->var.angle);
+		cb->var.atan = -1 / tan(cb->var.angle);
+		if (cb->var.angle > M_PI)
 		{
-			hy = (double)((y / TILE_SIZE) * TILE_SIZE);
-			hx = x + (y - hy) * atan;
-			hyblock = -TILE_SIZE;
-			hxblock = -hyblock * atan;
+			cb->var.hy = (double)((cb->p.y / TILE_SIZE) * TILE_SIZE);
+			cb->var.hx = cb->p.x + (cb->p.y - cb->var.hy) * cb->var.atan;
+			cb->var.hyblock = -TILE_SIZE;
+			cb->var.hxblock = -cb->var.hyblock * cb->var.atan;
 		}
-		else if (angle < M_PI)
+		else if (cb->var.angle < M_PI)
 		{
-			hy = ((y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-			hx = x + (y - hy) * atan;
-			hyblock = TILE_SIZE;
-			hxblock = -hyblock * atan;
+			cb->var.hy = ((cb->p.y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+			cb->var.hx = cb->p.x + (cb->p.y - cb->var.hy) * cb->var.atan;
+			cb->var.hyblock = TILE_SIZE;
+			cb->var.hxblock = -cb->var.hyblock * cb->var.atan;
 		}
-		if (angle == 0 ||  angle == M_PI)
+		if (cb->var.angle == 0 ||  cb->var.angle == M_PI)
 		{
-			hx = x;
-			hy = y;
+			cb->var.hx = cb->p.x;
+			cb->var.hy = cb->p.y;
 		}
-		while (hy < m_height && hy > 0 )
+		while (cb->var.hy < cb->var.m_height && cb->var.hy > 0 )
 		{
-			if (hx > m_width || hx < 0)
+			if (cb->var.hx > cb->var.m_width || cb->var.hx < 0)
 				break ;
-			else if (!is_wall_pixel(cb, hx, hy - (1 * (angle > M_PI))))
+			else if (!is_wall_pixel(cb, cb->var.hx, cb->var.hy - (1 * (cb->var.angle > M_PI))))
 				break ;
-			hx += hxblock;
-			hy += hyblock;
+			cb->var.hx += cb->var.hxblock;
+			cb->var.hy += cb->var.hyblock;
 		}
 		
-		atan = -tan( angle);
-		if (angle > (3 * M_PI) / 2 ||  angle < M_PI / 2)
+		cb->var.atan = -tan( cb->var.angle);
+		if (cb->var.angle > (3 * M_PI) / 2 ||  cb->var.angle < M_PI / 2)
 		{
-			vx = ((x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-			vy = y + (x - vx) * atan;
-			vxblock = TILE_SIZE;
-			vyblock = -vxblock * atan;
+			cb->var.vx = ((cb->p.x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
+			cb->var.vy = cb->p.y + (cb->p.x - cb->var.vx) * cb->var.atan;
+			cb->var.vxblock = TILE_SIZE;
+			cb->var.vyblock = -cb->var.vxblock * cb->var.atan;
 		}
-		else if (angle < (3 * M_PI) / 2 &&  angle > M_PI / 2)
+		else if (cb->var.angle < (3 * M_PI) / 2 &&  cb->var.angle > M_PI / 2)
 		{
-			vx = (double)((x / TILE_SIZE) * TILE_SIZE);
-			vy = y + (x - vx) * atan;
-			vxblock = -TILE_SIZE;
-			vyblock = -vxblock * atan;
+			cb->var.vx = (double)((cb->p.x / TILE_SIZE) * TILE_SIZE);
+			cb->var.vy = cb->p.y + (cb->p.x - cb->var.vx) * cb->var.atan;
+			cb->var.vxblock = -TILE_SIZE;
+			cb->var.vyblock = -cb->var.vxblock * cb->var.atan;
 		}
-		if ( angle == 0 ||  angle == M_PI)
+		if ( cb->var.angle == 0 ||  cb->var.angle == M_PI)
 		{
-			hx = x;
-			hy = y;
+			cb->var.hx = cb->p.x;
+			cb->var.hy = cb->p.y;
 		}
 
-		while (vx < m_width && vx > 0)
+		while (cb->var.vx < cb->var.m_width && cb->var.vx > 0)
 		{
-			// printf("x[%d] y[%d]  c[%c]\n", (int)hx / TILE_SIZE, (int)hy / TILE_SIZE, cb->map.map_tmp[(int)hy / TILE_SIZE][(int)hx / TILE_SIZE]);
-			if (vy > m_height || vy < 0)// WINDOW_HEIGHT || vy < 0)
+			if (cb->var.vy > cb->var.m_height || cb->var.vy < 0)
 				break ;
-			else if (!is_wall_pixel(cb, vx - (1 * (angle < (3 * M_PI) / 2 && angle > M_PI / 2)), vy))
+			else if (!is_wall_pixel(cb, cb->var.vx - (1 * (cb->var.angle < (3 * M_PI) / 2 && cb->var.angle > M_PI / 2)), cb->var.vy))
 				break ;
-			vx += vxblock;
-			vy += vyblock;
+			cb->var.vx += cb->var.vxblock;
+			cb->var.vy += cb->var.vyblock;
 		}
-
-		double dis_h = sqrt((hx - x) * (hx - x) + (hy - y) * (hy - y));
-		double dis_v = sqrt((vx - x) * (vx - x) + (vy - y) * (vy - y));
-		if (dis_h < dis_v)
-		{
-			dis_w = dis_h;
-			rx = hx;
-			ry = hy;
-			hv = 0;// is this horizontal or vertical intersection 
-			tx = rx;
-
-		}
-		else
-		{
-			dis_w = dis_v;
-			rx = vx;
-			ry = vy;
-			hv = 1;
-			tx = ry;
-		}
-		
-		// printf("hx[%f] hy[%f]\n",hx,hy);
-		//printf("x[%f] y[%f]  vx[%f] vy[%f]\n", x, y, vx, vy);
-		dis_w = cos(((AGNGLE_VUE / 2) *M_PI/180) - (i * angle_step)) * dis_w;
-		double line_lenth = ((double)WINDOW_HEIGHT/4)/-tan(30) * ((double)WINDOW_HEIGHT/dis_w);
-		line_lenth *= 2; //wall is square 
-		// if (line_lenth > WINDOW_HEIGHT)
-		// 	line_lenth = WINDOW_HEIGHT;
-		draw_line(cb->img2, x/(TILE_SIZE / 16), y/(TILE_SIZE / 16), rx/(TILE_SIZE / 16), ry/(TILE_SIZE / 16), RAISE_COLOR);//line draw
-		int start_wall = WINDOW_HEIGHT/2-(line_lenth/2);
-		int j = 0;
-		// draw_line(cb->img, i, start_wall, i, start_wall + line_lenth,pixel_value(cb,((int)(txt)/(TILE_SIZE)) ,ra, hv, line_lenth, &j));//line draw
-		t_putxt p;
-		p.line_lenth = line_lenth;
-		p.i = i;
-		p.angle = angle;
-		p.hv = hv;
-		p.start_wall = start_wall;
-		p.tx = tx;
-		put_texture(cb, &p);
-		 angle += angle_step;
+		calculate_dis(cb);
+		cb->var.dis_w = cos(((AGNGLE_VUE / 2) * M_PI / 180) - (cb->var.i * cb->var.angle_step)) * cb->var.dis_w;
+		cb->var.line_lenth = ((double)WINDOW_HEIGHT / 4)/ -tan(30) * ((double)WINDOW_HEIGHT / cb->var.dis_w);
+		cb->var.line_lenth *= 2; //wall is square
+		draw_line(cb->img2, cb->p.x / (TILE_SIZE / 16), cb->p.y / (TILE_SIZE / 16), cb->var.rx / (TILE_SIZE / 16), cb->var.ry / (TILE_SIZE / 16), RAISE_COLOR);//line draw
+		cb->var.start_wall = WINDOW_HEIGHT / 2-(cb->var.line_lenth / 2);
+		put_tx(cb);
+		cb->var.angle += cb->var.angle_step;
 	}
 }

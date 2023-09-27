@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:15:49 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	move_player(t_cub3D *cb, double x, double y)
 		marge_x *= -1;
 	if (y < 0)
 		marge_y *= -1;
-	if (cb->map.map_tmp[(cb->player.y + next_y + marge_y) / TILE_SIZE]
-		[cb->player.x / TILE_SIZE] != '1')
-		cb->player.y += next_y;
-	if (cb->map.map_tmp[cb->player.y / TILE_SIZE]
-		[(cb->player.x + next_x + marge_x) / TILE_SIZE] != '1')
-		cb->player.x += next_x;
+	if (cb->map.map_tmp[(cb->p.y + next_y + marge_y) / TILE_SIZE]
+		[cb->p.x / TILE_SIZE] != '1')
+		cb->p.y += next_y;
+	if (cb->map.map_tmp[cb->p.y / TILE_SIZE]
+		[(cb->p.x + next_x + marge_x) / TILE_SIZE] != '1')
+		cb->p.x += next_x;
 }
 
 //! this function for key hook so every key do action functionality

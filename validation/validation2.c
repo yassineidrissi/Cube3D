@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/26 17:06:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:16:11 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_cub3d(t_cub3D *cb)
 	cb->text[EA].bol = 0;
 	cb->colors[F].bol = 0;
 	cb->colors[C].bol = 0;
-	cb->p = 0;
+	cb->player = 0;
 	cb->nl = 0;
 	cb->map.height = 0;
 	cb->ewsn[0] = "NO";

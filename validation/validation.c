@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/25 19:44:39 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:16:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_repeat(t_cub3D *cb)
 	{
 		if (cb->joined_map[i] == 'N' || cb->joined_map[i] == 'S'
 			|| cb->joined_map[i] == 'W' || cb->joined_map[i] == 'E')
-			cb->p++;
+			cb->player++;
 		else if (cb->joined_map[i] != '1' && cb->joined_map[i] != '0'
 			&& cb->joined_map[i] != ' ' && cb->joined_map[i] != '\t'
 			&& cb->joined_map[i] != '\n')
@@ -45,7 +45,7 @@ void	check_repeat(t_cub3D *cb)
 			handl_errors(10);
 		}
 	}
-	if (cb->p != 1)
+	if (cb->player != 1)
 	{
 		free(cb->joined_map);
 		handl_errors(10);
@@ -60,8 +60,8 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		return (1);
 	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		cb->player.x = x * TILE_SIZE + (TILE_SIZE / 2);
-		cb->player.y = y * TILE_SIZE + (TILE_SIZE / 2);
+		cb->p.x = x * TILE_SIZE + (TILE_SIZE / 2);
+		cb->p.y = y * TILE_SIZE + (TILE_SIZE / 2);
 		if (c == 'N')
 			cb->angle = (3 * M_PI) / 2;
 		else if (c == 'S')
