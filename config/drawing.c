@@ -24,7 +24,6 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
-//draw ceiling and floor
 void	draw_C_F(t_cub3D *cb)
 {
 	uint32_t	color_C;
@@ -77,40 +76,6 @@ void draw_map(t_cub3D *cb)
 	}
 }
 
-// void draw_player(t_cub3D *cb, int playerSize, int angle_vue)
-// {
-//     int i;
-//     int j;
-// 	int x;
-// 	int y;
-//     int centerX = cb->p.x;
-//     int centerY = cb->p.y;
-// 	// angle += 90; //for ajustement
-//     i = -playerSize;
-//     while (++i <= playerSize)
-//     {
-//         j = -playerSize;
-//         while (++j <= playerSize)
-//         {
-//             x = centerX + i;
-//             y = centerY + j;
-
-//             // Calculate distance from center of the player symbol
-//             int distance = sqrt(i * i + j * j);
-
-//             // Calculate angle between the point and player's direction
-//             float pointAngle = atan2(y - centerY, x - centerX) * 180.0 / PI;
-//             int angleDifference = abs(angle - (int)pointAngle);
-//             angleDifference = fmin(angleDifference, 360 - angleDifference) ;
-
-//             // Check if the point is within the desired shape
-//             if (distance <= playerSize && angleDifference <= angle_vue && is_wall_pixel(cb, (float)x,(float)(y),cb->angle))
-//             {
-// 				mlx_put_pixel(cb->img, x, y, 0xFF0000FF);
-//             }
-//         }
-//     }
-// }
 
 void draw_player(t_cub3D *cb, int playerSize) 
 {
@@ -126,17 +91,8 @@ void draw_player(t_cub3D *cb, int playerSize)
         int x = centerX + (int)(radius * cos(radians));
         int y = centerY + (int)(radius * sin(radians));
 
-        // Draw or render the circle point at (x, y) here
 		mlx_put_pixel(cb->img2, x, y, 0xFF0000FF);
         angle++;
     }
-	// printf("im here\n");
 
-    // Draw a small arrow to indicate the player's direction
-    // double directionRadians = (angle_vue) * (PI / 180.0);
-    // int arrowX = centerX + (int)((radius + 10) * cos(directionRadians));
-    // int arrowY = centerY + (int)((radius + 10) * sin(directionRadians));
-	// mlx_draw_line(cb, centerX, centerY, arrowX, arrowY, 0xFF0000FF);
-
-    // Draw or render the arrow at (arrowX, arrowY) here
-}
+}  

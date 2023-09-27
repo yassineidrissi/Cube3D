@@ -12,7 +12,6 @@
 
 #include "../cub3D.h"
 
-//! this function is used to change player angle
 void	change_angle(t_cub3D *cb, int KEY)
 {
 	if (KEY == MLX_KEY_RIGHT)
@@ -50,7 +49,6 @@ void	move_player(t_cub3D *cb, double x, double y)
 		cb->p.x += next_x;
 }
 
-//! this function for key hook so every key do action functionality
 void	ft_hook(void *param)
 {
 	t_cub3D	*cb;
