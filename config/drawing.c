@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/27 16:15:49 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:06:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void draw_player(t_cub3D *cb, int playerSize)
     int angle = 0;
     while (angle < 360) 
 	{
-        double radians = (angle + angle_vue) * (PI / 180.0);
+        double radians = (angle + angle_vue) * (M_PI / 180.0);
         int x = centerX + (int)(radius * cos(radians));
         int y = centerY + (int)(radius * sin(radians));
 

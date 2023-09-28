@@ -6,11 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/28 11:41:34 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:57:46 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D.h"
+# include "../cub3D.h"
 
 double angle_overlap(double angle)
 {
@@ -191,160 +191,5 @@ void draw_3d_image(t_cub3D *cb)
 		while(++j < width)
 			mlx_put_pixel(cb->img2, j + 1000 ,i, img[i][j]);
 		j = -1;
-	}
-}
-
-void	calculate_dis(t_cub3D *cb)
-{
-	double	dis_h;
-	double	dis_v;
-
-	dis_v = sqrt((cb->var.vx - cb->p.x) * (cb->var.vx - cb->p.x)
-			+ (cb->var.vy - cb->p.y) * (cb->var.vy - cb->p.y));
-	dis_h = sqrt((cb->var.hx - cb->p.x) * (cb->var.hx - cb->p.x)
-			+ (cb->var.hy - cb->p.y) * (cb->var.hy - cb->p.y));
-	if (dis_h < dis_v)
-	{
-		cb->var.dis_w = dis_h;
-		cb->var.rx = cb->var.hx;
-		cb->var.ry = cb->var.hy;
-		cb->var.hv = 0;
-		cb->var.tx = cb->var.rx;
-	}
-	else
-	{
-		cb->var.dis_w = dis_v;
-		cb->var.rx = cb->var.vx;
-		cb->var.ry = cb->var.vy;
-		cb->var.hv = 1;
-		cb->var.tx = cb->var.ry;
-	}
-}
-
-void	put_tx(t_cub3D *cb)
-{
-	t_putxt	p;
-
-	p.line_lenth = cb->var.line_lenth;
-	p.i = cb->var.i;
-	p.angle = cb->var.angle;
-	p.hv = cb->var.hv;
-	p.start_wall = cb->var.start_wall;
-	p.tx = cb->var.tx;
-	put_texture(cb, &p);
-}
-
-void	draw_init(t_cub3D *cb)
-{
-	draw_C_F(cb);
-	draw_map(cb);
-	draw_player(cb, TILE_SIZE / ((TILE_SIZE / 16) * 4));
-	draw_3d_image(cb);
-	cb->var.m_width = cb->map.width * TILE_SIZE;
-	cb->var.m_height = cb->map.height * TILE_SIZE;
-	cb->var.angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
-	cb->var.angle_step = (AGNGLE_VUE * (M_PI / 180) / WINDOW_WIDTH);
-}
-
-void	horizontal_block(t_cub3D *cb, int signe, int tile_s)
-{
-	cb->var.hy = (cb->p.y / TILE_SIZE) * TILE_SIZE + tile_s;
-	cb->var.hx = cb->p.x + (cb->p.y - cb->var.hy) * cb->var.atan;
-	cb->var.hyblock = TILE_SIZE * signe;
-	cb->var.hxblock = -cb->var.hyblock * cb->var.atan;
-}
-
-void	vertical_block(t_cub3D *cb, int signe, int tile_s)
-{
-	cb->var.vx = ((cb->p.x / TILE_SIZE) * TILE_SIZE) + tile_s;
-	cb->var.vy = cb->p.y + (cb->p.x - cb->var.vx) * cb->var.atan;
-	cb->var.vxblock = TILE_SIZE * signe;
-	cb->var.vyblock = -cb->var.vxblock * cb->var.atan;
-}
-
-int	l_s(t_cub3D *cb)
-{
-	return (cb->var.angle < (3 * M_PI) / 2 && cb->var.angle > M_PI / 2);
-}
-
-void	add_steps(t_cub3D*cb, int n)
-{
-	if (!n)
-	{
-		while (cb->var.hy < cb->var.m_height && cb->var.hy > 0)
-		{
-			if (cb->var.hx > cb->var.m_width || cb->var.hx < 0)
-				break ;
-			else if (!is_wall_pixel(cb, cb->var.hx,
-					cb->var.hy - (1 * (cb->var.angle > M_PI))))
-				break ;
-			cb->var.hx += cb->var.hxblock;
-			cb->var.hy += cb->var.hyblock;
-		}
-	}
-	else
-	{
-		while (cb->var.vx < cb->var.m_width && cb->var.vx > 0)
-		{
-			if (cb->var.vy > cb->var.m_height || cb->var.vy < 0)
-				break ;
-			else if (!is_wall_pixel(cb, cb->var.vx - (1 * l_s(cb)), cb->var.vy))
-				break ;
-			cb->var.vx += cb->var.vxblock;
-			cb->var.vy += cb->var.vyblock;
-		}
-	}
-}
-
-void	main_work(t_cub3D *cb)
-{
-	if (cb->var.angle > M_PI)
-		horizontal_block(cb, -1, 0);
-	else if (cb->var.angle < M_PI)
-		horizontal_block(cb, 1, TILE_SIZE);
-	if (cb->var.angle == 0 || cb->var.angle == M_PI)
-	{
-		cb->var.hx = cb->p.x;
-		cb->var.hy = cb->p.y;
-	}
-	add_steps(cb, 0);
-	cb->var.atan = -tan(cb->var.angle);
-	if (cb->var.angle > (3 * M_PI) / 2 || cb->var.angle < M_PI / 2)
-		vertical_block(cb, 1, TILE_SIZE);
-	else if (l_s(cb))
-		vertical_block(cb, -1, 0);
-	if (cb->var.angle == 0 || cb->var.angle == M_PI)
-	{
-		cb->var.hx = cb->p.x;
-		cb->var.hy = cb->p.y;
-	}
-	add_steps(cb, 1);
-}
-
-void	test(void *param)
-{
-	t_cub3D	*cb;
-	int		til_s;
-
-	cb = param;
-	til_s = (TILE_SIZE / 16);
-	cb->var.i = -1;
-	draw_init(cb);
-	while (++cb->var.i < WINDOW_WIDTH)
-	{
-		cb->var.angle = angle_overlap(cb->var.angle);
-		cb->var.atan = -1 / tan(cb->var.angle);
-		main_work(cb);
-		calculate_dis(cb);
-		cb->var.dis_w = cos(((AGNGLE_VUE / 2) * M_PI / 180)
-				- (cb->var.i * cb->var.angle_step)) * cb->var.dis_w;
-		cb->var.line_lenth = (WINDOW_HEIGHT / 4) / -tan(30)
-			* ((double)WINDOW_HEIGHT / cb->var.dis_w);
-		cb->var.line_lenth *= 2;
-		draw_line(cb->img2, cb->p.x / til_s, cb->p.y / til_s,
-			cb->var.rx / til_s, cb->var.ry / til_s, RAISE_COLOR);
-		cb->var.start_wall = WINDOW_HEIGHT / 2 - (cb->var.line_lenth / 2);
-		put_tx(cb);
-		cb->var.angle += cb->var.angle_step;
 	}
 }
