@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/28 15:18:09 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:38:23 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ typedef struct s_map
 	char	**map_tmp;
 	int		width;
 	int		height;
-}				t_map;
+}	t_map;
 
 typedef struct s_texture
 {
 	mlx_texture_t	*txtr;
-	char			*path;
-	int				bol;
 	unsigned int	**img;
+	char			*path;
 	char			*addr;
+	int				bol;
 	int				width;
 	int				height;
 }	t_texture;
@@ -61,7 +61,7 @@ typedef struct s_player
 	int		y;
 	double	width;
 	double	height;
-}				t_player;
+}	t_player;
 
 typedef struct s_colore
 {
@@ -73,66 +73,63 @@ typedef struct s_colore
 
 typedef struct s_var
 {
-	int		i;
 	double	hx;
 	double	hy;
 	double	vx;
 	double	vy;
-	double	angle;
 	double	tx;
+	double	angle;
 	double	hyblock;
 	double	hxblock;
 	double	vxblock;
 	double	vyblock;
 	double	angle_step;
 	double	line_lenth;
-	int		start_wall;
+	double	dis_w;
 	double	atan;
 	double	rx;
 	double	ry;
-	double	dis_w ;
+	int		i;
 	int		hv;
 	int		x;
 	int		y;
 	int		m_width;
 	int		m_height;
-}t_var;
+	int		start_wall;
+}	t_var;
 
-//!add img and mlx variables in t_cub3D struct
 typedef struct s_cub3D
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	mlx_image_t	*img2;
 	mlx_image_t	*img3;
-	t_map		map;
-	t_player	p;
 	t_texture	text[4];
-	t_colore	colors[2];
-	t_var		var;
-	int			player;
-	float		angle;
-	int			fd;
-	char		**cnt;
-	int			fdr;
 	t_texture	logo[3];
+	t_colore	colors[2];
+	t_player	p;
+	t_map		map;
+	t_var		var;
+	char		**cnt;
 	char		*line;
 	char		*joined_map;
 	char		*ewsn[4];
+	float		angle;
 	int			map_bol;
+	int			player;
+	int			fd;
 	int			nl;
-	float		ray_dis;
 }	t_cub3D;
 
 typedef struct s_putxt
 {
-	int		line_lenth;
-	int		i;
 	double	angle;
-	int		hv;
-	int		start_wall;
 	double	tx;
-}t_putxt;
+	int		line_lenth;
+	int		start_wall;
+	int		hv;
+	int		i;
+}	t_putxt;
 
 typedef struct s_pos
 {
@@ -144,7 +141,6 @@ typedef struct s_pos
 /*################################################################*/
 /*                       validation functions         			  */
 /*################################################################*/
-
 void			init_cub3d(t_cub3D *cb);
 void			ft_to_space(char *str);
 void			remove_nl(char *str);
@@ -160,9 +156,8 @@ int				ft_max(int a, int b);
 int				ft_max(int a, int b);
 
 /*################################################################*/
-/*                       config functions         			  */
+/*                       config functions         			      */
 /*################################################################*/
-
 void			ft_hook(void *param);
 void			draw_C_F(t_cub3D *cb);
 void			draw_map(t_cub3D *cb);
@@ -172,26 +167,24 @@ void			draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_
 int				is_wall_pixel(t_cub3D *cb, double x, double y);
 
 /*################################################################*/
-/*                      texture 								 */
+/*                      texture 								  */
 /*################################################################*/
-
-double			angle_overlap(double angle);
-unsigned int	get_rgba(int r, int g, int b, int a);
-unsigned int	*get_rgbas(uint8_t *pixels, int height, int width);
-unsigned int	**map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
-void			load_text2(t_cub3D *cb);
-unsigned		pixel_value(t_cub3D *cb, double tx, double angle,
-		int hv, int start_wall, int ty);
 int				height_image(t_cub3D *cb, int hv, double angle);
+double			angle_overlap(double angle);
+void			load_text2(t_cub3D *cb);
 void			double_free_int(unsigned int **map, int height, int width);
 void			draw_3d_image(t_cub3D *cb);
 void			put_texture(t_cub3D *cb, t_putxt *p);
 void			put_tx(t_cub3D *cb);
+unsigned int	get_rgba(int r, int g, int b, int a);
+unsigned int	*get_rgbas(uint8_t *pixels, int height, int width);
+unsigned int	**map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
+unsigned		pixel_value(t_cub3D *cb, double tx, double angle,
+		int hv, int start_wall, int ty);
 
+int				l_s(t_cub3D *cb);
 void			draw_init(t_cub3D *cb);
 void			calculate_dis(t_cub3D *cb);
-int				l_s(t_cub3D *cb);
-
 void			test(void *param);
 
 #endif

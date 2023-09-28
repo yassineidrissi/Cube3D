@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/27 14:31:19 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:53:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int main(int ac, char **av)
 	init_cub3d(&cb);
 	cb.fd = open(av[1], O_RDONLY);
 	if (cb.fd == -1 || check_parameters(av[1]) == 0 || check_content(&cb))
+	{
+		close(cb.fd);
 		handl_errors(6);
+	}
 	testing(&cb);
 	// system("leaks -q cub3D");
 	return (0);

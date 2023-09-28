@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/23 15:41:00 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:56:00 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	load_text(t_cub3D *cb)
 		if (!cb->text[i].txtr)// && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height ############ what do you mean by that
 			handl_errors(1);
 	}
-	cb->logo[0].txtr = mlx_load_png("imgs/1337.png");
+	cb->logo[0].txtr = mlx_load_png("imgs/1337.png");// we dont need that
 	cb->logo->img = map_to_doublemap(cb, cb->logo[0].txtr);
 	load_text2(cb);
 }
@@ -79,6 +79,7 @@ int	check_content(t_cub3D *cb)
 	{
 		if (fill_type(cb))
 		{
+			close(cb->fd);
 			free(cb->line);
 			handl_errors(6);
 		}
