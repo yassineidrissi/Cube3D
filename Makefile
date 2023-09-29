@@ -14,7 +14,7 @@ SRCS =	main.c ./srcs/ft_strjoin.c ./srcs/error.c ./srcs/ft_atoi.c ./srcs/ft_itoa
 SRCS_BONUS =	main.c ./srcs/ft_strjoin.c ./srcs/error.c ./srcs/ft_atoi.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
 				./srcs/get_next_line.c ./srcs/get_next_line_utils.c ./srcs/ft_strtrim.c ./srcs/ft_substr.c ./validation/validation.c ./validation/validation2.c \
 				./validation/check_content.c ./validation/fill_type.c ./validation/validation3.c ./config/config_utils.c ./config/ft_hook.c ./config/drawing.c ./math_stuff/ban.c \
-				./math_stuff/start.c ./math_stuff/start_utils.c
+				./math_stuff/start_bonus.c ./math_stuff/start_utils_bonus.c
 
 OBJS			= $(SRCS:.c=.o)
 OBJS_BONUS		= $(SRCS_BONUS:.c=.o)
@@ -36,14 +36,16 @@ bonus:		cube_3d_logo	$(OBJS_BONUS)
 			@echo "\033[92m🎮 USE ./cub3D <MAP FILE NAME> 🎮"
 
 clean:
-				@$(RM) $(OBJS) 
+				@$(RM) $(OBJS)
+				@$(RM) $(OBJS_BONUS)
 				@echo "\033[92m\033[31m Delete object files🗑\033[31m"
 			
 fclean:			clean
 				@$(RM) $(NAME)
+				@$(RM) $(NAME_BONUS)
 				@echo "\033[92m\033[31m Delete exucted file🗑\033[31m"
 
-re:				fclean $(NAME)
+re:				fclean all
 
 test: re
 				@echo "\033[92m\033[31m 🪄TESTING MAP1🪄\033[31m"

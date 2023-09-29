@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/27 16:16:02 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	p_or_z(t_cub3D *cb, char c, int x, int y)
 		return (1);
 	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
-		cb->p.x = x * TILE_SIZE + (TILE_SIZE / 2);
-		cb->p.y = y * TILE_SIZE + (TILE_SIZE / 2);
+		cb->p.x = x * T_S + (T_S / 2);
+		cb->p.y = y * T_S + (T_S / 2);
 		if (c == 'N')
 			cb->angle = (3 * M_PI) / 2;
 		else if (c == 'S')

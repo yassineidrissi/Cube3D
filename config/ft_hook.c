@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/27 16:15:49 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	move_player(t_cub3D *cb, double x, double y)
 		marge_x *= -1;
 	if (y < 0)
 		marge_y *= -1;
-	if (cb->map.map_tmp[(cb->p.y + next_y + marge_y) / TILE_SIZE]
-		[cb->p.x / TILE_SIZE] != '1')
+	if (cb->map.map_tmp[(cb->p.y + next_y + marge_y) / T_S]
+		[cb->p.x / T_S] != '1')
 		cb->p.y += next_y;
-	if (cb->map.map_tmp[cb->p.y / TILE_SIZE]
-		[(cb->p.x + next_x + marge_x) / TILE_SIZE] != '1')
+	if (cb->map.map_tmp[cb->p.y / T_S]
+		[(cb->p.x + next_x + marge_x) / T_S] != '1')
 		cb->p.x += next_x;
 }
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_utils.c                                      :+:      :+:    :+:   */
+/*   start_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -55,6 +55,9 @@ void	put_tx(t_cub3D *cb)
 void	draw_init(t_cub3D *cb)
 {
 	draw_c_f(cb);
+	draw_map(cb);
+	draw_player(cb, T_S / ((T_S / 16) * 4));
+	// draw_3d_image(cb);
 	cb->var.m_width = cb->map.width * T_S;
 	cb->var.m_height = cb->map.height * T_S;
 	cb->var.angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));

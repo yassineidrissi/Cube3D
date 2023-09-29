@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   start_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -102,6 +102,8 @@ void	test(void *param)
 		cb->var.line_lenth = (WINDOW_HEIGHT / 4) / -tan(30)
 			* ((double)WINDOW_HEIGHT / cb->var.dis_w);
 		cb->var.line_lenth *= 2;
+		draw_line(cb->img2, cb->p.x / til_s, cb->p.y / til_s,
+			cb->var.rx / til_s, cb->var.ry / til_s, RAISE_COLOR);//remove i think
 		cb->var.start_wall = WINDOW_HEIGHT / 2 - (cb->var.line_lenth / 2);
 		put_tx(cb);
 		cb->var.angle += cb->var.angle_step;

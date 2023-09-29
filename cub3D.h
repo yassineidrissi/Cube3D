@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/28 15:38:23 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BUFFER_SIZE 1000
 # define RAISE_COLOR 0xFF5733FF
 # define SPEED 10
-# define TILE_SIZE 64//After validation 2D map , we need to change it to 1
+# define T_S 64//After validation 2D map , we need to change it to 1
 # define AGNGLE_VUE 60 
 # define ANGLE_MOV 0.087266
 # define N 0
@@ -119,6 +119,11 @@ typedef struct s_cub3D
 	int			player;
 	int			fd;
 	int			nl;
+	int			x;
+	int			y;
+	int			i;
+	int			j;
+	int			ts;
 }	t_cub3D;
 
 typedef struct s_putxt
@@ -159,7 +164,7 @@ int				ft_max(int a, int b);
 /*                       config functions         			      */
 /*################################################################*/
 void			ft_hook(void *param);
-void			draw_C_F(t_cub3D *cb);
+void			draw_c_f(t_cub3D *cb);
 void			draw_map(t_cub3D *cb);
 void			draw_player(t_cub3D *cb, int playerSize);
 void			mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
