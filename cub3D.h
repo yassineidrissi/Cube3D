@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:32:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,6 @@ unsigned		pixel_value(t_cub3D *cb, double tx, double angle,
 int				l_s(t_cub3D *cb);
 void			draw_init(t_cub3D *cb);
 void			calculate_dis(t_cub3D *cb);
-void			test(void *param);
+void			rays(void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/23 15:13:21 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:33:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ void	fill_texture(t_cub3D *cb)
 		handl_errors(10);
 	}
 	ft_free_double(cb->cnt);
-	/*it says leaks cb->cnt but we neet to work with */
-	// ft_free_double(cb->cnt);
-	//free it to test leeks in other places
-	//########## load png in another fun 
-	// mlx_texture_t* texture = mlx_load_png(cb->text[0].path);
-	// if (!texture)
-    //     handl_errors(6);
-	// printf("haha\n");
 }
 
 void ft_fill_color(t_cub3D *cb, char **RGB, int i)

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:46:24 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:33:08 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	main_work(t_cub3D *cb)
 	add_steps(cb, 1);
 }
 
-void	test(void *param)
+void	rays(void *param)
 {
 	t_cub3D	*cb;
 	int		til_s;

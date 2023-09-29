@@ -6,13 +6,13 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/28 15:53:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:33:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	testing(t_cub3D *cb)
+void	start_mlx(t_cub3D *cb)
 {
 	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT , "cub3D", false);
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -21,7 +21,7 @@ void	testing(t_cub3D *cb)
 	mlx_image_to_window(cb->mlx, cb->img2, 0, 0);
 	// map(cb);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
-	mlx_loop_hook(cb->mlx, test, cb);
+	mlx_loop_hook(cb->mlx, rays, cb);
 	// mlx_loop_hook(cb->mlx, map, cb);
 	mlx_loop(cb->mlx);
 }
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 		close(cb.fd);
 		handl_errors(6);
 	}
-	testing(&cb);
+	start_mlx(&cb);
 	// system("leaks -q cub3D");
 	return (0);
 }
