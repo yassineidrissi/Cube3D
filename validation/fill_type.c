@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/29 11:33:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:35:39 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_texture(t_cub3D *cb)
 
 	i = 0;
 	non_printable(cb->line);
-	str = ft_strtrim(cb->line, " ", 0);
+	str = ft_strtrim(cb->line, " ");
 	cb->cnt = ft_split(str, 31);
 	free(str);
 	if (!cb->cnt)
@@ -63,17 +63,13 @@ void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 void	fill_colors(t_cub3D *cb)
 {
 	char **RGB;
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
 	ft_count_quote(cb->line);
 	ft_to_space(cb->line);
 	RGB = ft_split(cb->line, ' ');
-	if (RGB[0][0] == 'F' && !RGB[0][1] && i < 4)
+	if (RGB[0][0] == 'F' && !RGB[0][1])
 		ft_fill_color(cb, RGB, F);
-	else if (RGB[0][0] == 'C' && !RGB[0][1] && i < 4)
+	else if (RGB[0][0] == 'C' && !RGB[0][1])
 		ft_fill_color(cb, RGB, C);
 	else
 	{
@@ -87,7 +83,7 @@ void	fill_map(t_cub3D *cb)
 {
 	int	i;
 
-	i = -1;	
+	i = -1;
 	cb->nl = 1;//check for nl after map
 	if (cb->map_bol != 6)//map_bol need to be 6 to ensure that the 6 previous line are valid befor jumping to store map
 		handl_errors(5);

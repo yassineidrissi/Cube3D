@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/28 15:56:00 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:39:50 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void	check_valid_map(t_cub3D *cb)
 
 void	load_text(t_cub3D *cb)
 {
-	int	i;
 	mlx_image_t	*logo;
+	int			i;
+
 	i = -1;
 	while (++i < 4)
 	{

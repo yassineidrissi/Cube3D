@@ -6,26 +6,26 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:46:24 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/29 11:33:08 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:01:23 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	horizontal_block(t_cub3D *cb, int signe, int tile_s)
+void	horizontal_step(t_cub3D *cb, int signe, int tile_s)
 {
 	cb->var.hy = (cb->p.y / T_S) * T_S + tile_s;
 	cb->var.hx = cb->p.x + (cb->p.y - cb->var.hy) * cb->var.atan;
-	cb->var.hyblock = T_S * signe;
-	cb->var.hxblock = -cb->var.hyblock * cb->var.atan;
+	cb->var.hystep = T_S * signe;
+	cb->var.hxstep = -cb->var.hystep * cb->var.atan;
 }
 
-void	vertical_block(t_cub3D *cb, int signe, int tile_s)
+void	vertical_step(t_cub3D *cb, int signe, int tile_s)
 {
 	cb->var.vx = ((cb->p.x / T_S) * T_S) + tile_s;
 	cb->var.vy = cb->p.y + (cb->p.x - cb->var.vx) * cb->var.atan;
-	cb->var.vxblock = T_S * signe;
-	cb->var.vyblock = -cb->var.vxblock * cb->var.atan;
+	cb->var.vxstep = T_S * signe;
+	cb->var.vystep = -cb->var.vxstep * cb->var.atan;
 }
 
 void	add_steps(t_cub3D*cb, int n)
@@ -39,8 +39,8 @@ void	add_steps(t_cub3D*cb, int n)
 			else if (!is_wall_pixel(cb, cb->var.hx,
 					cb->var.hy - (1 * (cb->var.angle > M_PI))))
 				break ;
-			cb->var.hx += cb->var.hxblock;
-			cb->var.hy += cb->var.hyblock;
+			cb->var.hx += cb->var.hxstep;
+			cb->var.hy += cb->var.hystep;
 		}
 	}
 	else
@@ -51,18 +51,18 @@ void	add_steps(t_cub3D*cb, int n)
 				break ;
 			else if (!is_wall_pixel(cb, cb->var.vx - (1 * l_s(cb)), cb->var.vy))
 				break ;
-			cb->var.vx += cb->var.vxblock;
-			cb->var.vy += cb->var.vyblock;
+			cb->var.vx += cb->var.vxstep;
+			cb->var.vy += cb->var.vystep;
 		}
 	}
 }
 
-void	main_work(t_cub3D *cb)
+void	rays(t_cub3D *cb)
 {
 	if (cb->var.angle > M_PI)
-		horizontal_block(cb, -1, 0);
+		horizontal_step(cb, -1, 0);
 	else if (cb->var.angle < M_PI)
-		horizontal_block(cb, 1, T_S);
+		horizontal_step(cb, 1, T_S);
 	if (cb->var.angle == 0 || cb->var.angle == M_PI)
 	{
 		cb->var.hx = cb->p.x;
@@ -71,9 +71,9 @@ void	main_work(t_cub3D *cb)
 	add_steps(cb, 0);
 	cb->var.atan = -tan(cb->var.angle);
 	if (cb->var.angle > (3 * M_PI) / 2 || cb->var.angle < M_PI / 2)
-		vertical_block(cb, 1, T_S);
+		vertical_step(cb, 1, T_S);
 	else if (l_s(cb))
-		vertical_block(cb, -1, 0);
+		vertical_step(cb, -1, 0);
 	if (cb->var.angle == 0 || cb->var.angle == M_PI)
 	{
 		cb->var.hx = cb->p.x;
@@ -82,7 +82,7 @@ void	main_work(t_cub3D *cb)
 	add_steps(cb, 1);
 }
 
-void	rays(void *param)
+void	main_work(void *param)
 {
 	t_cub3D	*cb;
 	int		til_s;
@@ -95,7 +95,7 @@ void	rays(void *param)
 	{
 		cb->var.angle = angle_overlap(cb->var.angle);
 		cb->var.atan = -1 / tan(cb->var.angle);
-		main_work(cb);
+		rays(cb);
 		calculate_dis(cb);
 		cb->var.dis_w = cos(((AGNGLE_VUE / 2) * M_PI / 180)
 				- (cb->var.i * cb->var.angle_step)) * cb->var.dis_w;

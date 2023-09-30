@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/29 11:32:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:00:42 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ typedef struct s_var
 	double	vy;
 	double	tx;
 	double	angle;
-	double	hyblock;
-	double	hxblock;
-	double	vxblock;
-	double	vyblock;
+	double	hystep;
+	double	hxstep;
+	double	vxstep;
+	double	vystep;
 	double	angle_step;
 	double	line_lenth;
 	double	dis_w;
@@ -190,6 +190,6 @@ unsigned		pixel_value(t_cub3D *cb, double tx, double angle,
 int				l_s(t_cub3D *cb);
 void			draw_init(t_cub3D *cb);
 void			calculate_dis(t_cub3D *cb);
-void			rays(void *param);
+void			main_work(void *param);
 
 #endif

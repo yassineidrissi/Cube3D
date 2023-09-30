@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/27 16:16:11 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:22:12 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int	check_parameters(char *av)
 	while (ext[j])
 		j++;
 	if (i < j)
-		return (0);
+		return (1);
 	while (j >= 0)
 	{
 		if (av[i] != ext[j])
-			return (0);
+			return (1);
 		i--;
 		j--;
 	}
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/29 11:33:03 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:00:32 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	start_mlx(t_cub3D *cb)
 	mlx_image_to_window(cb->mlx, cb->img2, 0, 0);
 	// map(cb);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
-	mlx_loop_hook(cb->mlx, rays, cb);
+	mlx_loop_hook(cb->mlx, main_work, cb);
 	// mlx_loop_hook(cb->mlx, map, cb);
 	mlx_loop(cb->mlx);
 }
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 		handl_errors(10);
 	init_cub3d(&cb);
 	cb.fd = open(av[1], O_RDONLY);
-	if (cb.fd == -1 || check_parameters(av[1]) == 0 || check_content(&cb))
+	if (cb.fd == -1 || check_parameters(av[1]) || check_content(&cb))
 	{
 		close(cb.fd);
 		handl_errors(6);
