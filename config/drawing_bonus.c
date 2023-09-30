@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   drawing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 11:38:15 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 12:20:03 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 12:28:18 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,54 @@ void	draw_c_f(t_cub3D *cb)
 			else if (y >= WINDOW_HEIGHT / 2)
 				mlx_put_pixel(cb->img, x, y, color_f);
 		}
+	}
+}
+
+void	draw_map(t_cub3D *cb)
+{
+	cb->ts = (T_S / cb->d);
+	cb->y = -1;
+	while (cb->map.map_tmp[++cb->y])
+	{
+		cb->x = -1;
+		while (cb->map.map_tmp[cb->y][++cb->x])
+		{
+			cb->j = -1;
+			while (++cb->j < (T_S / cb->ts))
+			{
+				cb->i = -1;
+				while (++cb->i < (T_S / cb->ts))
+				{
+					if (cb->map.map_tmp[cb->y][cb->x] == '1') 
+						mlx_put_pixel(cb->img2, (cb->x * T_S) / cb->ts + cb->i,
+							(cb->y * T_S) / cb->ts + cb->j, 0x00FFFFFF);
+					else if (cb->map.map_tmp[cb->y][cb->x] == '0'
+						|| if_player(cb->map.map_tmp[cb->y][cb->x]))
+						mlx_put_pixel(cb->img2, (cb->x * T_S) / cb->ts + cb->i,
+							(cb->y * T_S) / cb->ts + cb->j, 0xFFFFFFFF);
+				}
+			}
+		}
+	}
+}
+
+void	draw_player(t_cub3D *cb, int playerSize)
+{
+	double	radians;
+	int		angle_vue;
+	int		center_x;
+	int		center_y;
+	int		angle;
+
+	angle = 0;
+	center_x = (int)cb->p.x / (T_S / cb->d);
+	center_y = (int)cb->p.y / (T_S / cb->d);
+	while (angle < 360)
+	{
+		radians = (angle + angle_vue) * (M_PI / 180.0);
+		cb->x = center_x + (int)(playerSize * cos(radians));
+		cb->y = center_y + (int)(playerSize * sin(radians));
+		mlx_put_pixel(cb->img2, cb->x, cb->y, 0xFF0000FF);
+		angle++;
 	}
 }

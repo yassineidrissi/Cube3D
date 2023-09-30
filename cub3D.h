@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/30 11:00:42 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/09/30 11:40:13 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_cub3D
 	int			i;
 	int			j;
 	int			ts;
+	int			d;
 }	t_cub3D;
 
 typedef struct s_putxt
