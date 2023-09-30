@@ -1,6 +1,6 @@
-NO ./imgs/wall_N.png
+NO ./imgs/wall_NO.png
 SO ./imgs/wall_S.png
-WE ./imgs/wall_WE.png
+WE ./imgs/wall_W.png
 EA ./imgs/wall_EA.png
 
 
