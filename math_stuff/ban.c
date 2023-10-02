@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 14:45:47 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:31:30 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,18 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
 		{
-			i = cb->text[WE].height*tx/T_S;
+			i = cb->text[WE].width*tx/T_S;
 			// tx = (int)cb->text[2].width - tx;
 			// ty += (double)cb->text[WE].height/start_wall;
 			// if(ty > cb->text[WE].width || i > cb->text[WE].height)
 			// 	return(printf("the error is here 3\n"));
-			return(cb->text[WE].img[ty][cb->text[WE].height -1 - i]);//*cb->text[2].width]);
+			return(cb->text[WE].img[ty][cb->text[WE].width -1 - i]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
 		{
-			i = cb->text[EA].height*tx/T_S;
+			i = cb->text[EA].width*tx/T_S;
 			// tx = (int)cb->text[2].width - tx;
 			// ty += (double)cb->text[EA].height/start_wall;
 			// if (ty >= cb->text[EA].height)// || tx >= T_S)
