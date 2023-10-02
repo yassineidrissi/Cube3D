@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/02 12:18:14 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 22:33:44 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define C 1
 # define WINDOW_WIDTH 1500
 # define WINDOW_HEIGHT 1000
+# define M 0
+# define L 1
+# define R 2
 
 typedef struct s_map
 {
@@ -125,6 +128,8 @@ typedef struct s_cub3D
 	int			j;
 	int			ts;
 	int			d;
+	int			ang_fly;
+	int		    t; 
 }	t_cub3D;
 
 typedef struct s_putxt

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 15:31:30 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/02 22:42:21 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,16 +186,48 @@ void double_free_int(unsigned int **map, int height, int width)
 
 void draw_3d_image(t_cub3D *cb)
 {
-	mlx_texture_t *txt = cb->logo[0].txtr;
-	unsigned int **img = cb->logo[0].img;
+	mlx_texture_t *txt = cb->logo[M].txtr;
+	unsigned int **img = cb->logo[M].img;
+	mlx_texture_t *txt_l = cb->logo[L].txtr;
+	unsigned int **img_l = cb->logo[L].img;
+	mlx_texture_t *txt_r = cb->logo[R].txtr;
+	unsigned int **img_r = cb->logo[R].img;
 	int i = -1;
 	int j= -1;
 	int width = txt->width;
 	int height = txt->height;
+	int width_l = txt_l->width;
+	int height_l = txt_l->height;
+	int height_r = txt_r->height;
+	int width_r = txt_r->width;
+
+	while (++i < height_l)
+	{
+		while (++j < width_l)
+			mlx_put_pixel(cb->img2, 1000 + 10 + j*cos(cb->ang_fly), 25 + i + cb->t, img_l[i][j]);
+		j = -1;
+	}
+	
+	i = -1;
+	j = -1;
 	while(++i < height)
 	{
 		while(++j < width)
-			mlx_put_pixel(cb->img2, j + 1000 ,i, img[i][j]);
+			mlx_put_pixel(cb->img2, j + 1000 + width_l ,i  + 5 + cb->t/2, img[i][j]);
 		j = -1;
 	}
+	i = -1;
+	j = -1;
+	while(++i < height_r)
+	{
+		while(++j < width_r)
+			mlx_put_pixel(cb->img2, j + 1000 + width_l + width, i + cb->t, img_r[i][j]);
+		j= -1;
+	}
+	cb->ang_fly += 0.5;
+	cb->t += 2;
+	if(cb->ang_fly > M_PI/2)
+		cb->ang_fly = 0;
+	if(cb->t > 10)
+		cb->t = 0;
 }
