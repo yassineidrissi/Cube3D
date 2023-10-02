@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 10:35:39 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:11:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	fill_texture(t_cub3D *cb)
 {
-	int	i;
-	char *str;
+	char	*str;
+	int		i;
 
 	i = 0;
 	non_printable(cb->line);
@@ -34,14 +34,14 @@ void	fill_texture(t_cub3D *cb)
 	ft_free_double(cb->cnt);
 }
 
-void ft_fill_color(t_cub3D *cb, char **RGB, int i)
+void	ft_fill_color(t_cub3D *cb, char **RGB, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (RGB[j])
 		j++;
-	if (j != 4) // to prevent seg if there is no r g b in map
+	if (j != 4)// to prevent seg if there is no r g b in map
 	{
 		ft_free_double(RGB);
 		handl_errors(10);
@@ -62,7 +62,7 @@ void ft_fill_color(t_cub3D *cb, char **RGB, int i)
 
 void	fill_colors(t_cub3D *cb)
 {
-	char **RGB;
+	char	**RGB;
 
 	ft_count_quote(cb->line);
 	ft_to_space(cb->line);
@@ -89,24 +89,23 @@ void	fill_map(t_cub3D *cb)
 		handl_errors(5);
 	cb->joined_map = ft_strjoin(cb->joined_map, cb->line);
 	cb->map.height++;
-	/*strjoin all the map*/
 }
 
 int fill_type(t_cub3D *cb)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cb->line[i] == ' ' || cb->line[i] == '\t')
 		i++;
 	if (cb->line[i] == 'N' || cb->line[i] == 'S'
 		|| cb->line[i] == 'W' || cb->line[i] == 'E')
-		{
-			fill_texture(cb);
-			// system("leaks -q cub3D");
-			// printf("---------------------LEAKS---------------------\n");
-		}
-	else if (cb->line[i] == 'F' || cb->line[i] =='C')
+	{
+		fill_texture(cb);
+		// system("leaks -q cub3D");
+		// printf("---------------------LEAKS---------------------\n");
+	}
+	else if (cb->line[i] == 'F' || cb->line[i] == 'C')
 		fill_colors(cb);
 	else if (cb->line[i] != '\n')
 		fill_map(cb);
