@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 10:50:55 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:45:47 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 			i = (double)cb->text[N].width*(tx)/T_S;
 			// tx = (int)cb->text[0].width - tx;
 			// ty += (int)cb->text[N].height/start_wall;
+			// if (ty >= cb->text[N].height || i > cb->text[N].width)
+			// 	return(printf("the error is here\n"));
 			return(cb->text[N].img[ty][i]);//*(cb->text[0])).width/T_S)]);//color is black
 		}
 			// return(0x00000000);//color is green
@@ -107,7 +109,9 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 			i = (int)cb->text[S].width*(tx)/T_S;
 			// tx = (int)cb->text[1].width - tx;
 			// ty += (double) cb->text[S].height/start_wall;
-			return(cb->text[S].img[ty][i]);//*cb->text[1].width]);//color is red
+			// if(ty > cb->text[S].height || i > cb->text[S].width)
+			// 	return(printf("the error is here 2\n"));
+			return(cb->text[S].img[ty][cb->text[S].width -1 - i]);//*cb->text[1].width]);//color is red
 		}
 			// return(0x0000FFFF);//color is green
 			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
@@ -119,7 +123,9 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 			i = cb->text[WE].height*tx/T_S;
 			// tx = (int)cb->text[2].width - tx;
 			// ty += (double)cb->text[WE].height/start_wall;
-			return(cb->text[WE].img[ty][i]);//*cb->text[2].width]);
+			// if(ty > cb->text[WE].width || i > cb->text[WE].height)
+			// 	return(printf("the error is here 3\n"));
+			return(cb->text[WE].img[ty][cb->text[WE].height -1 - i]);//*cb->text[2].width]);
 		}
 			// return(0xcc0000FF);//color is blue
 			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
@@ -128,6 +134,8 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 			i = cb->text[EA].height*tx/T_S;
 			// tx = (int)cb->text[2].width - tx;
 			// ty += (double)cb->text[EA].height/start_wall;
+			// if (ty >= cb->text[EA].height)// || tx >= T_S)
+			// 	return(0x000000);//printf("the error is here 4 and ty = %d and i = %d and hieght = %d and width = %d\n", ty, i, cb->text[EA].height, cb->text[EA].width));
 			return(cb->text[EA].img[ty][i]);
 		}
 			// return(0xc0ccccFF);//color is yellow
@@ -147,9 +155,9 @@ int height_image(t_cub3D *cb ,int hv, double angle)
 	else
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
-			return(cb->text[WE].width);
+			return(cb->text[WE].height);
 		else
-			return(cb->text[EA].width);
+			return(cb->text[EA].height);
 	}
 }
 
@@ -157,6 +165,7 @@ void put_texture(t_cub3D *cb,t_putxt *p)
 {
 	double	 ty_max = (double)height_image(cb, p->hv, p->angle) - 1;
 	double ty = 0;
+	// printf("im here\n");
 	double 	ty_step = ty_max/p->line_lenth;
 	while (p->start_wall  < WINDOW_HEIGHT/2 +(p->line_lenth/2))
 	{

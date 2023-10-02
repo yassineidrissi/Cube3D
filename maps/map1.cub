@@ -1,6 +1,6 @@
-NO ./imgs/wall_NO.png
-SO ./imgs/wall_S.png
-WE ./imgs/wall_W.png
+NO ./imgs/dam.png
+SO ./imgs/dam.png
+WE ./imgs/dam.png
 EA ./imgs/dam.png
 
 
