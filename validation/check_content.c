@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/30 12:14:21 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:38:51 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	load_text(t_cub3D *cb)
 	while (++i < 4)
 	{
 		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
-		if (!cb->text[i].txtr)// && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height ############ what do you mean by that
+		if (!cb->text[i].txtr)
 			handl_errors(1);
 	}
 	cb->logo[0].txtr = mlx_load_png("imgs/1337.png");// we dont need that

@@ -6,12 +6,12 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:01 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:48:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-/* chek bol to see if there is something other than NO SO WE EA F C before arriving to the map*/
+
 void	check_bol(t_cub3D *cb)
 {
 	int	i;
@@ -26,7 +26,6 @@ void	check_bol(t_cub3D *cb)
 			handl_errors(10);
 }
 
-/*check player if its repeated or it doesnt exist*/
 void	check_repeat(t_cub3D *cb)
 {
 	int	i;
@@ -52,8 +51,6 @@ void	check_repeat(t_cub3D *cb)
 	}
 }
 
-/* store player position and check if 0 or player are surrounded by other than 1 and 0  */
-//! when i put the player  to W character the forme of the player is changed we need to check this errurs
 int	p_or_z(t_cub3D *cb, char c, int x, int y)
 {
 	if (c == '0')

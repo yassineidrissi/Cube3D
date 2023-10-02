@@ -6,43 +6,11 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/29 10:57:07 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:13:52 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color)
-{
-    int x0 = start_x;
-    int y0 = start_y;
-    int x1 = end_x;
-    int y1 = end_y;
-    int x = x0;
-    int y = y0;
-
-    int dx1 = abs(x1 - x0);
-    int dy1 = abs(y1 - y0);
-    int sx = x0 < x1 ? 1 : -1;
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx1 - dy1;
-
-    while (x != x1 || y != y1)
-    {
-        mlx_put_pixel(img, x, y, color);
-        int e2 = 2 * err;
-        if (e2 > -dy1)
-        {
-            err -= dy1;
-            x += sx;
-        }
-        if (e2 < dx1)
-        {
-            err += dx1;
-            y += sy;
-        }
-    }
-}
 
 int	is_wall_pixel(t_cub3D *cb, double x, double y)
 {

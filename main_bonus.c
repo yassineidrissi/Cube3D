@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/02 12:10:27 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:20:12 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	start_mlx(t_cub3D *cb)
 	cb->img2 = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
 	mlx_image_to_window(cb->mlx, cb->img2, 0, 0);
+	mlx_cursor_hook(cb->mlx, mouse, cb);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop_hook(cb->mlx, main_work, cb);
 	mlx_loop(cb->mlx);
-	// mlx_terminate(cb->mlx);//abort
 }
 
 int main(int ac, char **av)

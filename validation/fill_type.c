@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 10:11:33 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:50:14 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_fill_color(t_cub3D *cb, char **RGB, int i)
 	j = 0;
 	while (RGB[j])
 		j++;
-	if (j != 4)// to prevent seg if there is no r g b in map
+	if (j != 4)
 	{
 		ft_free_double(RGB);
 		handl_errors(10);

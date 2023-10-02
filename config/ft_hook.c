@@ -6,11 +6,22 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 10:48:28 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:20:37 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void    mouse(double x, double y, void *mouse)
+{
+	t_cub3D    *cb;
+
+	(void)y;
+	cb = mouse;
+	mlx_set_cursor_mode(cb->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(cb->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	cb->angle += (x - WINDOW_WIDTH / 2) / 500;
+}
 
 void	change_angle(t_cub3D *cb, int KEY)
 {

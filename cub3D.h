@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/30 11:40:13 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:18:14 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BUFFER_SIZE 1000
 # define RAISE_COLOR 0xFF5733FF
 # define SPEED 10
-# define T_S 64//After validation 2D map , we need to change it to 1
+# define T_S 64
 # define AGNGLE_VUE 60 
 # define ANGLE_MOV 0.087266
 # define N 0
@@ -168,8 +168,6 @@ void			ft_hook(void *param);
 void			draw_c_f(t_cub3D *cb);
 void			draw_map(t_cub3D *cb);
 void			draw_player(t_cub3D *cb, int playerSize);
-void			mlx_draw_line(t_cub3D *cb, int x1, int y1, int x2, int y2, uint32_t color);
-void			draw_line(mlx_image_t *img, int start_x, int start_y, int end_x, int end_y, size_t color);
 int				is_wall_pixel(t_cub3D *cb, double x, double y);
 
 /*################################################################*/
@@ -192,5 +190,6 @@ int				l_s(t_cub3D *cb);
 void			draw_init(t_cub3D *cb);
 void			calculate_dis(t_cub3D *cb);
 void			main_work(void *param);
+void			mouse(double x, double y, void *mouse);
 
 #endif

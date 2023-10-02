@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 12:33:12 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:50:55 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ int height_image(t_cub3D *cb ,int hv, double angle)
 		else
 			return(cb->text[EA].width);
 	}
-
 }
 
 void put_texture(t_cub3D *cb,t_putxt *p)
@@ -161,7 +160,7 @@ void put_texture(t_cub3D *cb,t_putxt *p)
 	double 	ty_step = ty_max/p->line_lenth;
 	while (p->start_wall  < WINDOW_HEIGHT/2 +(p->line_lenth/2))
 	{
-		if (p->start_wall  >= 0 && p->start_wall <= WINDOW_HEIGHT)// && ty > 0 && ty < ty_max)
+		if (p->start_wall  >= 0 && p->start_wall <= WINDOW_HEIGHT)
 			mlx_put_pixel(cb->img, p->i, p->start_wall , pixel_value(cb,(fmod(p->tx, T_S)) ,p->angle, p->hv, p->line_lenth,ty));
 		p->start_wall++;
 		ty += ty_step;
@@ -184,8 +183,6 @@ void draw_3d_image(t_cub3D *cb)
 	int j= -1;
 	int width = txt->width;
 	int height = txt->height;
-	// printf("the width is %d and the height is %d\n",width,height);
-	// reverse_3d_map(img, width, height);
 	while(++i < height)
 	{
 		while(++j < width)

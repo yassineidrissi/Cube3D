@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:46:24 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 12:35:48 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:10:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ void	main_work(void *param)
 		cb->var.line_lenth = (WINDOW_HEIGHT / 4) / -tan(30)
 			* (WINDOW_HEIGHT / cb->var.dis_w);
 		cb->var.line_lenth *= 2;
-		// draw_line(cb->img2, cb->p.x / (til_s/cb->d), cb->p.y / (til_s/cb->d),
-		// 	cb->var.rx / (til_s/cb->d), cb->var.ry / (til_s/cb->d), RAISE_COLOR);//remove i think
 		cb->var.start_wall = WINDOW_HEIGHT / 2 - (cb->var.line_lenth / 2);
 		put_tx(cb);
 		cb->var.angle += cb->var.angle_step;

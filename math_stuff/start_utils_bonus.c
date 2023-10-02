@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:51:48 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/30 12:38:50 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:17:22 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_init(t_cub3D *cb)
 	draw_c_f(cb);
 	draw_map(cb);
 	draw_player(cb, T_S / ((T_S / cb->d) * 4));
-	// draw_3d_image(cb);
+	draw_3d_image(cb);
 	cb->var.m_width = cb->map.width * T_S;
 	cb->var.m_height = cb->map.height * T_S;
 	cb->var.angle = cb->angle - (AGNGLE_VUE / 2 * (M_PI / 180));
