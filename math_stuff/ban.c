@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/03 16:47:35 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:49:10 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,50 +96,26 @@ unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wal
 		if (angle > M_PI)
 		{
 			i = (double)cb->text[N].width*(tx)/T_S;
-			// tx = (int)cb->text[0].width - tx;
-			// ty += (int)cb->text[N].height/start_wall;
-			// if (ty >= cb->text[N].height || i > cb->text[N].width)
-			// 	return(printf("the error is here\n"));
-			return(cb->text[N].img[ty][i]);//*(cb->text[0])).width/T_S)]);//color is black
+			return(cb->text[N].img[ty][i]);
 		}
-			// return(0x00000000);//color is green
-			// return (cb->texture[EA].img[(int)cb->texture[EA].width * (int)(angle * (cb->texture[EA].height / (2 * M_PI)))]);
 		else
 		{
 			i = (int)cb->text[S].width*(tx)/T_S;
-			// tx = (int)cb->text[1].width - tx;
-			// ty += (double) cb->text[S].height/start_wall;
-			// if(ty > cb->text[S].height || i > cb->text[S].width)
-			// 	return(printf("the error is here 2\n"));
-			return(cb->text[S].img[ty][cb->text[S].width -1 - i]);//*cb->text[1].width]);//color is red
+			return(cb->text[S].img[ty][cb->text[S].width -1 - i]);
 		}
-			// return(0x0000FFFF);//color is green
-			// return (cb->texture[WE].img[(int)cb->texture[WE].width * (int)(angle * (cb->texture[WE].height / (2 * M_PI)))]);
 	}
 	else
 	{
 		if (angle > M_PI / 2 && angle < (3 * M_PI) / 2)
 		{
 			i = cb->text[WE].width*tx/T_S;
-			// tx = (int)cb->text[2].width - tx;
-			// ty += (double)cb->text[WE].height/start_wall;
-			// if(ty > cb->text[WE].width || i > cb->text[WE].height)
-			// 	return(printf("the error is here 3\n"));
-			return(cb->text[WE].img[ty][cb->text[WE].width -1 - i]);//*cb->text[2].width]);
+			return(cb->text[WE].img[ty][cb->text[WE].width -1 - i]);
 		}
-			// return(0xcc0000FF);//color is blue
-			// return (cb->texture[SO].img[(int)cb->texture[SO].width * (int)(angle * (cb->texture[SO].height / (2 * M_PI)))]);
 		else
 		{
 			i = cb->text[EA].width*tx/T_S;
-			// tx = (int)cb->text[2].width - tx;
-			// ty += (double)cb->text[EA].height/start_wall;
-			// if (ty >= cb->text[EA].height)// || tx >= T_S)
-			// 	return(0x000000);//printf("the error is here 4 and ty = %d and i = %d and hieght = %d and width = %d\n", ty, i, cb->text[EA].height, cb->text[EA].width));
 			return(cb->text[EA].img[ty][i]);
 		}
-			// return(0xc0ccccFF);//color is yellow
-			// return (cb->texture[NO].img[(int)cb->texture[NO].width * (int)(angle * (cb->texture[NO].height / (2 * M_PI)))]);
 	}
 }
 
