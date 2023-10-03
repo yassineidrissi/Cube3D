@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 10:50:14 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:14:37 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	fill_map(t_cub3D *cb)
 
 	i = -1;
 	cb->nl = 1;//check for nl after map
-	if (cb->map_bol != 6)//map_bol need to be 6 to ensure that the 6 previous line are valid befor jumping to store map
+	if (cb->map_bol != 6)
 		handl_errors(5);
 	cb->joined_map = ft_strjoin(cb->joined_map, cb->line);
 	cb->map.height++;
