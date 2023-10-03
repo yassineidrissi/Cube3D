@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_content_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/02 22:33:51 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/03 08:36:33 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,21 @@ void	load_text(t_cub3D *cb)
 	while (++i < 4)
 	{
 		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
-		if (!cb->text[i].txtr)// && (cb->text[i].txtr->height != cb->text[i].txtr->width))// incure that we have same width and height ############ what do you mean by that
+		if (!cb->text[i].txtr)
 			handl_errors(1);
 	}
-	cb->logo[M].txtr = mlx_load_png("imgs/1337.png");// we dont need that
+	cb->logo[M].txtr = mlx_load_png("imgs/1337.png");
 	cb->logo[M].img = map_to_doublemap(cb, cb->logo[M].txtr);
-	cb->logo[L].txtr = mlx_load_png("imgs/1337_left.png");// we dont need that
+	cb->logo[L].txtr = mlx_load_png("imgs/1337_left.png");
 	cb->logo[L].img = map_to_doublemap(cb, cb->logo[L].txtr);
-		cb->logo[R].txtr = mlx_load_png("imgs/1337_right.png");// we dont need that
+	cb->logo[R].txtr = mlx_load_png("imgs/1337_right.png");
 	cb->logo[R].img = map_to_doublemap(cb, cb->logo[R].txtr);
 	cb->ang_fly = 0;
 	cb->t = 0;
 	load_text2(cb);
 }
 
-void	mini_map_s(t_cub3D *cb)
+void	mini_map_size(t_cub3D *cb)
 {
 	cb->d = 16;
 	if (cb->map.height > 35 || cb->map.width > 35)
@@ -112,6 +112,6 @@ int	check_content(t_cub3D *cb)
 	cb->map.map_tmp = ft_split(cb->joined_map, '\n');
 	free(cb->joined_map);
 	check_valid_map(cb);
-	mini_map_s(cb);
+	mini_map_size(cb);
 	return (0);
 }
