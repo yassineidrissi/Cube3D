@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/03 16:49:10 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:02:45 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void draw_3d_image(t_cub3D *cb)
 	while (++i < height)
 	{
 		while (++j < width)
-			mlx_put_pixel(cb->img2,  j + 1200, i , cb->logo[0].img[i][j]);
+			mlx_put_pixel(cb->img2,  j + 1150, i , cb->logo[cb->pos_logo].img[i][j]);
 		j = -1;
 	}
 	
