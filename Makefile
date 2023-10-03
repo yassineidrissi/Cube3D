@@ -50,9 +50,9 @@ re:				fclean all
 test: re
 				@echo "\033[92m\033[31m 🪄TESTING MAP1🪄\033[31m"
 				@./cub3D ./maps/map1.cub
-test2: re
+testb: fclean bonus
 				@echo "\033[92m\033[31m🪄 TESTING MAP2🪄\033[31m"
-				@./cub3D ./maps/map3.cub
+				@./cub3D_BONUS ./maps/map1.cub
 
 
 cube_3d_logo:
