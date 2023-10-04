@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 16:57:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:29:03 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	fill_texture(t_cub3D *cb)
 	int		i;
 
 	i = 0;
-	non_printable(cb->line);
 	str = ft_strtrim(cb->line, " ");
+	non_printable(str);
 	cb->cnt = ft_split(str, 31);
 	free(str);
 	if (!cb->cnt)

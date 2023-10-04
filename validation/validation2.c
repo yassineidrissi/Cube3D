@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 16:17:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:29:09 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	non_printable(char *str)
 		if (str[i] == ' ' || str[i] == '\t')
 		{
 			str[i] = 31;
-			break ;
+			if (str[i + 1] != ' ' && str[i] != '\t')
+				break ;
 		}
 	}
 }

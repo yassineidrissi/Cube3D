@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 17:05:20 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:33:26 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 # include "./srcs/get_next_line.h"
 # include "./srcs/srcs.h"
 
+# define WINDOW_WIDTH 1500
+# define WINDOW_HEIGHT 1000
 # define BUFFER_SIZE 1000
 # define RAISE_COLOR 0xFF5733FF
+# define ANGLE_MOV 0.087266
+# define AGNGLE_VUE 60
 # define SPEED 10
 # define T_S 64
-# define AGNGLE_VUE 60 
-# define ANGLE_MOV 0.087266
 # define N 0
 # define S 1
 # define WE 2
 # define EA 3
 # define F 0
 # define C 1
-# define WINDOW_WIDTH 1500
-# define WINDOW_HEIGHT 1000
 # define M 0
 # define L 1
 # define R 2
@@ -190,7 +190,7 @@ void			put_tx(t_cub3D *cb);
 unsigned int	get_rgba(int r, int g, int b, int a);
 unsigned int	*get_rgbas(uint8_t *pixels, int height, int width);
 unsigned int	**map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
-unsigned		pixel_value(t_cub3D *cb, double tx, double angle,
+unsigned int	pixel_value(t_cub3D *cb, double tx, double angle,
 		int hv, int start_wall, int ty);
 
 int				l_s(t_cub3D *cb);

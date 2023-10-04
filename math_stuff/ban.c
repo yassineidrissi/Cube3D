@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 16:16:36 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:32:39 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int load_color(char r, char g, char b, char a)
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
-unsigned pixel_value(t_cub3D *cb,double tx , double angle, int hv, int start_wall, int ty)
+unsigned int pixel_value(t_cub3D *cb, double tx, double angle, int hv, int start_wall, int ty)
 {
 	int i;
+
 	if(!hv)
 	{
 		if (angle > M_PI)
