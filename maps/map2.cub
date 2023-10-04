@@ -1,7 +1,7 @@
-NO /Users/zouaraqa/Desktop/imgs/down.png    
-SO /Users/zouaraqa/Desktop/imgs/up.png
-WE /Users/zouaraqa/Desktop/imgs/left.png
-EA /Users/zouaraqa/Desktop/imgs/right.png
+NO ./imgs/wall.png    
+SO ./imgs/wall.png
+WE ./imgs/wall.png
+EA ./imgs/wall.png
 
 
 F 220,   100    , 1
@@ -15,9 +15,6 @@ C 225,30,0
 100001111    
 1000001111
 11111111
-
-
-
           1
          1W1
           1

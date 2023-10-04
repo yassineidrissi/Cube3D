@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/03 15:14:37 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:09:00 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int fill_type(t_cub3D *cb)
 		fill_colors(cb);
 	else if (cb->line[i] != '\n')
 		fill_map(cb);
-	// else if (cb->line[i] == '\n' && cb->nl)
-	// 	handl_errors(10);
+	else if (cb->line[i] == '\n' && cb->nl)
+		handl_errors(10);
 	return (0);
 }
