@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:52 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/30 10:22:12 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:17:20 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 void	init_cub3d(t_cub3D *cb)
 {
+	cb->i = -1;
+	while (++cb->i < 4)
+	{
+		cb->text[cb->i].path = NULL;
+		cb->text[cb->i].txtr = NULL;
+	}
 	cb->joined_map = NULL;
 	cb->line = NULL;
 	cb->map_bol = 0;

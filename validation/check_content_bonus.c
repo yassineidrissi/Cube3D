@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_content_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 15:37:26 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:58:43 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-int	edge(t_cub3D *cb, int x, int y)
-{
-	if (y < 0 || y >= cb->map.height || x < 0)
-		return (handl_errors(1), 0);
-	return (1);
-}
 
 void	check_all_sides(char **str, int x, int y)
 {
@@ -69,19 +62,19 @@ void	load_text(t_cub3D *cb)
 	cb->fn_logo[4] = "imgs/5.png";
 	while (++i < 4)
 	{
-		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
+		if (cb->text[i].path)
+			cb->text[i].txtr = mlx_load_png(cb->text[i].path);
 		if (!cb->text[i].txtr)
 			handl_errors(6);
 	}
 	i = -1;
-	while(++i < 5)
+	while (++i < 5)
 	{
 		cb->logo[i].txtr = mlx_load_png(cb->fn_logo[i]);
-		if(cb->logo[i].txtr == NULL)
+		if (!cb->logo[i].txtr)
 			handl_errors(6);
 		cb->logo[i].img = map_to_doublemap(cb, cb->logo[i].txtr);
 	}
-
 	load_text2(cb);
 }
 

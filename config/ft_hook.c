@@ -6,15 +6,15 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:41:54 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 12:20:37 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:03:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void    mouse(double x, double y, void *mouse)
+void	mouse(double x, double y, void *mouse)
 {
-	t_cub3D    *cb;
+	t_cub3D	*cb;
 
 	(void)y;
 	cb = mouse;

@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/02 12:10:27 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:04:35 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	start_mlx(t_cub3D *cb)
 {
-	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT , "cub3D", false);
+	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	cb->img2 = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
@@ -25,9 +25,9 @@ void	start_mlx(t_cub3D *cb)
 	// mlx_terminate(cb->mlx);//abort
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_cub3D cb;
+	t_cub3D	cb;
 
 	if (ac != 2)
 		handl_errors(10);
@@ -39,6 +39,5 @@ int main(int ac, char **av)
 		handl_errors(6);
 	}
 	start_mlx(&cb);
-	// system("leaks -q cub3D");
 	return (0);
 }

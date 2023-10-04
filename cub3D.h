@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 15:29:31 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:05:20 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ typedef struct s_cub3D
 	mlx_image_t	*img3;
 	t_texture	text[4];
 	t_texture	logo[5];
-	char 		*fn_logo[5];
 	t_colore	colors[2];
 	t_player	p;
 	t_map		map;
 	t_var		var;
+	char		*fn_logo[5];
 	char		**cnt;
 	char		*line;
 	char		*joined_map;
@@ -130,7 +130,7 @@ typedef struct s_cub3D
 	int			ts;
 	int			d;
 	int			pos_logo;
-	int		    t; 
+	int			t; 
 }	t_cub3D;
 
 typedef struct s_putxt
@@ -175,6 +175,7 @@ void			draw_c_f(t_cub3D *cb);
 void			draw_map(t_cub3D *cb);
 void			draw_player(t_cub3D *cb, int playerSize);
 int				is_wall_pixel(t_cub3D *cb, double x, double y);
+int				edge(t_cub3D *cb, int x, int y);
 
 /*################################################################*/
 /*                      texture 								  */

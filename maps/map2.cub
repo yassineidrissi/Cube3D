@@ -1,10 +1,10 @@
 NO ./imgs/wall.png    
 SO ./imgs/wall.png
 WE ./imgs/wall.png
+
 EA ./imgs/wall.png
 
-
-F 220,   100    , 1
+F 220,   100    ,1
 C 225,30,0
 
 

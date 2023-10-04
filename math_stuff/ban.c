@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ban.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 15:54:06 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:16:36 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void load_text2(t_cub3D *cb)
 	cb->pos_logo = 0;
 	cb->t = 0;
 	while(++i < 4)
-		cb->text[i].img = (unsigned int **) map_to_doublemap(cb, cb->text[i].txtr);
+		if (cb->text[i].txtr)
+			cb->text[i].img = (unsigned int **)map_to_doublemap(cb, cb->text[i].txtr);
 	i = -1;
 	while(++i < 4)
 	{

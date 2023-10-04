@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:57:08 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/09/27 14:31:22 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:02:10 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	handl_errors(int i)
 	else if (i == 10)
 		ft_printf("Failed >> No Valid Arguements! \n");
 	ft_printf("\033[0m");
-	// system("leaks -q cub3D");
-	exit(i);//! need to check if exit is alloweded
+	exit(i);
 }

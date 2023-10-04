@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:45:02 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 15:09:00 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:57:29 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ void	ft_fill_color(t_cub3D *cb, char **RGB, int i)
 
 void	fill_colors(t_cub3D *cb)
 {
-	char	**RGB;
+	char	**rgb;
 
 	ft_count_quote(cb->line);
 	ft_to_space(cb->line);
-	RGB = ft_split(cb->line, ' ');
-	if (RGB[0][0] == 'F' && !RGB[0][1])
-		ft_fill_color(cb, RGB, F);
-	else if (RGB[0][0] == 'C' && !RGB[0][1])
-		ft_fill_color(cb, RGB, C);
+	rgb = ft_split(cb->line, ' ');
+	if (rgb[0][0] == 'F' && !rgb[0][1])
+		ft_fill_color(cb, rgb, F);
+	else if (rgb[0][0] == 'C' && !rgb[0][1])
+		ft_fill_color(cb, rgb, C);
 	else
 	{
-		ft_free_double(RGB);
+		ft_free_double(rgb);
 		handl_errors(1);
 	}
-	ft_free_double(RGB);
+	ft_free_double(rgb);
 }
 
 void	fill_map(t_cub3D *cb)
@@ -84,14 +84,14 @@ void	fill_map(t_cub3D *cb)
 	int	i;
 
 	i = -1;
-	cb->nl = 1;//check for nl after map
+	cb->nl = 1;
 	if (cb->map_bol != 6)
 		handl_errors(5);
 	cb->joined_map = ft_strjoin(cb->joined_map, cb->line);
 	cb->map.height++;
 }
 
-int fill_type(t_cub3D *cb)
+int	fill_type(t_cub3D *cb)
 {
 	int	i;
 
@@ -100,11 +100,7 @@ int fill_type(t_cub3D *cb)
 		i++;
 	if (cb->line[i] == 'N' || cb->line[i] == 'S'
 		|| cb->line[i] == 'W' || cb->line[i] == 'E')
-	{
 		fill_texture(cb);
-		// system("leaks -q cub3D");
-		// printf("---------------------LEAKS---------------------\n");
-	}
 	else if (cb->line[i] == 'F' || cb->line[i] == 'C')
 		fill_colors(cb);
 	else if (cb->line[i] != '\n')

@@ -6,11 +6,18 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 15:47:50 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/09/26 17:06:29 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:58:53 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+int	edge(t_cub3D *cb, int x, int y)
+{
+	if (y < 0 || y >= cb->map.height || x < 0)
+		return (handl_errors(1), 0);
+	return (1);
+}
 
 void	inc(int *j, int *k)
 {
