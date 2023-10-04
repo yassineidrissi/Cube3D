@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/03 18:49:31 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:33:31 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ unsigned int ** map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
 
 void load_text2(t_cub3D *cb)
 {
-	int i = -1;
+	int i;
+	
+	i = -1;
+	cb->pos_logo = 0;
+	cb->t = 0;
 	while(++i < 4)
 		cb->text[i].img = (unsigned int **) map_to_doublemap(cb, cb->text[i].txtr);
 	i = -1;
@@ -177,23 +181,6 @@ void draw_3d_image(t_cub3D *cb)
 			mlx_put_pixel(cb->img2,  j + 1150, i , cb->logo[cb->pos_logo].img[i][j]);
 		j = -1;
 	}
-	
-	// i = -1;
-	// j = -1;
-	// while(++i < height)
-	// {
-	// 	while(++j < width)
-	// 		mlx_put_pixel(cb->img2, j + 1000 + width_l ,i + 5 + cb->t/2, img[i][j]);
-	// 	j = -1;
-	// }
-	// i = -1;
-	// j = -1;
-	// while(++i < height_r)
-	// {
-	// 	while(++j < width_r)
-	// 		mlx_put_pixel(cb->img2, j + 1000 + width_l + width, i + cb->t, img_r[i][j]);
-	// 	j= -1;
-	// }
 	cb->t++;
 	if (cb->t == 4)
 	{

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/03 16:14:40 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:29:31 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_cub3D
 	mlx_image_t	*img3;
 	t_texture	text[4];
 	t_texture	logo[5];
+	char 		*fn_logo[5];
 	t_colore	colors[2];
 	t_player	p;
 	t_map		map;

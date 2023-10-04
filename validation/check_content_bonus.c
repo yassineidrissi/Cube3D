@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/03 17:43:09 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:37:26 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,26 @@ void	load_text(t_cub3D *cb)
 	int			i;
 
 	i = -1;
+	cb->fn_logo[0] = "imgs/1.png";
+	cb->fn_logo[1] = "imgs/2.png";
+	cb->fn_logo[2] = "imgs/3.png";
+	cb->fn_logo[3] = "imgs/4.png";
+	cb->fn_logo[4] = "imgs/5.png";
 	while (++i < 4)
 	{
 		cb->text[i].txtr = mlx_load_png(cb->text[i].path);
 		if (!cb->text[i].txtr)
-			handl_errors(1);
+			handl_errors(6);
 	}
-	cb->logo[M].txtr = mlx_load_png("imgs/1_test.png");// we dont need that
-	cb->logo[M].img = map_to_doublemap(cb, cb->logo[M].txtr);
-	cb->logo[L].txtr = mlx_load_png("imgs/2_test.png");// we dont need that
-	cb->logo[L].img = map_to_doublemap(cb, cb->logo[L].txtr);
-	cb->logo[R].txtr = mlx_load_png("imgs/3_test.png");// we dont need that
+	i = -1;
+	while(++i < 5)
+	{
+		cb->logo[i].txtr = mlx_load_png(cb->fn_logo[i]);
+		if(cb->logo[i].txtr == NULL)
+			handl_errors(6);
+		cb->logo[i].img = map_to_doublemap(cb, cb->logo[i].txtr);
+	}
 
-	cb->logo[R].img = map_to_doublemap(cb, cb->logo[R].txtr);
-	cb->logo[3].txtr = mlx_load_png("imgs/4_test.png");// we dont need that
-	cb->logo[3].img = map_to_doublemap(cb, cb->logo[3].txtr);
-	cb->logo[4].txtr = mlx_load_png("imgs/5_test.png");// we dont need that
-	cb->logo[4].img = map_to_doublemap(cb, cb->logo[4].txtr);
-	cb->pos_logo = 0;
-	cb->t = 0;
 	load_text2(cb);
 }
 
