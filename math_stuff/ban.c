@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 15:33:31 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:54:06 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void put_texture(t_cub3D *cb,t_putxt *p)
 	double 	ty_step = ty_max/p->line_lenth;
 	while (p->start_wall  < WINDOW_HEIGHT/2 +(p->line_lenth/2))
 	{
-		if (p->start_wall  >= 0 && p->start_wall <= WINDOW_HEIGHT)
+		if (p->start_wall  >= 0 && p->start_wall < WINDOW_HEIGHT)
 			mlx_put_pixel(cb->img, p->i, p->start_wall , pixel_value(cb,(fmod(p->tx, T_S)) ,p->angle, p->hv, p->line_lenth,ty));
 		p->start_wall++;
 		ty += ty_step;
