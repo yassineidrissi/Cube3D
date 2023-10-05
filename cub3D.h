@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 17:33:26 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:43:34 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,7 @@ void			put_tx(t_cub3D *cb);
 unsigned int	get_rgba(int r, int g, int b, int a);
 unsigned int	*get_rgbas(uint8_t *pixels, int height, int width);
 unsigned int	**map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr);
-unsigned int	pixel_value(t_cub3D *cb, double tx, double angle,
-		int hv, int start_wall, int ty);
+unsigned int	pixel_value(t_cub3D *cb, double tx, t_putxt *p, int ty);
 
 int				l_s(t_cub3D *cb);
 void			draw_init(t_cub3D *cb);
