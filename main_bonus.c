@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/04 17:04:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/05 10:24:44 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	start_mlx(t_cub3D *cb)
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop_hook(cb->mlx, main_work, cb);
 	mlx_loop(cb->mlx);
+	mlx_terminate(cb->mlx);
 }
 
 int	main(int ac, char **av)
