@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 23:57:48 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/05 14:43:56 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:00:21 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	is_wall_pixel(t_cub3D *cb, double x, double y)
 	return (1);
 }
 
-double angle_overlap(double angle)
+double	angle_overlap(double angle)
 {
 	if (angle < 0)
 		angle += 2 * M_PI;
