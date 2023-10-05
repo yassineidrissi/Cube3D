@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:54:00 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/04 17:32:39 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/05 10:17:34 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ void put_texture(t_cub3D *cb,t_putxt *p)
 {
 	double	 ty_max = (double)height_image(cb, p->hv, p->angle) - 1;
 	double ty = 0;
-	// printf("im here\n");
 	double 	ty_step = ty_max/p->line_lenth;
 	while (p->start_wall  < WINDOW_HEIGHT/2 +(p->line_lenth/2))
 	{
