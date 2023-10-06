@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:48:11 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/05 17:13:12 by yaidriss         ###   ########.fr       */
+/*   Updated: 2023/10/06 08:53:45 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,21 @@
 
 unsigned int	pixel_value(t_cub3D *cb, double tx, t_putxt *p, int ty)
 {
-	int	i;
-
 	if (!p->hv)
 	{
 		if (p->angle > M_PI)
-		{
-			i = cb->text[N].width * (tx) / T_S;
-			return (cb->text[N].img[ty][i]);
-		}
+			return (cb->text[N].img[ty][(int)(cb->text[N].width * (tx) / T_S)]);
 		else
-		{
-			i = cb->text[S].width * (tx) / T_S;
-			return (cb->text[S].img[ty][cb->text[S].width - 1 - i]);
-		}
+			return (cb->text[S].img[ty][(int)(cb->text[S].width - 1
+				- (cb->text[S].width * (tx) / T_S))]);
 	}
 	else
 	{
 		if (p->angle > M_PI / 2 && p->angle < (3 * M_PI) / 2)
-		{
-			i = cb->text[WE].width * tx / T_S;
-			return (cb->text[WE].img[ty][cb->text[WE].width - 1 - i]);
-		}
+			return (cb->text[WE].img[ty][(int)(cb->text[WE].width - 1
+				- (cb->text[WE].width * tx / T_S))]);
 		else
-		{
-			i = cb->text[EA].width * tx / T_S;
-			return (cb->text[EA].img[ty][i]);
-		}
+			return (cb->text[EA].img[ty][(int)(cb->text[EA].width * tx / T_S)]);
 	}
 }
 
@@ -95,23 +83,17 @@ void	draw_3d_image(t_cub3D *cb)
 {
 	mlx_texture_t	*txt;
 	unsigned int	**img;
-	int				i;
-	int				j;
-	int				width;
-	int				height;
 
 	txt = cb->logo[M].txtr;
 	img = cb->logo[M].img;
-	i = -1;
-	j = -1;
-	width = txt->width;
-	height = txt->height;
-	while (++i < height)
+	cb->i = -1;
+	cb->j = -1;
+	while (++cb->i < txt->height)
 	{
-		while (++j < width)
-			mlx_put_pixel(cb->img2, j + 1150, i,
-				cb->logo[cb->pos_logo].img[i][j]);
-		j = -1;
+		while (++cb->j < txt->width)
+			mlx_put_pixel(cb->img2, cb->j + 1150, cb->i,
+				cb->logo[cb->pos_logo].img[cb->i][cb->j]);
+		cb->j = -1;
 	}
 	cb->t++;
 	if (cb->t == 4)

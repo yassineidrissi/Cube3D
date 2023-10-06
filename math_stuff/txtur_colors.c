@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:46:06 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/05 14:50:22 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 08:58:31 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,22 @@ unsigned int	*get_rgbas(uint8_t *pixels, int height, int width)
 
 unsigned int	**map_to_doublemap(t_cub3D *cb, mlx_texture_t *txtr)
 {
-	int				height;
-	int				width;
 	unsigned int	*map;
-	int				i;
-	int				j;
-	int				k;
 	unsigned int	**double_map;
 
-	height = txtr->height;
-	width = txtr->width;
-	map = get_rgbas(txtr->pixels, height, width);
-	i = -1;
-	j = -1;
-	k = -1;
-	double_map = malloc(sizeof(int *) * height);
-	while (++i < height)
-		double_map[i] = malloc(sizeof(int) * width);
-	i = -1;
-	while (++i < height)
+	map = get_rgbas(txtr->pixels, txtr->height, txtr->width);
+	cb->i = -1;
+	cb->j = -1;
+	cb->y = -1;
+	double_map = malloc(sizeof(int *) * txtr->height);
+	while (++cb->i < txtr->height)
+		double_map[cb->i] = malloc(sizeof(int) * txtr->width);
+	cb->i = -1;
+	while (++cb->i < txtr->height)
 	{
-		while (++j < width)
-			double_map[i][j] = map[++k];
-		j = -1;
+		while (++cb->j < txtr->width)
+			double_map[cb->i][cb->j] = map[++cb->y];
+		cb->j = -1;
 	}
 	free(map);
 	return (double_map);

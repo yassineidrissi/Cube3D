@@ -4,7 +4,7 @@ CC			= cc
 RM			= rm -f
 GLFW		= $(shell brew --prefix glfw)
 MLX_FLAG	= ~/MLX42/build/libmlx42.a -I ~/MLX42/include -Iinclude -lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
-LIBS		= -Wall -Wextra -Werror -fsanitize=address -g
+LIBS		= -Wall -Wextra -Werror #-fsanitize=address -g
 
 SRCS =	main.c ./srcs/ft_strjoin.c ./srcs/error.c ./srcs/ft_atoi.c ./srcs/ft_itoa.c ./srcs/ft_printf.c ./srcs/ft_split.c ./srcs/ft_strdup.c \
 		./srcs/get_next_line.c ./srcs/get_next_line_utils.c ./srcs/ft_strtrim.c ./srcs/ft_substr.c ./validation/validation.c ./validation/validation2.c \
