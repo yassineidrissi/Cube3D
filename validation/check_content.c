@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/05 10:17:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:39:54 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	check_content(t_cub3D *cb)
 		cb->line = get_next_line(cb->fd);
 	}
 	close(cb->fd);
-	load_text(cb);
 	check_bol(cb);
 	check_repeat(cb);
+	load_text(cb);
 	cb->map.map_tmp = ft_split(cb->joined_map, '\n');
 	free(cb->joined_map);
 	check_valid_map(cb);

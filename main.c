@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 07:31:06 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/06 09:13:01 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:45:27 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	start_mlx(t_cub3D *cb)
 {
 	cb->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	cb->img = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cb->img2 = mlx_new_image(cb->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_image_to_window(cb->mlx, cb->img, 0, 0);
-	mlx_image_to_window(cb->mlx, cb->img2, 0, 0);
 	mlx_loop_hook(cb->mlx, ft_hook, cb);
 	mlx_loop_hook(cb->mlx, main_work, cb);
 	mlx_loop(cb->mlx);

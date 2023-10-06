@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:46:24 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/02 12:10:44 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:39:07 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,8 @@ void	rays(t_cub3D *cb)
 void	main_work(void *param)
 {
 	t_cub3D	*cb;
-	int		til_s;
 
 	cb = param;
-	til_s = (T_S / 16);
 	cb->var.i = -1;
 	draw_init(cb);
 	while (++cb->var.i < WINDOW_WIDTH)
@@ -99,9 +97,8 @@ void	main_work(void *param)
 		calculate_dis(cb);
 		cb->var.dis_w = cos(((AGNGLE_VUE / 2) * M_PI / 180)
 				- (cb->var.i * cb->var.angle_step)) * cb->var.dis_w;
-		cb->var.line_lenth = (WINDOW_HEIGHT / 4) / -tan(30)
+		cb->var.line_lenth = (WINDOW_HEIGHT / 2) / -tan(30)
 			* (WINDOW_HEIGHT / cb->var.dis_w);
-		cb->var.line_lenth *= 2;
 		cb->var.start_wall = WINDOW_HEIGHT / 2 - (cb->var.line_lenth / 2);
 		put_tx(cb);
 		cb->var.angle += cb->var.angle_step;

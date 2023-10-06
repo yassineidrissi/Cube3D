@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:46:06 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/06 08:58:31 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 16:29:02 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,11 @@ void	load_text2(t_cub3D *cb)
 	int	i;
 
 	i = -1;
-	cb->pos_logo = 0;
-	cb->t = 0;
+	cb->logo_indx = 0;
+	cb->logo_speed = 0;
 	while (++i < 4)
 		if (cb->text[i].txtr)
-			cb->text[i].img = (unsigned int **)map_to_doublemap(cb,
-					cb->text[i].txtr);
+			cb->text[i].img = map_to_doublemap(cb, cb->text[i].txtr);
 	i = -1;
 	while (++i < 4)
 	{

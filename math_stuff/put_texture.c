@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:48:11 by zouaraqa          #+#    #+#             */
-/*   Updated: 2023/10/06 08:53:45 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:37:40 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ void	draw_3d_image(t_cub3D *cb)
 	{
 		while (++cb->j < txt->width)
 			mlx_put_pixel(cb->img2, cb->j + 1150, cb->i,
-				cb->logo[cb->pos_logo].img[cb->i][cb->j]);
+				cb->logo[cb->logo_indx].img[cb->i][cb->j]);
 		cb->j = -1;
 	}
-	cb->t++;
-	if (cb->t == 4)
+	cb->logo_speed++;
+	if (cb->logo_speed == 4)
 	{
-		cb->t = 0;
-		cb->pos_logo++;
+		cb->logo_speed = 0;
+		cb->logo_indx++;
 	}
-	if (cb->pos_logo == 5)
-		cb->pos_logo = 0;
+	if (cb->logo_indx == 5)
+		cb->logo_indx = 0;
 }
