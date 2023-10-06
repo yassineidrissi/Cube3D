@@ -66,4 +66,4 @@ cube_3d_logo:
 	@echo "\033[92m⌛CREATING .O FILES AND cub3D⌛\033[0m"
 
 
-.PHONY: all fclean clean re cube_3d_logo
+.PHONY: all bonus fclean clean re cube_3d_logo
