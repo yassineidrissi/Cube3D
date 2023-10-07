@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 06:47:35 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/06 16:28:16 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/07 08:37:38 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 # define F 0
 # define C 1
 # define M 0
-# define L 1
-# define R 2
 
 typedef struct s_map
 {
