@@ -6,7 +6,7 @@
 /*   By: zouaraqa <zouaraqa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 08:56:45 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/10/07 08:54:26 by zouaraqa         ###   ########.fr       */
+/*   Updated: 2023/10/07 12:52:20 by zouaraqa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void	load_text(t_cub3D *cb)
 		if (cb->text[i].path)
 			cb->text[i].txtr = mlx_load_png(cb->text[i].path);
 		if (!cb->text[i].txtr)
-			handl_errors(6);
+			handl_errors(8);
 	}
 	i = -1;
 	while (++i < 5)
 	{
 		cb->logo[i].txtr = mlx_load_png(cb->fn_logo[i]);
 		if (!cb->logo[i].txtr)
-			handl_errors(6);
+			handl_errors(8);
 		cb->logo[i].img = map_to_doublemap(cb, cb->logo[i].txtr);
 	}
 	load_text2(cb);
